@@ -1,5 +1,5 @@
 {
-  "name": "progress-bar",
+  "name": "@plutojs/progress-bar",
   "version": "0.3.0",
   "description": "",
   "main": "index.js",
@@ -8,5 +8,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "gitHead": "125e902466911e557200c134e7c65a44a8b9e7e0"
 }
