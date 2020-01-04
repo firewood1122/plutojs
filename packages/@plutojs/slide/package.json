@@ -1,0 +1,25 @@
+{
+  "name": "slide",
+  "version": "0.1.0",
+  "description": "基于H5的滑动组件",
+  "main": "index.js",
+  "scripts": {
+    "test": "cross-env BABEL_ENV=test karma start"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-istanbul": "^6.0.0",
+    "babel-preset-env": "^1.7.0",
+    "cross-env": "^6.0.3",
+    "jasmine-core": "^3.5.0",
+    "karma": "^4.4.1",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-coverage": "^2.0.1",
+    "karma-jasmine": "^2.0.1",
+    "karma-webpack": "^4.0.2",
+    "webpack": "^4.41.5"
+  }
+}
