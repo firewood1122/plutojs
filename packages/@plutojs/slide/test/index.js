@@ -1,13 +1,13 @@
 import { reverse } from '../index';
 
-describe('第一个测试用例', function () {
-  beforeEach(function () {
+describe('第一个测试用例', () => {
+  beforeEach(() => {
   });
 
-  afterEach(function () {
+  afterEach(() => {
   });
 
-  it('reverse word', function () {
+  it('reverse word', () => {
     expect('BBB').toBe(reverse('AAA'));
     expect('DCBA').toBe(reverse('ABCD'));
   });

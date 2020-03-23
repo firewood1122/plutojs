@@ -32,9 +32,9 @@ module.exports = function (config) {
         rules: [
           {
             test: /\.js$/, loader: 'babel-loader',
-          }
-        ]
-      }
+          },
+        ],
+      },
     },
 
     // test results reporter to use
@@ -44,7 +44,7 @@ module.exports = function (config) {
 
     coverageReporter: {
       dir: './coverage',
-      reporters: [{ type: 'lcov', subdir: '.' }, { type: 'text-summary' }]
+      reporters: [{ type: 'lcov', subdir: '.' }, { type: 'text-summary' }],
     },
 
     // web server port
@@ -64,7 +64,7 @@ module.exports = function (config) {
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['PhantomJS'],
     phantomjsLauncher: {
-      exitOnResourceError: true
+      exitOnResourceError: true,
     },
 
     // Continuous Integration mode
@@ -73,6 +73,6 @@ module.exports = function (config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
-  })
-}
+    concurrency: Infinity,
+  });
+};
