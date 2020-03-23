@@ -1,6 +1,8 @@
 {
   "name": "root",
-  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "workspaces": [
     "packages/@plutojs/*"
   ],
@@ -29,7 +31,6 @@
     "lint": "eslint packages/**/*.js"
   },
   "husky": {
-    "hooks": {
-    }
+    "hooks": {}
   }
 }
