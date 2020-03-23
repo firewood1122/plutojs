@@ -1,8 +1,6 @@
 {
   "name": "root",
-  "publishConfig": {
-    "access": "public"
-  },
+  "private": true,
   "workspaces": [
     "packages/@plutojs/*"
   ],
