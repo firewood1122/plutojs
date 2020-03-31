@@ -8,6 +8,9 @@
     "@babel/core": "^7.9.0",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
+    "@storybook/addon-backgrounds": "^5.3.17",
+    "@storybook/addon-storysource": "^5.3.17",
+    "@storybook/addon-viewport": "^5.3.17",
     "@storybook/react": "^5.3.17",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
@@ -20,8 +23,8 @@
     "react-scripts": "^3.4.1"
   },
   "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
   },
   "scripts": {
     "sb": "start-storybook",
