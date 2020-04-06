@@ -5,6 +5,7 @@ module.exports = {
   addons: [
     '@storybook/addon-backgrounds',
     '@storybook/addon-viewport',
+    '@storybook/addon-queryparams',
     {
       name: '@storybook/addon-storysource',
       options: {

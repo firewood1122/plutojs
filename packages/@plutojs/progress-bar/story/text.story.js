@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@storybook/react/demo';
+import { addParameters } from '@storybook/react';
 
 export default {
   title: 'Button',
@@ -11,5 +12,11 @@ export default {
   },
 };
 
-export const Story1 = () => <Button>Hello Button</Button>;
+addParameters({
+  query: {
+    mock: true,
+  },
+});
+
+export const Story1 = () => <Button>Hello Button {document.search}</Button>;
 Story1.story = { name: '文案按钮' };

@@ -9,6 +9,7 @@
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@storybook/addon-backgrounds": "^5.3.17",
+    "@storybook/addon-queryparams": "^5.3.18",
     "@storybook/addon-storysource": "^5.3.17",
     "@storybook/addon-viewport": "^5.3.17",
     "@storybook/react": "^5.3.17",
