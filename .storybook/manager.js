@@ -1,5 +1,6 @@
 import { addons } from '@storybook/addons';
 import { themes } from '@storybook/theming';
+import plotojs from './plutojs';
 
 addons.setConfig({
   /**
@@ -47,7 +48,7 @@ addons.setConfig({
   /**
    * theme storybook, see link below
    */
-  theme: themes.dark,
+  theme: plotojs,
 
   /**
    * id to select an addon panel

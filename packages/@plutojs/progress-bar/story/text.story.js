@@ -13,12 +13,3 @@ export default {
 
 export const Story1 = () => <Button>Hello Button</Button>;
 Story1.story = { name: '文案按钮' };
-
-export const Story2 = () => (
-  <Button>
-    <span role="img" aria-label="so cool">
-      😀 😎 👍 💯
-    </span>
-  </Button>
-);
-Story2.story = { name: '表情按钮' };
