@@ -1,14 +1,16 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { withQuery } from '@storybook/addon-queryparams';
 
-storiesOf('button', module)
+storiesOf('App', <div />)
+  .addDecorator(withQuery)
   .addParameters({
     query: {
-      mock: true,
-    }
+      id: '123',
+    },
   })
-  .add('Prints the document.search', () => (
+  .add('显示页面参数', () => (
     <div>
-      This is the current document.search: {document.search}, it includes `mock`!
+      {window.location.search}
     </div>
   ));
