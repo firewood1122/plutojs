@@ -6,6 +6,7 @@ module.exports = {
     '@storybook/addon-backgrounds',
     '@storybook/addon-viewport',
     '@storybook/addon-queryparams',
+    '@storybook/addon-docs',
     {
       name: '@storybook/addon-storysource',
       options: {

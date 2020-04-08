@@ -3,6 +3,7 @@ import { Button } from '@storybook/react/demo';
 
 export default {
   title: 'Button',
+  component: Button,
   parameters: {
     backgrounds: [
       { name: '默认背景', value: '#fff', default: true },
