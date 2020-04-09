@@ -1,9 +1,10 @@
 import React from 'react';
 import { Button } from '@storybook/react/demo';
-import { addParameters } from '@storybook/react';
+import { withKnobs, text, number } from '@storybook/addon-knobs';
 
 export default {
   title: 'Button',
+  decorators: [withKnobs],
   parameters: {
     backgrounds: [
       { name: '默认背景', value: '#fff', default: true },
@@ -12,11 +13,11 @@ export default {
   },
 };
 
-addParameters({
-  query: {
-    mock: true,
-  },
-});
+export const defaultView = () => {
+  const name = text('Text', '保存');
+  return <Button>{name}</Button>;
+};
 
-export const Story1 = () => <Button>Hello Button {document.search}</Button>;
-Story1.story = { name: '文案按钮' };
+defaultView.story = {
+  name: '文案按钮',
+};

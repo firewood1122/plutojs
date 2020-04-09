@@ -3,10 +3,11 @@ const path = require('path');
 module.exports = {
   stories: ['../packages/@plutojs/**/story/*.[tj]s'],
   addons: [
-    '@storybook/addon-backgrounds',
     '@storybook/addon-viewport',
+    '@storybook/addon-backgrounds',
     '@storybook/addon-queryparams',
     '@storybook/addon-docs',
+    '@storybook/addon-knobs',
     {
       name: '@storybook/addon-storysource',
       options: {
