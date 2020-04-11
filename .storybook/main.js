@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  stories: ['../packages/@plutojs/**/story/*.[tj]s'],
+  stories: ['../packages/**/story/*.[tj]s'],
   addons: [
     '@storybook/addon-viewport',
     '@storybook/addon-backgrounds',
@@ -13,7 +13,7 @@ module.exports = {
       options: {
         rule: {
           test: /\.story\.js$/,
-          include: [path.resolve(__dirname, '../packages/')], // You can specify directories
+          include: [path.resolve(__dirname, '../packages/')],
         },
         loaderOptions: {
           prettierConfig: { printWidth: 80, singleQuote: false },
