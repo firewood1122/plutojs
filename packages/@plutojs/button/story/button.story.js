@@ -4,7 +4,8 @@ import { withKnobs, text } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
 
 export default {
-  title: 'Button',
+  title: 'Button 按钮',
+  component: Button,
   decorators: [withKnobs, withQuery],
   parameters: {
     backgrounds: [
@@ -18,18 +19,9 @@ export default {
 };
 
 export const story1 = () => {
-  const name = text('Text', '保存');
+  const name = '123';
   return <Button>{name}</Button>;
 };
 story1.story = {
-  name: '文案按钮',
+  name: '默认按钮',
 };
-
-export const Story2 = () => (
-  <Button>
-    <span role="img" aria-label="so cool">
-      😀 😎 👍 💯
-    </span>
-  </Button>
-);
-Story2.story = { name: '表情按钮' };

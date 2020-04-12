@@ -29,8 +29,12 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react": "16.13.0",
+    "react-dom": "16.13.0"
+  },
+  "resolutions": {
+    "react": "16.13.0",
+    "react-dom": "16.13.0"
   },
   "scripts": {
     "build": "lerna run build:js",
