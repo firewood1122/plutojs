@@ -1,0 +1,1 @@
+{"version":3,"sources":["../lib/button.ts"],"names":["module","exports","button"],"mappings":"AAAAA,MAAM,CAACC,OAAP,GAAiBC,MAAjB;;AAEA,SAASA,MAAT,GAAkB,CACjB","sourcesContent":["module.exports = button;\n\nfunction button() {\n}\n"],"file":"button.js"}

@@ -5,7 +5,9 @@
     "packages/@plutojs/*"
   ],
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
+    "@babel/preset-typescript": "^7.9.0",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@storybook/addon-backgrounds": "^5.3.17",
@@ -27,11 +29,13 @@
   },
   "dependencies": {
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "yarn": "^1.22.4"
   },
   "scripts": {
-    "sb": "start-storybook",
-    "build-sb": "build-storybook -c .storybook -o .out",
+    "build": "lerna run build:js",
+    "story": "start-storybook",
+    "build-story": "build-storybook -c .storybook -o .out",
     "lint": "eslint packages/**/*.js"
   },
   "husky": {
