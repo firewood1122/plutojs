@@ -19,7 +19,7 @@ export default {
 };
 
 export const story1 = () => {
-  const name = '123';
+  const name = text('text', '保存');
   return <Button>{name}</Button>;
 };
 story1.story = {
