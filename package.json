@@ -19,14 +19,22 @@
     "@storybook/react": "^5.3.17",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.5.3",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-react": "^7.19.0",
     "husky": "^4.2.3",
     "lerna": "^3.19.0",
+    "less-loader": "^6.1.0",
+    "minimist": "^1.2.5",
+    "postcss-loader": "^3.0.0",
     "react-scripts": "^3.4.1",
-    "typescript": "^3.8.3"
+    "style-loader": "^1.2.1",
+    "ts-loader": "^7.0.3",
+    "typescript": "^3.8.3",
+    "webpack": "^4.43.0"
   },
   "dependencies": {
     "react": "16.13.0",
@@ -37,7 +45,7 @@
     "react-dom": "16.13.0"
   },
   "scripts": {
-    "build": "lerna run build:js",
+    "build": "node scripts/build.js",
     "story": "start-storybook",
     "build-story": "build-storybook -c .storybook -o .out",
     "lint": "eslint packages/**/*.js"

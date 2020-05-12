@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button } from '@storybook/react/demo';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
+import Button from '../build/button.min.js';
 
 export default {
   title: 'Button 按钮',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './index.css';
+const style = require('./index.less');
 
 interface Props {
 }
@@ -9,7 +9,7 @@ export default class Button extends Component<Props, States> {
   render() {
     const { children } = this.props;
     return (
-      <button>{children}</button>
+      <button className={style.button}>{children}</button>
     );
   }
 }
