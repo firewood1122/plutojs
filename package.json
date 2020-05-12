@@ -17,6 +17,7 @@
     "@storybook/addon-storysource": "^5.3.17",
     "@storybook/addon-viewport": "^5.3.17",
     "@storybook/react": "^5.3.17",
+    "autoprefixer": "^9.7.6",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -37,6 +38,7 @@
     "webpack": "^4.43.0"
   },
   "dependencies": {
+    "@plutojs/postcss-px2rem": "^1.4.1",
     "react": "16.13.0",
     "react-dom": "16.13.0"
   },

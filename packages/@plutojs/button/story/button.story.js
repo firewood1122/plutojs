@@ -1,7 +1,8 @@
 import React from 'react';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
-import Button from '../build/button.min.js';
+import Button from '..';
+import './story.css';
 
 export default {
   title: 'Button 按钮',
@@ -12,16 +13,13 @@ export default {
       { name: '默认背景', value: '#fff', default: true },
       { name: '黑色背景', value: '#2f2f2f' },
     ],
-    query: {
-      id: '123',
-    },
   },
 };
 
 export const story1 = () => {
-  const name = text('text', '保存');
-  return <Button>{name}</Button>;
+  const name = text('按钮文字', '创建表单');
+  return <Button onClick={() => { alert('创建成功'); }}>{name}</Button>;
 };
 story1.story = {
-  name: '默认按钮',
+  name: '文字按钮',
 };

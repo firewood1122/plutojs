@@ -2,13 +2,12 @@ const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = (opt) => {
-  console.log(opt);
   return {
     mode: 'production',
     entry: path.resolve(opt.path, './lib/index.tsx'),
     output: {
       path: path.resolve(opt.path, './build'),
-      filename: `${opt.name}.min.js`,
+      filename: `index.js`,
       library: opt.name,
       libraryTarget: 'umd',
       umdNamedDefine: true

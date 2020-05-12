@@ -6,8 +6,13 @@ module.exports = {
     '@storybook/addon-viewport',
     '@storybook/addon-backgrounds',
     '@storybook/addon-queryparams',
-    '@storybook/addon-docs',
     '@storybook/addon-knobs',
+    {
+      name: "@storybook/addon-docs",
+      options: {
+        configureJSX: true,
+      },
+    },
     {
       name: '@storybook/addon-storysource',
       options: {
