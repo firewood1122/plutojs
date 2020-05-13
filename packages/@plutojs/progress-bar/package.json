@@ -5,7 +5,8 @@
   "main": "build/index.js",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
-    "access": "public"
+    "access": "public",
+    "npm-tag": "latest"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
