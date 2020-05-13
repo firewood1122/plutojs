@@ -1,11 +1,9 @@
 # `@plutojs/postcss-px2rem`
 
-> TODO: description
-
 ## Usage
 
 ```
 const postcssPx2Rem = require('@plutojs/postcss-px2rem');
 
-// TODO: DEMONSTRATE API
+css文件顶部添加 /*px2rem-disabled*/，会跳过px到rem的转换
 ```
