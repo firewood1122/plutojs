@@ -48,6 +48,7 @@
   },
   "scripts": {
     "build": "node scripts/build.js",
+    "release": "lerna publish",
     "story": "start-storybook",
     "build-story": "build-storybook -c .storybook -o .out",
     "lint": "eslint packages/**/*.js"
