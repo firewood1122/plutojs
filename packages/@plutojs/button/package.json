@@ -28,5 +28,11 @@
   },
   "bugs": {
     "url": "https://github.com/firewood1122/plutojs/issues"
+  },
+  "dependencies": {
+    "@storybook/addon-knobs": "^5.3.18",
+    "@storybook/addon-queryparams": "^5.3.18",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }

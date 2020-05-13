@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 const postcss = require('postcss');
 const Px2rem = require('px2rem');
 

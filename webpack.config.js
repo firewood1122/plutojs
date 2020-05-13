@@ -1,12 +1,13 @@
-const path = require('path')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const fs = require('fs');
+const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = (opt) => {
   return {
     mode: 'production',
-    entry: path.resolve(opt.path, './lib/index.tsx'),
+    entry: opt.path,
     output: {
-      path: path.resolve(opt.path, './build'),
+      path: path.resolve(opt.packagePath, './build'),
       filename: `index.js`,
       library: opt.name,
       libraryTarget: 'umd',
@@ -22,7 +23,10 @@ module.exports = (opt) => {
           test: /\.ts(x)$/,
           use: [
             {
-              loader: 'ts-loader'
+              loader: 'ts-loader',
+              options: {
+                configFile: path.resolve(__dirname, './tsconfig.json')
+              }
             }
           ]
         },

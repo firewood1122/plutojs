@@ -7,6 +7,22 @@ const webpackConfig = require('../webpack.config')
 const args = minimist(process.argv.slice(2))
 
 /**
+ * 获取入口文件
+ * 
+ * @param {*} optPath 
+ */
+const getEntryPath = (optPath) => {
+  const tsPath = path.resolve(optPath, './lib/index.ts');
+  const tsxPath = path.resolve(optPath, './lib/index.tsx');
+  if (fs.existsSync(tsPath)) {
+    return filePath;
+  } else if (fs.existsSync(tsxPath)) {
+    return tsxPath;
+  }
+  return '';
+};
+
+/**
  * 获取外部依赖配置
  * 
  * @param {*} dependencies 
@@ -28,10 +44,11 @@ const packages = fs.readdirSync(path.resolve(__dirname, packageDir))
 packages.forEach(item => {
   const packagePath = path.resolve(__dirname, packageDir, item)
   const packageJsonPath = path.resolve(packagePath, 'package.json')
-  if (fs.existsSync(packageJsonPath)) {
+  if (fs.existsSync(packageJsonPath) && getEntryPath(packagePath)) {
     const { dependencies } = require(packageJsonPath)
     packageWebpackConfig[item] = {
-      path: packagePath,
+      path: getEntryPath(packagePath),
+      packagePath,
       name: item,
       externals: getExternals(dependencies)
     }

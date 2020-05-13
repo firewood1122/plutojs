@@ -2,7 +2,7 @@
   "name": "@plutojs/progress-bar",
   "version": "0.7.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/index.js",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
@@ -12,6 +12,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "gitHead": "10ef9724d1246556250747a073975a55825294c3"
 }
