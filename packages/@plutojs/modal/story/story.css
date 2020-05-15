@@ -1,0 +1,21 @@
+.demo-field {
+  width: 100vw;
+  height: 300px;
+  background: red;
+}
+.demo-btn-field {
+  margin: 40px auto;
+  text-align: center;
+}
+.demo-btn {
+  width: 100px;
+  height: 40px;
+  border: 1px solid #000;
+  border-radius: 20px;
+  text-align: center;
+}
+.demo-input {
+  width:  200px;
+  height: 50px;
+  font-size: 40px;
+}
