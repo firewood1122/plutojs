@@ -5,7 +5,7 @@ interface PropsType {
   children: JSX.Element,
   isOpened: Boolean,
   onHide: () => void,
-  position?: string,
+  position?: 'top' | 'center' | 'bottom',
   closeOnClickOverlay?: boolean,
 };
 
@@ -26,12 +26,19 @@ export const useModal = () => {
 
 let prePosition: string = document.body.style.position; // body原有定位
 let scrollTop: number = 0; // 页面滚动高度
+const positionMap = {
+  top: style.top,
+  center: style.center,
+  bottom: style.bottom,
+};
 
 export default function Modal(props: PropsType) {
   const {
     children,
     isOpened,
     onHide,
+    position = 'center',
+    closeOnClickOverlay = true,
   }: PropsType = props;
 
   // 重新设置body定位
@@ -61,7 +68,10 @@ export default function Modal(props: PropsType) {
     <React.Fragment>
       {
         isOpened && (
-          <div ref={modalEl} className={`${style.modal} ${style.center}`} onClick={onHide}>
+          <div
+            ref={modalEl}
+            className={`${style.modal} ${positionMap[position]} ${closeOnClickOverlay ? style.mask : ''}`}
+            onClick={onHide}>
             <div onClick={e => { e.stopPropagation(); }}>{children}</div>
           </div>
         )

@@ -1,5 +1,6 @@
 .demo-wrap {
   height: 1000px;
+  overflow-x: hidden;
 }
 .demo-field {
   width: 100vw;

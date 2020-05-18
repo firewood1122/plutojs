@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
 import Modal, { useModal } from '..';
 import './story.css';
@@ -27,13 +27,19 @@ export const story1 = () => {
     }, 0);
   };
 
+  const position = text('模态框定位', 'center');
+  const closeOnClickOverlay = boolean('是否有不透明背景', true);
   return (
     <div className="demo-wrap">
       <div className="demo-field"></div>
       <div className="demo-btn-field">
         <button className="demo-btn" onClick={inputModal.show}>显示模态框</button>
       </div>
-      <Modal isOpened={inputModal.isOpened} onHide={inputModal.hide}>
+      <Modal
+        isOpened={inputModal.isOpened}
+        onHide={inputModal.hide}
+        position={position}
+        closeOnClickOverlay={closeOnClickOverlay}>
         <input ref={inputEl} type="text" className="demo-input" placeholder="请输入文字" onBlur={onBlur} />
       </Modal>
     </div>
