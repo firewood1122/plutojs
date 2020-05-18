@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 const style = require('./index.less');
 
 interface PropsType {
@@ -24,7 +24,9 @@ export const useModal = () => {
   };
 };
 
-let prePosition: string = ''; // 记录当前body的position值
+let prePosition: string = document.body.style.position; // body原有定位
+let scrollTop: number = 0; // 页面滚动高度
+
 export default function Modal(props: PropsType) {
   const {
     children,
@@ -32,20 +34,26 @@ export default function Modal(props: PropsType) {
     onHide,
   }: PropsType = props;
 
-  // 记录body原有定位
-  if (!prePosition) {
-    prePosition = document.body.style.position;
-  }
+  // 重新设置body定位
+  const reset = (scrollTop: number) => {
+    document.body.style.position = prePosition || 'static';
+    document.body.style.top = '0px';
+    document.documentElement.scrollTop = scrollTop;
+    document.body.scrollTop = scrollTop;
+  };
 
+  const modalEl = useRef(null);
   useEffect(() => {
-    // 设置body定位
     if (isOpened) {
+      scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollTop}px`;
+      modalEl.current.style.top = `${scrollTop}px`;
     } else {
-      document.body.style.position = prePosition;
+      reset(scrollTop);
     }
     return () => {
-      document.body.style.position = prePosition;
+      document.body.style.position = prePosition || 'static';
     };
   }, [isOpened]);
 
@@ -53,7 +61,7 @@ export default function Modal(props: PropsType) {
     <React.Fragment>
       {
         isOpened && (
-          <div className={`${style.modal} ${style.center}`} onClick={onHide}>
+          <div ref={modalEl} className={`${style.modal} ${style.center}`} onClick={onHide}>
             <div onClick={e => { e.stopPropagation(); }}>{children}</div>
           </div>
         )

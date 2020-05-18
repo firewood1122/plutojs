@@ -28,7 +28,7 @@ export const story1 = () => {
   };
 
   return (
-    <div>
+    <div className="demo-wrap">
       <div className="demo-field"></div>
       <div className="demo-btn-field">
         <button className="demo-btn" onClick={inputModal.show}>显示模态框</button>
