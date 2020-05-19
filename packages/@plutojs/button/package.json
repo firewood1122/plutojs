@@ -1,7 +1,7 @@
 {
   "name": "@plutojs/button",
   "version": "0.3.1",
-  "description": "按钮组件",
+  "description": "基础按钮组件",
   "keywords": [
     "button"
   ],

@@ -18,7 +18,11 @@ export default {
 
 export const story1 = () => {
   const name = text('按钮文字', '创建表单');
-  return <Button onClick={() => { alert('创建成功'); }}>{name}</Button>;
+  return (
+    <div className="button-demo-field">
+      <Button onClick={() => { alert('创建成功'); }}>{name}</Button>
+    </div>
+  )
 };
 story1.story = {
   name: '文字按钮',
