@@ -27,7 +27,7 @@ export const story1 = () => {
     }, 0);
   };
 
-  const position = text('模态框定位', 'center');
+  const position = text('模态框内容定位', 'center');
   const closeOnClickOverlay = boolean('是否有不透明背景', true);
   return (
     <div className="demo-wrap">
