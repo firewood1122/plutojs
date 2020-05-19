@@ -1,7 +1,7 @@
 {
   "name": "@plutojs/modal",
   "version": "1.1.0",
-  "description": "简单的Modal组件",
+  "description": "基础Modal组件",
   "keywords": [
     "modal",
     "dialog"
