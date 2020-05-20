@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = (opt) => {
@@ -10,12 +11,17 @@ module.exports = (opt) => {
       path: path.resolve(opt.packagePath, './build'),
       filename: `index.js`,
       library: opt.name,
+      globalObject: 'this',
       libraryTarget: 'umd',
       umdNamedDefine: true
     },
     externals: opt.externals,
     plugins: [
-      new CleanWebpackPlugin()
+      new CleanWebpackPlugin(),
+      new MiniCssExtractPlugin({
+        filename: 'index.css',  // 分离后的文件名
+        ignoreOrder: false
+      }),
     ],
     module: {
       rules: [
@@ -34,7 +40,7 @@ module.exports = (opt) => {
           test: /\.less$/,
           use: [
             {
-              loader: 'style-loader'
+              loader: MiniCssExtractPlugin.loader,
             },
             {
               loader: 'css-loader',

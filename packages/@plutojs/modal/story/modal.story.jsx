@@ -1,7 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
-import Modal, { useModal } from '..';
+import Modal from '@plutojs/modal';
+import '@plutojs/modal/build/index.css';
 import './story.css';
 
 export default {
@@ -17,7 +18,7 @@ export default {
 };
 
 export const story1 = () => {
-  const inputModal = useModal();
+  const [isOpened, setIsOpened] = useState(false);
 
   // 更新input定位
   const inputEl = useRef(null);
@@ -33,11 +34,11 @@ export const story1 = () => {
     <div className="modal-demo-wrap">
       <div className="modal-demo-field"></div>
       <div className="modal-demo-btn-field">
-        <button className="modal-demo-btn" onClick={inputModal.show}>显示模态框</button>
+        <button className="modal-demo-btn" onClick={() => { setIsOpened(true); }}>显示模态框</button>
       </div>
       <Modal
-        isOpened={inputModal.isOpened}
-        onHide={inputModal.hide}
+        isOpened={isOpened}
+        onHide={() => { setIsOpened(false); }}
         position={position}
         closeOnClickOverlay={closeOnClickOverlay}>
         <input ref={inputEl} type="text" className="modal-demo-input" placeholder="请输入文字" onBlur={onBlur} />

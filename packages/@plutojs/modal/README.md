@@ -5,17 +5,17 @@
 ## Usage
 
 ```
-import Modal, { useModal } from '@plutojs/modal';
+import React, { useState } from 'react';
+import Modal from '@plutojs/modal';
+import '@plutojs/modal/build/index.css';
 
-const inputModal = useModal();
-const position = 'center';
-const closeOnClickOverlay = true;
+const [isOpened, setIsOpened] = useState(false);
 
 <Modal
-  isOpened={inputModal.isOpened}
-  onHide={inputModal.hide}
-  position={position}
-  closeOnClickOverlay={closeOnClickOverlay}>
+  isOpened={isOpened}
+  onHide={() => { setIsOpened(false); }}
+  position='center'
+  closeOnClickOverlay={true}>
   ...
 </Modal>
 ```
