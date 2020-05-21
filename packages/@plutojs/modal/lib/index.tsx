@@ -1,3 +1,4 @@
+import ReactDOM from 'react-dom';
 import React, { Component, createRef } from 'react';
 const style = require('./index.less');
 
@@ -32,6 +33,7 @@ export default class Modal extends Component<PropsType, any> {
     if (isOpened) {
       this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
       document.body.style.top = `-${this.scrollTop}px`;
       this.modalEl.current.style.top = `${this.scrollTop}px`;
     } else {
@@ -52,6 +54,27 @@ export default class Modal extends Component<PropsType, any> {
   componentDidUpdate() {
     const { isOpened } = this.props;
     this.setStyle(isOpened);
+  }
+
+  componentWillUnmount() {
+    this.setStyle(false);
+  }
+
+  /**
+   * 动态添加到页面
+   */
+  static popup = (properties: any) => {
+    const { ...props } = properties || {};
+    const div = document.createElement('div');
+    document.body.appendChild(div);
+    ReactDOM.render(<Modal {...props} />, div);
+
+    return {
+      destroy() {
+        ReactDOM.unmountComponentAtNode(div);
+        document.body.removeChild(div);
+      }
+    }
   }
 
   render() {

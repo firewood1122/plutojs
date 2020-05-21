@@ -49,3 +49,30 @@ export const story1 = () => {
 story1.story = {
   name: '表单模态框',
 };
+
+export const story2 = () => {
+  const position = text('模态框内容定位', 'center');
+  const closeOnClickOverlay = boolean('是否有不透明背景', true);
+
+  const popupModal = () => {
+    const { destroy } = Modal.popup({
+      children: <div className="modal-demo-text">文字内容</div>,
+      isOpened: true,
+      onHide: () => { destroy(); },
+      position,
+      closeOnClickOverlay,
+    });
+  };
+
+  return (
+    <div className="modal-demo-wrap">
+      <div className="modal-demo-field"></div>
+      <div className="modal-demo-btn-field">
+        <button className="modal-demo-btn" onClick={popupModal}>显示模态框</button>
+      </div>
+    </div>
+  );
+};
+story2.story = {
+  name: '动态创建模态框',
+};
