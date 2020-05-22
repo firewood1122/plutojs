@@ -7,14 +7,11 @@
     "removeComments": true,
     "esModuleInterop": true,
     "jsx": "react",
-    "moduleResolution": "Node",
     "target": "ES5",
+    "moduleResolution": "Node",
   },
   "exclude": [
     "node_modules",
-    "**/build",
-    "**/story",
-    "**/postcss-px2rem",
   ],
   "files": ["modules.d.ts"]
 }
