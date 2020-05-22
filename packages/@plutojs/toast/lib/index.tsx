@@ -1,19 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Modal from '@plutojs/modal';
 const style = require('./index.less');
 
-export default {
-  info: (text: string, duration: number = 3000) => {
-    const { destroy } = Modal.popup({
-      children: <div className={style.info}>{text}</div>,
-      isOpened: true,
-      onHide: () => { destroy(); },
-      closeOnClickOverlay: false,
-    });
+const getModal = (content: React.ReactNode, duration: number) => {
+  const { destroy } = Modal.popup({
+    children: content,
+    isOpened: true,
+    isMask: false,
+    isLock: false,
+    closeOnClickOverlay: false,
+    onHide: () => { destroy(); },
+  });
 
-    // 定时关闭
-    setTimeout(() => {
-      destroy();
-    }, duration);
+  // 定时关闭
+  setTimeout(() => {
+    destroy();
+  }, duration);
+};
+
+export default {
+  info: (text: string, duration: number = 2000) => {
+    getModal(<div className={style.info}>{text}</div>, duration);
+  },
+  error: (err: Error, duration: number = 2000) => {
+    getModal(<div className={style.info}>{err.toString()}</div>, duration);
   }
 }

@@ -20,10 +20,21 @@ export default {
 export const story1 = () => {
   return (
     <div className="modal-demo-btn-field">
-        <button className="modal-demo-btn" onClick={() => { Toast.info('aaa'); }}>点击弹出提示</button>
+        <button className="modal-demo-btn" onClick={() => { Toast.info('你点击了按钮'); }}>点击弹出提示</button>
     </div>
   );
 };
 story1.story = {
-  name: 'INFO',
+  name: 'INFO提示框',
+};
+
+export const story2 = () => {
+  return (
+    <div className="modal-demo-btn-field">
+        <button className="modal-demo-btn" onClick={() => { Toast.error(new Error('发生了错误')); }}>点击弹出提示</button>
+    </div>
+  );
+};
+story2.story = {
+  name: 'ERROR提示框',
 };

@@ -25,7 +25,7 @@ class Modal extends Component<PropsType, any> {
   };
 
   static defaultProps = {
-    postion: 'center',
+    position: 'center',
     isMask: true,
     isLock: true,
     closeOnClickOverlay: true,
@@ -87,8 +87,11 @@ class Modal extends Component<PropsType, any> {
 
     return {
       destroy() {
-        ReactDOM.unmountComponentAtNode(div);
-        document.body.removeChild(div);
+        try {
+          ReactDOM.unmountComponentAtNode(div);
+          document.body.removeChild(div);
+        } catch(err) {
+        }
       }
     }
   }
