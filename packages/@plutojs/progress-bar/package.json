@@ -3,6 +3,7 @@
   "version": "0.9.0",
   "description": "",
   "main": "build/index.js",
+  "types": "build/index.d.ts",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public",
