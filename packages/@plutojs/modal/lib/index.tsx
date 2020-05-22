@@ -5,29 +5,38 @@ const style = require('./index.less');
 interface PropsType {
   children: React.ReactNode,
   isOpened: Boolean,
-  onHide: () => void,
   position?: 'top' | 'center' | 'bottom',
+  isMask?: boolean,
+  isLock?: boolean,
   closeOnClickOverlay?: boolean,
+  onHide: () => void,
 };
 
-const positionMap = {
-  top: style.top,
-  center: style.center,
-  bottom: style.bottom,
-};
-
-export default class Modal extends Component<PropsType, any> {
+class Modal extends Component<PropsType, any> {
   constructor(props: PropsType) {
     super(props);
     this.modalEl = createRef();
   }
 
+  private positionMap = {
+    top: style.top,
+    center: style.center,
+    bottom: style.bottom,
+  };
+
+  static defaultProps = {
+    postion: 'center',
+    isMask: true,
+    isLock: true,
+    closeOnClickOverlay: true,
+  }
+
   private modalEl: any = null;
-  private prePosition: string = ''; // body原定位方式
+  private prePosition: string = ''; // 页面原定位方式
   private scrollTop: number = 0; // 页面原滚动高度
 
   /**
-   * 设置页面定位
+   * 锁定/解锁页面滚动
    */
   private setStyle = (isOpened: Boolean) => {
     if (isOpened) {
@@ -35,7 +44,7 @@ export default class Modal extends Component<PropsType, any> {
       document.body.style.position = 'fixed';
       document.body.style.width = '100%';
       document.body.style.top = `-${this.scrollTop}px`;
-      this.modalEl.current.style.top = `${this.scrollTop}px`;
+      if (this.modalEl) this.modalEl.current.style.top = `${this.scrollTop}px`;
     } else {
       // 重新设置body定位
       document.body.style.position = this.prePosition || 'static';
@@ -46,18 +55,25 @@ export default class Modal extends Component<PropsType, any> {
   }
 
   componentDidMount() {
-    const { isOpened } = this.props;
-    this.prePosition = document.body.style.position;
-    this.setStyle(isOpened);
+    const { isOpened, isLock } = this.props;
+    if (isLock) {
+      this.prePosition = document.body.style.position;
+      this.setStyle(isOpened);
+    }
   }
 
   componentDidUpdate() {
-    const { isOpened } = this.props;
-    this.setStyle(isOpened);
+    const { isOpened, isLock } = this.props;
+    if (isLock) {
+      this.setStyle(isOpened);
+    }
   }
 
   componentWillUnmount() {
-    this.setStyle(false);
+    const { isLock } = this.props;
+    if (isLock) {
+      this.setStyle(false);
+    }
   }
 
   /**
@@ -81,9 +97,11 @@ export default class Modal extends Component<PropsType, any> {
     const {
       children,
       isOpened,
+      position,
+      isMask,
+      isLock,
+      closeOnClickOverlay,
       onHide,
-      position = 'center',
-      closeOnClickOverlay = true,
     }: PropsType = this.props;
 
     return (
@@ -92,8 +110,8 @@ export default class Modal extends Component<PropsType, any> {
           isOpened && (
             <div
               ref={this.modalEl}
-              className={`${style.modal} ${positionMap[position]} ${closeOnClickOverlay ? style.mask : ''}`}
-              onClick={onHide}>
+              className={`${isLock ? style.lockModal : style.modal} ${this.positionMap[position]} ${isMask ? style.mask : ''}`}
+              onClick={() => { if (closeOnClickOverlay && onHide) onHide(); }}>
               <div onClick={e => { e.stopPropagation(); }}>{children}</div>
             </div>
           )
@@ -102,3 +120,5 @@ export default class Modal extends Component<PropsType, any> {
     );
   }
 }
+
+export default Modal;
