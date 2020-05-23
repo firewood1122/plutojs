@@ -24,7 +24,7 @@ addons.setConfig({
    * where to show the addon panel
    * @type {('bottom'|'right')}
    */
-  panelPosition: 'bottom',
+  panelPosition: 'right',
 
   /**
    * sidebar tree animations
