@@ -1,0 +1,11 @@
+.modal-demo-btn-field {
+  margin: 40px auto;
+  width: 100%;
+}
+.modal-demo-btn {
+  width: 100px;
+  height: 40px;
+  border: 1px solid #000;
+  border-radius: 20px;
+  text-align: center;
+}

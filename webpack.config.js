@@ -31,7 +31,7 @@ module.exports = (opt) => {
             {
               loader: 'ts-loader',
               options: {
-                configFile: path.resolve(__dirname, './tsconfig.json')
+                configFile: path.resolve(opt.packagePath, './tsconfig.json')
               }
             }
           ]
@@ -53,6 +53,12 @@ module.exports = (opt) => {
               loader: 'less-loader'
             }
           ]
+        },
+        {
+          test: /\.(png|svg|jpg|gif)$/,
+          use: {
+            loader: 'url-loader'
+          }
         }
       ]
     },
