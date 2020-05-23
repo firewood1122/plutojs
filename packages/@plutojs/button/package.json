@@ -38,6 +38,5 @@
     "@storybook/addon-queryparams": "^5.3.18",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
-  },
-  "gitHead": "9b3623b6c1b3adbb2828417f635882c7238b2cd7"
+  }
 }
