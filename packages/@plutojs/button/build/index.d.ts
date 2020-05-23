@@ -1,10 +1,14 @@
 import { Component } from 'react';
-interface Props {
+interface PropsType {
+    className?: string;
     onClick: () => void;
 }
-interface States {
+interface StateType {
 }
-export default class Button extends Component<Props, States> {
+export default class Button extends Component<PropsType, StateType> {
+    static defaultProps: {
+        className: string;
+    };
     render(): JSX.Element;
 }
 export {};

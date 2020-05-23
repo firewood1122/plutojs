@@ -1,11 +1,12 @@
 # `@plutojs/button`
 
-> TODO: description
+> 基础按钮组件
 
 ## Usage
 
 ```
-const button = require('@plutojs/button');
+import Button from '@plutojs/button';
+import '@plutojs/button/build/index.css';
 
-// TODO: DEMONSTRATE API
+<Button className="test-btn" onClick={() => { alert('创建成功'); }}>按钮文字</Button>
 ```
