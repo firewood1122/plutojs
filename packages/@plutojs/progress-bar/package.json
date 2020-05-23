@@ -4,6 +4,10 @@
   "description": "",
   "main": "build/index.js",
   "types": "build/index.d.ts",
+  "files": [
+    "build",
+    "lib"
+  ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public",
