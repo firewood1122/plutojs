@@ -1,11 +1,11 @@
 # `@plutojs/toast`
 
-> TODO: description
+> Toast 轻提示
 
 ## Usage
 
 ```
-const toast = require('@plutojs/toast');
+Toast.info('你点击了按钮');
 
-// TODO: DEMONSTRATE API
+Toast.error(new Error('发生了错误'));
 ```
