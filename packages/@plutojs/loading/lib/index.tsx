@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from '@plutojs/modal';
+import '@plutojs/modal/build/index.css';
 const style = require('./index.less');
 
 let loading = null;
