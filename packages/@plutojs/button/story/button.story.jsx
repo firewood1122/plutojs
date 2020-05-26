@@ -6,7 +6,7 @@ import '@plutojs/button/build/index.css';
 import './story.css';
 
 export default {
-  title: 'Button 按钮',
+  title: '基础组件.Button 按钮',
   component: Button,
   decorators: [withKnobs, withQuery],
   parameters: {

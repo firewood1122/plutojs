@@ -6,7 +6,7 @@ import '@plutojs/modal/build/index.css';
 import './story.css';
 
 export default {
-  title: 'Modal 模态框',
+  title: '操作反馈.Modal 模态框',
   component: Modal,
   decorators: [withKnobs, withQuery],
   parameters: {

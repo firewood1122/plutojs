@@ -6,7 +6,7 @@ import '@plutojs/loading/build/index.css';
 import './story.css';
 
 export default {
-  title: 'Loading 页面提示',
+  title: '操作反馈.Loading 页面提示',
   component: Loading,
   decorators: [withKnobs, withQuery],
   parameters: {

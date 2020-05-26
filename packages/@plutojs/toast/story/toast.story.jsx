@@ -6,7 +6,7 @@ import '@plutojs/toast/build/index.css';
 import './story.css';
 
 export default {
-  title: 'Toast 轻提示',
+  title: '操作反馈.Toast 轻提示',
   component: Toast,
   decorators: [withKnobs, withQuery],
   parameters: {
