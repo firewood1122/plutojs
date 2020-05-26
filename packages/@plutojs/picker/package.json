@@ -1,0 +1,37 @@
+{
+  "name": "@plutojs/picker",
+  "version": "0.1.0",
+  "description": "Picker 选择器",
+  "keywords": [
+    "Picker"
+  ],
+  "author": "firewood1122 <firewood_1122@163.com>",
+  "homepage": "https://github.com/firewood1122/plutojs#readme",
+  "license": "MIT",
+  "main": "build/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "build",
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firewood1122/plutojs.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/firewood1122/plutojs/issues"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
