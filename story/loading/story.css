@@ -1,11 +1,11 @@
-.modal-demo-btn-field {
-  margin: 40px auto;
-  width: 100%;
+.loading-demo-btn-field {
+  margin: 40px 0 0;
+  display: flex;
+  justify-content: center;
 }
-.modal-demo-btn {
-  width: 100px;
-  height: 40px;
+.loading-demo-btn {
+  padding: 10px 40px;
   border: 1px solid #000;
-  border-radius: 20px;
+  border-radius: 30px;
   text-align: center;
 }

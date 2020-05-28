@@ -19,8 +19,8 @@ export default {
 
 export const story1 = () => {
   return (
-    <div className="modal-demo-btn-field">
-      <button className="modal-demo-btn" onClick={() => {
+    <div className="loading-demo-btn-field">
+      <button className="loading-demo-btn" onClick={() => {
         Loading.show('提交中');
         setTimeout(() => {
           Loading.hide();

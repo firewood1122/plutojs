@@ -19,8 +19,8 @@ export default {
 
 export const story1 = () => {
   return (
-    <div className="modal-demo-btn-field">
-        <button className="modal-demo-btn" onClick={() => { Toast.info('你点击了按钮'); }}>点击弹出提示</button>
+    <div className="toast-demo-btn-field">
+        <button className="toast-demo-btn" onClick={() => { Toast.info('你点击了按钮'); }}>点击弹出提示</button>
     </div>
   );
 };
@@ -30,8 +30,8 @@ story1.story = {
 
 export const story2 = () => {
   return (
-    <div className="modal-demo-btn-field">
-        <button className="modal-demo-btn" onClick={() => { Toast.error(new Error('发生了错误')); }}>点击弹出提示</button>
+    <div className="toast-demo-btn-field">
+        <button className="toast-demo-btn" onClick={() => { Toast.error(new Error('发生了错误')); }}>点击弹出提示</button>
     </div>
   );
 };

@@ -53,7 +53,7 @@
     "build": "node scripts/build.js",
     "build:types": "lerna exec -- tsc --emitDeclarationOnly",
     "release": "lerna updated && lerna publish",
-    "story": "start-storybook",
+    "story": "start-storybook -p 9999",
     "build:story": "build-storybook -c .storybook -o .out",
     "lint": "eslint packages/**/*.js"
   },

@@ -82,7 +82,7 @@ export const story3 = () => {
 
   const popupModal = () => {
     const { destroy } = Modal.popup({
-      children: <div className="modal-demo-text">文字内容</div>,
+      children: <div className="modal-demo-text">模态框内容</div>,
       isOpened: true,
       position,
       isMask,

@@ -1,10 +1,10 @@
 .modal-demo-wrap {
-  height: 1000px;
+  height: 1000px; /*no*/
   overflow-x: hidden;
 }
 .modal-demo-field {
   width: 100vw;
-  height: 300px;
+  height: 300px; /*no*/
   background: red;
 }
 .modal-demo-btn-field {
@@ -12,10 +12,9 @@
   text-align: center;
 }
 .modal-demo-btn {
-  width: 100px;
-  height: 40px;
+  padding: 10px 40px;
   border: 1px solid #000;
-  border-radius: 20px;
+  border-radius: 30px;
   text-align: center;
 }
 .modal-demo-input {
