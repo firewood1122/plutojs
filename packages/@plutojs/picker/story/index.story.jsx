@@ -1,12 +1,12 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
-import Dialog from '@plutojs/dialog';
-import '@plutojs/dialog/build/index.css';
+import Dialog from '@plutojs/picker';
+import '@plutojs/picker/build/index.css';
 import './story.css';
 
 export default {
-  title: '操作反馈.Dialog 对话框',
+  title: '表单组件.Picker 选择器',
   component: Dialog,
   decorators: [withKnobs, withQuery],
   parameters: {
@@ -29,5 +29,5 @@ export const story1 = () => {
   );
 };
 story1.story = {
-  name: 'Confirm对话框',
+  name: 'Picker 选择器',
 };

@@ -48,7 +48,6 @@ module.exports = (opt) => {
                 modules: true,
               }
             },
-            'postcss-loader',
             {
               loader: 'less-loader'
             }
