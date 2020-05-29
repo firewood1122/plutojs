@@ -1,4 +1,4 @@
-# `@plutojs/inputnumber`
+# `@plutojs/input-number`
 
 > InputNumber 数字输入框
 
