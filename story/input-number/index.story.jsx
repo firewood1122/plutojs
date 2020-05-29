@@ -20,7 +20,7 @@ export default {
 export const story1 = () => {
   return (
     <div className="input-number-demo-btn-field">
-      <InputNumber />
+      <InputNumber min={0} max={5} />
     </div>
   );
 };

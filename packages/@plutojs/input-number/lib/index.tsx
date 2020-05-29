@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 const style = require('./index.less');
 
 interface PropsType {
@@ -20,14 +20,35 @@ class InputNumber extends Component<PropsType, StateType> {
     this.state = {
       count: props.min,
     };
+    this.inputEl = createRef();
   }
+
+  private inputEl;
 
   /**
    * 响应输入框修改
    */
   private change = (event) => {
+    const { min, max } = this.props;
+    const { value } = event.target;
+
+    // 处理异常输入
+    if (value === '' || !/^[0-9]*$/.test(value)) {
+      this.setState({
+        count: min,
+      });
+      return;
+    } else if (parseInt(value) > max) {
+      this.setState({
+        count: max,
+      });
+      return;
+    }
+
+    const inputValue = parseInt(value);
+    this.inputEl.current.value = inputValue;
     this.setState({
-      count: event.target.value,
+      count: inputValue,
     });
   }
 
@@ -65,7 +86,7 @@ class InputNumber extends Component<PropsType, StateType> {
     return (
       <div className={style.container}>
         <div className={style.reduce} onClick={this.reduce}></div>
-        <input className={style.input} type="number" value={count} onChange={this.change} />
+        <input ref={this.inputEl} className={style.input} type="number" value={count} onChange={this.change} pattern="[0-9]*" />
         <div className={style.add} onClick={this.add}></div>
       </div>
     );

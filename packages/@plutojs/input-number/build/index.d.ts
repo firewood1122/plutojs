@@ -12,6 +12,7 @@ declare class InputNumber extends Component<PropsType, StateType> {
         max: number;
     };
     constructor(props: any);
+    private inputEl;
     private change;
     private reduce;
     private add;
