@@ -20,7 +20,18 @@ export default {
 export const story1 = () => {
   return (
     <div className="input-number-demo-btn-field">
-      <InputNumber min={0} max={5} />
+      <div className="input-number-demo-item">
+        <div className="input-number-demo-label">最小值为2：</div>
+        <InputNumber min={2} onChange={val => { console.log(val); }} />
+      </div>
+      <div className="input-number-demo-item">
+        <div className="input-number-demo-label">最大值为5：</div>
+        <InputNumber max={5} onChange={val => { console.log(val); }} />
+      </div>
+      <div className="input-number-demo-item">
+        <div className="input-number-demo-label">不可键盘输入：</div>
+        <InputNumber keyboard={false} onChange={val => { console.log(val); }} />
+      </div>
     </div>
   );
 };

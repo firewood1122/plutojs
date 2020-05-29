@@ -1,5 +1,14 @@
 .input-number-demo-btn-field {
-  margin: 40px auto;
+  margin: 40px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+}
+.input-number-demo-item {
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+}
+.input-number-demo-label {
+  font-size: 30px;
+  margin-right: 40px;
 }
