@@ -1,32 +1,28 @@
 .container {
-  width: 200px;
-  height: 200px;
-  border-radius: 16px;
-  line-height: 30px;
-  font-size: 26px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.72);
-  color: #fff;
-
-  @keyframes rotate {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  .img {
-    width: 80px;
-    height: 80px;
-    background: url(./images/loading.png) no-repeat;
-    background-size: contain;
-    animation: rotate 1s infinite linear;
-  }
-  .info {
-    margin-top: 30px;
-  }
+}
+.add {
+  width: 30px;
+  height: 30px;
+  background: url('./images/add.png') no-repeat;
+  background-size: contain;
+}
+.input {
+  margin: 0 16px;
+  width: 90px;
+  height: 50px;
+  border: none;
+  border-radius: 2px;
+  font-size: 26px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #0F1520;
+  background: rgba(0, 0, 0, 0.06);
+}
+.reduce {
+  width: 30px;
+  height: 30px;
+  background: url('./images/reduce.png') no-repeat;
+  background-size: contain;
 }
