@@ -1,6 +1,6 @@
 {
   "name": "@plutojs/input-number",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "数字输入框",
   "keywords": [
     "input",
