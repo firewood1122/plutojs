@@ -22,6 +22,11 @@
   color: #0F1520;
   background: rgba(0, 0, 0, 0.06);
 }
+.f4g8U1WiODOgK9uLtyob3::-webkit-outer-spin-button,
+.f4g8U1WiODOgK9uLtyob3::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0;
+}
 ._2IDpOxXR31Zkq2sRZMEh_C {
   width: 30px;
   height: 30px;

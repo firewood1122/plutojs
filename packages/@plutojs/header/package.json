@@ -1,0 +1,40 @@
+{
+  "name": "@plutojs/header",
+  "version": "0.1.0",
+  "description": "Header 头部导航",
+  "keywords": [
+    "Header"
+  ],
+  "author": "firewood1122 <firewood_1122@163.com>",
+  "homepage": "https://github.com/firewood1122/plutojs#readme",
+  "license": "MIT",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib",
+    "build"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public",
+    "npm-tag": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firewood1122/plutojs.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/firewood1122/plutojs/issues"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
