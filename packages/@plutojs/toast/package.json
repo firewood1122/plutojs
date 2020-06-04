@@ -1,6 +1,6 @@
 {
   "name": "@plutojs/toast",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Toast轻提示组件",
   "keywords": [
     "Toast"
