@@ -18,13 +18,18 @@ export default {
 };
 
 export const story1 = () => {
-  const name = text('按钮文字', '创建表单');
+  const name = text('按钮文字', '点击按钮');
   return (
+    <React.Fragment>
     <div className="button-demo-field">
-      <Button className="test-btn" onClick={() => { alert('创建成功'); }}>{name}</Button>
+      <Button className="test-btn" onClick={() => { alert('你点击了按钮'); }}>{name}</Button>
     </div>
+    <div className="button-demo-field">
+      <Button disabled={true} className="test-btn" onClick={() => { alert('你点击了按钮'); }}>不可点击</Button>
+    </div>
+    </React.Fragment>
   )
 };
 story1.story = {
-  name: '文字按钮',
+  name: '默认按钮',
 };
