@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
+import { withKnobs, text } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
 import Toast from '@plutojs/toast';
 import '@plutojs/toast/build/index.css';
@@ -18,9 +18,10 @@ export default {
 };
 
 export const story1 = () => {
+  const name = text('提示内容', '你点击了按钮');
   return (
     <div className="toast-demo-btn-field">
-        <button className="toast-demo-btn" onClick={() => { Toast.info('你点击了按钮'); }}>点击弹出提示</button>
+        <button className="toast-demo-btn" onClick={() => { Toast.info(name); }}>点击弹出提示</button>
     </div>
   );
 };
