@@ -93,8 +93,12 @@ class InputNumber extends Component<PropsType, StateType> {
   }
 
   render() {
-    const { keyboard } = this.props;
-    const { count } = this.state;
+    const { keyboard, max } = this.props;
+    let { count } = this.state;
+    if (max !== 0 && count > max) {
+      count = max;
+    }
+
     return (
       <div className={style.container}>
         <div className={style.reduce} onClick={this.reduce}></div>
