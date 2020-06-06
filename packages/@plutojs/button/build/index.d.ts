@@ -1,8 +1,8 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 interface PropsType {
     className?: string;
     disabled?: boolean;
-    onClick: () => void;
+    onClick: (event: React.MouseEvent) => void;
 }
 interface StateType {
 }
