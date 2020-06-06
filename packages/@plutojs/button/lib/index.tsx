@@ -4,7 +4,7 @@ const style = require('./index.less');
 interface PropsType {
   className?: string,
   disabled?: boolean,
-  onClick: () => void,
+  onClick: (event: React.MouseEvent) => void,
 }
 interface StateType {
 }
@@ -23,8 +23,8 @@ export default class Button extends Component<PropsType, StateType> {
     if (disabled) classNameList = classNameList.concat([style.disabled, 'disabled-btn']);
 
     return (
-      <button className={classNameList.join(' ')} onClick={() => {
-        if (!disabled) onClick();
+      <button className={classNameList.join(' ')} onClick={(e) => {
+        if (!disabled) onClick(e);
       }}>{children}</button>
     );
   }
