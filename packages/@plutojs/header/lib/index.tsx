@@ -24,10 +24,16 @@ export default class extends Component<PropsType, StateType> {
     const { hide } = props;
 
     // 默认微信&支付宝，不显示头部
-    const userAgent = window.navigator.userAgent.toLowerCase();
-    return {
-      show: hide ? !hide : (userAgent.indexOf('micromessenger') === -1 && userAgent.indexOf('alipayclient') === -1),
-    };
+    if (typeof window !== 'undefined') {
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      return {
+        show: hide ? !hide : (userAgent.indexOf('micromessenger') === -1 && userAgent.indexOf('alipayclient') === -1),
+      };
+    } else {
+      return {
+        show: false,
+      };
+    }
   }
 
   componentDidMount() {
