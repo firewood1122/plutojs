@@ -20,13 +20,18 @@ export default class extends Component<PropsType, StateType> {
     hide: false,
   }
 
-  componentDidMount() {
-    const { hide } = this.props;
+  static getDerivedStateFromProps(props: PropsType, state: StateType) {
+    const { hide } = props;
 
     // 默认微信&支付宝，不显示头部
     const userAgent = window.navigator.userAgent.toLowerCase();
-    this.setState({
+    return {
       show: hide ? !hide : (userAgent.indexOf('micromessenger') === -1 && userAgent.indexOf('alipayclient') === -1),
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
       showBack: window.history.length > 1,
     });
   }

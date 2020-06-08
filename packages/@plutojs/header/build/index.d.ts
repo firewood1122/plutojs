@@ -16,6 +16,9 @@ export default class extends Component<PropsType, StateType> {
         title: string;
         hide: boolean;
     };
+    static getDerivedStateFromProps(props: PropsType, state: StateType): {
+        show: boolean;
+    };
     componentDidMount(): void;
     private clickBack;
     render(): React.ReactNode;

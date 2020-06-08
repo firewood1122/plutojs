@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
 import Header from '@plutojs/header';
 import '@plutojs/header/build/index.css';
@@ -17,8 +17,9 @@ export default {
 };
 
 export const story1 = () => {
+  const hide = boolean('是否隐藏', false);
   return (
-    <Header title="头部导航标题" />
+    <Header title="头部导航标题" hide={hide} />
   );
 };
 story1.story = {
