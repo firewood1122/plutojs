@@ -26,7 +26,7 @@ export default class extends Component<PropsType, StateType> {
     // 默认微信&支付宝，不显示头部
     const userAgent = window.navigator.userAgent.toLowerCase();
     this.setState({
-      show: hide ? !hide : (userAgent.indexOf('micromessenger') !== -1 || userAgent.indexOf('alipayclient') !== -1),
+      show: hide ? !hide : (userAgent.indexOf('micromessenger') === -1 && userAgent.indexOf('alipayclient') === -1),
       showBack: window.history.length > 1,
     });
   }
