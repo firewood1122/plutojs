@@ -19,7 +19,10 @@ export default {
 export const story1 = () => {
   const hide = boolean('是否隐藏', false);
   return (
-    <Header title="头部导航标题" hide={hide} />
+    <div style={{ height: '110vh' }}>
+      <Header title="头部导航标题" hide={hide} zIndex={998} />
+      <div style={{ fontSize: '24px' }}>页面内容</div>
+    </div>
   );
 };
 story1.story = {

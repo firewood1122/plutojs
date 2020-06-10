@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 interface PropsType {
     title: string;
     hide: boolean;
+    zIndex: number;
 }
 interface StateType {
     show: boolean;
@@ -15,6 +16,7 @@ export default class extends Component<PropsType, StateType> {
     static defaultProps: {
         title: string;
         hide: boolean;
+        zIndex: number;
     };
     static getDerivedStateFromProps(props: PropsType, state: StateType): {
         show: boolean;

@@ -15,3 +15,4 @@ import '@plutojs/header/build/index.css';
 | ---- | ---- | ---- | ---- | ---- |
 | title | 标题 | String | 是 | '' |
 | hide | 是否隐藏 | Boolean | 是 | false |
+| zIndex | 组件层级 | Number | 是 | 999 |

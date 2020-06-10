@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 const style = require('./index.less');
 
 interface PropsType {
-  title: string,
-  hide: boolean,
+  title?: string,
+  hide?: boolean,
+  zIndex?: number,
 }
 interface StateType {
   show: boolean,
@@ -18,6 +19,7 @@ export default class extends Component<PropsType, StateType> {
   static defaultProps = {
     title: '',
     hide: false,
+    zIndex: 999,
   }
 
   static getDerivedStateFromProps(props: PropsType, state: StateType) {
@@ -52,18 +54,23 @@ export default class extends Component<PropsType, StateType> {
 
   render(): React.ReactNode {
     const { show, showBack } = this.state;
-    const { title } = this.props;
+    const { title, zIndex } = this.props;
     if (!show) return null;
     return (
-      <div className={style.header}>
-        {
-          showBack ?
-            <div className={style.left} onClick={this.clickBack}></div> :
-            <div className={style.blankLeft}></div>
-        }
-        <div className={style.title}>{title}</div>
-        <div className={style.right}></div>
-      </div>
+      <React.Fragment>
+        <div className={style.container} style={{ zIndex }}>
+          <div className={style.header}>
+            {
+              showBack ?
+                <div className={style.left} onClick={this.clickBack}></div> :
+                <div className={style.blankLeft}></div>
+            }
+            <div className={style.title}>{title}</div>
+            <div className={style.right}></div>
+          </div>
+        </div>
+        <div className={style.fakeHeader}></div>
+      </React.Fragment>
     )
   }
 }
