@@ -57,6 +57,8 @@ export const story2 = () => {
   const isMask = boolean('是否有不透明背景', true);
   return (
     <div className="modal-demo-wrap">
+      <div className="modal-demo-top-field"></div>
+      <div className="modal-demo-fake-top-field"></div>
       <div className="modal-demo-field"></div>
       <div className="modal-demo-btn-field">
         <button className="modal-demo-btn" onClick={() => { setIsOpened(true); }}>显示模态框</button>

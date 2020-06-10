@@ -2,6 +2,17 @@
   height: 1000px; /*no*/
   overflow-x: hidden;
 }
+.modal-demo-top-field {
+  position: fixed;
+  z-index: 999;
+  width: 100vw;
+  height: 50px;
+  background: greenyellow;
+}
+.modal-demo-fake-top-field {
+  width: 100vw;
+  height: 50px;
+}
 .modal-demo-field {
   width: 100vw;
   height: 300px; /*no*/

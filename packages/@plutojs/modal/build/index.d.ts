@@ -6,6 +6,7 @@ interface PropsType {
     isMask?: boolean;
     isLock?: boolean;
     closeOnClickOverlay?: boolean;
+    zIndex?: number;
     onHide: () => void;
 }
 declare class Modal extends Component<PropsType, any> {
@@ -15,6 +16,7 @@ declare class Modal extends Component<PropsType, any> {
         position: string;
         isMask: boolean;
         isLock: boolean;
+        zIndex: number;
         closeOnClickOverlay: boolean;
     };
     private modalEl;

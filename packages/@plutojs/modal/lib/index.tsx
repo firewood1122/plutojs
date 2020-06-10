@@ -9,6 +9,7 @@ interface PropsType {
   isMask?: boolean,
   isLock?: boolean,
   closeOnClickOverlay?: boolean,
+  zIndex?: number,
   onHide: () => void,
 };
 
@@ -28,6 +29,7 @@ class Modal extends Component<PropsType, any> {
     position: 'center',
     isMask: true,
     isLock: true,
+    zIndex: 999,
     closeOnClickOverlay: true,
   }
 
@@ -104,6 +106,7 @@ class Modal extends Component<PropsType, any> {
       isMask,
       isLock,
       closeOnClickOverlay,
+      zIndex,
       onHide,
     }: PropsType = this.props;
 
@@ -113,6 +116,7 @@ class Modal extends Component<PropsType, any> {
           isOpened && (
             <div
               ref={this.modalEl}
+              style={{ zIndex }}
               className={`${isLock ? style.lockModal : style.modal} ${this.positionMap[position]} ${isMask ? style.mask : ''}`}
               onClick={() => { if (closeOnClickOverlay && onHide) onHide(); }}>
               <div onClick={e => { e.stopPropagation(); }}>{children}</div>
