@@ -34,7 +34,6 @@
     "url": "https://github.com/firewood1122/plutojs/issues"
   },
   "dependencies": {
-    "@plutojs/modal": "^1.6.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
