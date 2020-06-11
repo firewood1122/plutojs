@@ -12,11 +12,17 @@ interface PropsType {
   zIndex?: number,
   onHide: () => void,
 };
+interface StateType {
+  height: number,
+}
 
-class Modal extends Component<PropsType, any> {
+class Modal extends Component<PropsType, StateType> {
   constructor(props: PropsType) {
     super(props);
     this.modalEl = createRef();
+    this.state = {
+      height: 0,
+    };
   }
 
   private positionMap = {
@@ -62,6 +68,9 @@ class Modal extends Component<PropsType, any> {
       this.prePosition = document.body.style.position;
       this.setStyle(isOpened);
     }
+    this.setState({
+      height: document.documentElement.clientHeight || document.body.clientHeight,
+    });
   }
 
   componentDidUpdate() {
@@ -92,7 +101,7 @@ class Modal extends Component<PropsType, any> {
         try {
           ReactDOM.unmountComponentAtNode(div);
           document.body.removeChild(div);
-        } catch(err) {
+        } catch (err) {
         }
       }
     }
@@ -109,6 +118,7 @@ class Modal extends Component<PropsType, any> {
       zIndex,
       onHide,
     }: PropsType = this.props;
+    const { height } = this.state;
 
     return (
       <React.Fragment>
@@ -116,7 +126,7 @@ class Modal extends Component<PropsType, any> {
           isOpened && (
             <div
               ref={this.modalEl}
-              style={{ zIndex }}
+              style={{ zIndex, height: `${height}px` }}
               className={`${isLock ? style.lockModal : style.modal} ${this.positionMap[position]} ${isMask ? style.mask : ''}`}
               onClick={() => { if (closeOnClickOverlay && onHide) onHide(); }}>
               <div onClick={e => { e.stopPropagation(); }}>{children}</div>

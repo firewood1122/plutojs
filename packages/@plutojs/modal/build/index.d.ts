@@ -9,7 +9,10 @@ interface PropsType {
     zIndex?: number;
     onHide: () => void;
 }
-declare class Modal extends Component<PropsType, any> {
+interface StateType {
+    height: number;
+}
+declare class Modal extends Component<PropsType, StateType> {
     constructor(props: PropsType);
     private positionMap;
     static defaultProps: {
