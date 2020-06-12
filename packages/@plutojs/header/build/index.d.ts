@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 interface PropsType {
-    title: string;
-    hide: boolean;
-    zIndex: number;
+    title?: string;
+    hide?: boolean;
+    zIndex?: number;
 }
 interface StateType {
     show: boolean;

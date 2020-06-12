@@ -20,7 +20,7 @@ export const story1 = () => {
   const hide = boolean('是否隐藏', false);
   return (
     <div style={{ height: '110vh' }}>
-      <Header title="头部导航标题" hide={hide} zIndex={998} />
+      <Header title="网红韩版包包女2020新款学生牛津布防水防盗防师兄大容量双肩背包" hide={hide} zIndex={998} />
       <div style={{ fontSize: '24px' }}>页面内容</div>
     </div>
   );
