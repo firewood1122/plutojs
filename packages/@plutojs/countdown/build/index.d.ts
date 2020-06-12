@@ -11,11 +11,13 @@ interface StateType {
 }
 export default class extends Component<PropsType, StateType> {
     constructor(props: any);
+    private timer;
     static defaultProps: {
         renderChildren: (hour: number, min: number, second: number) => string;
         done: () => void;
     };
     componentDidMount(): void;
+    componentWillUnmount(): void;
     private handleCountdown;
     render(): {};
 }

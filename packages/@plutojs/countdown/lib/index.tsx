@@ -22,6 +22,8 @@ export default class extends Component<PropsType, StateType> {
     };
   }
 
+  private timer = null;
+
   static defaultProps = {
     renderChildren: (hour: number, min: number, second: number) => {
       return `${hour}小时${min}分${second}秒`;
@@ -39,11 +41,16 @@ export default class extends Component<PropsType, StateType> {
     this.handleCountdown(leftSecond);
   }
 
+  componentWillUnmount() {
+    this.timer = null;
+    window.clearInterval(this.timer);
+  }
+
   private handleCountdown(leftSecond) {
     const { done } = this.props;
     let deadLine = Date.now() + leftSecond * 1000;
     if (Date.now() < deadLine) {
-      let timer = window.setTimeout(() => {
+      this.timer = window.setTimeout(() => {
         if (Date.now() < deadLine) {
           leftSecond--;
           this.setState({
@@ -56,8 +63,8 @@ export default class extends Component<PropsType, StateType> {
           this.setState({
             second: 0,
           });
-          timer = null;
-          window.clearInterval(timer);
+          this.timer = null;
+          window.clearInterval(this.timer);
           if (done) done();
         }
       }, 1000);
