@@ -44,6 +44,9 @@ export default class extends Component<PropsType, StateType> {
   componentWillUnmount() {
     this.timer = null;
     window.clearInterval(this.timer);
+    this.setState = (state, callback) => {
+      return;
+    };
   }
 
   private handleCountdown(leftSecond) {
