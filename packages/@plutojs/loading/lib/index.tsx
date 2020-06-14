@@ -4,19 +4,20 @@ import '@plutojs/modal/build/index.css';
 const style = require('./index.less');
 
 let loading = null;
-const getModal = (content: React.ReactNode) => {
+const getModal = (content: React.ReactNode, zIndex: number) => {
   loading = Modal.popup({
     children: content,
     isOpened: true,
     isMask: false,
     isLock: false,
     closeOnClickOverlay: false,
+    zIndex,
     onHide: () => { },
   });
 };
 
 export default {
-  show: (text: string = '加载中') => {
+  show: (text: string = '加载中', zIndex: number = 999) => {
     const content = (
       <div className={style.container}>
         <div className={style.img}></div>
@@ -27,7 +28,7 @@ export default {
       loading.destroy();
       loading = null;
     }
-    getModal(content);
+    getModal(content, zIndex);
   },
   hide: () => {
     if (loading) {
