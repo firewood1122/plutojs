@@ -21,7 +21,7 @@ export const story1 = () => {
   return (
     <div className="input-code-demo-field">
       <div className="input-code-demo-content">
-        <InputCode count={4} />
+        <InputCode count={6} change={(value) => { console.log(value); }} />
       </div>
     </div>
   );

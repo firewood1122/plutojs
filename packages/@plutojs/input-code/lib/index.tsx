@@ -3,6 +3,7 @@ const style = require('./index.less');
 
 interface PropsType {
   count: number, // 验证码位数
+  change: Function, // 输入回调方法
 };
 interface StateType {
   value: Array<number>,
@@ -17,13 +18,16 @@ class InputCode extends Component<PropsType, StateType> {
 
   static defaultProps = {
     count: 4,
+    change: () => { },
   }
 
   private onChange = (e) => {
+    const { change } = this.props;
     const value = e.target.value;
     this.setState({
       value: [...value],
     });
+    change(value);
   }
 
   render() {
