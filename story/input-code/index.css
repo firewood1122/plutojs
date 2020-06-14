@@ -1,0 +1,14 @@
+.input-code-demo-field {
+  margin: 60px auto 0;
+  width: 510px;
+  height: 112px;
+  border: 2px solid #EAEAEA; /*no*/
+  border-radius: 56.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input-code-demo-content {
+  width: 148px;
+  height: 100%;
+}
