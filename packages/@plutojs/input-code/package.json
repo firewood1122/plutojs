@@ -1,6 +1,6 @@
 {
   "name": "@plutojs/input-code",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "InputCode 验证码输入框",
   "keywords": [
     "input",
