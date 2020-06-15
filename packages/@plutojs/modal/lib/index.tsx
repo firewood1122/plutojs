@@ -84,10 +84,13 @@ class Modal extends Component<PropsType, StateType> {
         });
 
         // 定位到对应的输入框
+        alert('resize');
         const currentEl = document.activeElement as HTMLElement;
         if (currentEl.tagName.toLowerCase() === 'input') {
           const scrollTop = currentEl.offsetTop;
+          alert(`${scrollTop} ${scrollTop + currentEl.offsetHeight + 10}`);
           this.contentEl.current.scrollTop = scrollTop + currentEl.offsetHeight + 10;
+          alert(this.contentEl.current.scrollTop);
         }
       });
     }
