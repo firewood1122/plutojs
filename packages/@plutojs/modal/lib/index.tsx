@@ -87,7 +87,7 @@ class Modal extends Component<PropsType, StateType> {
         const currentEl = document.activeElement as HTMLElement;
         if (currentEl.tagName.toLowerCase() === 'input') {
           const scrollTop = currentEl.offsetTop;
-          this.contentEl.current.scrollTop = scrollTop - 20;
+          this.contentEl.current.scrollTop = scrollTop + currentEl.offsetHeight + 10;
         }
       });
     }
