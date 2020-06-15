@@ -7,6 +7,7 @@ interface PropsType {
     isLock?: boolean;
     closeOnClickOverlay?: boolean;
     zIndex?: number;
+    target?: React.RefObject<HTMLElement>;
     onHide: () => void;
 }
 interface StateType {
@@ -26,6 +27,7 @@ declare class Modal extends Component<PropsType, StateType> {
     private contentEl;
     private prePosition;
     private scrollTop;
+    private containerHeight;
     private setStyle;
     componentDidMount(): void;
     componentDidUpdate(): void;

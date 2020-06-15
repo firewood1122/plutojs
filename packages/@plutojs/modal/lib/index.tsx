@@ -10,6 +10,7 @@ interface PropsType {
   isLock?: boolean,
   closeOnClickOverlay?: boolean,
   zIndex?: number,
+  target?: React.RefObject<HTMLElement>,
   onHide: () => void,
 };
 interface StateType {
@@ -43,6 +44,7 @@ class Modal extends Component<PropsType, StateType> {
   private contentEl: any = null;
   private prePosition: string = ''; // 页面原定位方式
   private scrollTop: number = 0; // 页面原滚动高度
+  private containerHeight: number = 0; // 浮层容器高度
 
   /**
    * 锁定/解锁页面滚动
@@ -64,7 +66,7 @@ class Modal extends Component<PropsType, StateType> {
   }
 
   componentDidMount() {
-    const { isOpened, isLock } = this.props;
+    const { isOpened, isLock, target } = this.props;
     if (isLock) {
       this.prePosition = document.body.style.position;
       this.setStyle(isOpened);
@@ -77,20 +79,24 @@ class Modal extends Component<PropsType, StateType> {
     const userAgent = window.navigator.userAgent.toLowerCase();
     if (/android|miuibrowser/i.test(userAgent)) {
       window.addEventListener('resize', () => {
-        // 计算高度
         const height = document.documentElement.clientHeight || document.body.clientHeight;
+        if (this.containerHeight === height) {
+          return;
+        }
+
+        // 重新设置高度
+        this.containerHeight = height;
         this.setState({
           height,
         });
 
         // 定位到对应的输入框
-        alert('resize');
         const currentEl = document.activeElement as HTMLElement;
         if (currentEl.tagName.toLowerCase() === 'input') {
-          const scrollTop = currentEl.offsetTop;
-          alert(`${scrollTop} ${scrollTop + currentEl.offsetHeight + 10}`);
-          this.contentEl.current.scrollTop = scrollTop + currentEl.offsetHeight + 10;
-          alert(this.contentEl.current.scrollTop);
+          if (target && target.current) {
+            const targetEl: HTMLElement = target.current;
+            targetEl.scrollTop = currentEl.offsetTop - targetEl.offsetHeight + currentEl.offsetHeight;
+          }
         }
       });
     }
