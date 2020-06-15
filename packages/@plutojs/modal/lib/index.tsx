@@ -51,6 +51,7 @@ class Modal extends Component<PropsType, StateType> {
    */
   private setStyle = (isOpened: Boolean) => {
     if (isOpened) {
+      if (document.body.style.position === 'fixed') return;
       this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       document.body.style.position = 'fixed';
       document.body.style.width = '100%';
