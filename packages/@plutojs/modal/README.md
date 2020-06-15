@@ -44,4 +44,5 @@ const { destroy } = Modal.popup({
 | isLock | 锁定页面滚动 | Boolean | 是 | true |
 | closeOnClickOverlay | 点击背景关闭模态框 | Boolean | 是 | true |
 | zIndex | 组件层级 | Number | 是 | 999 |
+| target | 模态框内可滚动区域的ref | RefObject<HTMLElement> | 是 ||
 | onHide | 关闭模态框方法 | Function | 否 | 无 |
