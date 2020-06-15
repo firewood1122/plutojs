@@ -1,6 +1,6 @@
 {
   "name": "@plutojs/modal",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "description": "基础Modal组件",
   "keywords": [
     "modal",
