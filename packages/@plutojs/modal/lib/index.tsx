@@ -71,6 +71,17 @@ class Modal extends Component<PropsType, StateType> {
     this.setState({
       height: document.documentElement.clientHeight || document.body.clientHeight,
     });
+
+    // 安卓机型，键盘弹出/收起时，重新计算高度
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    if (/android|miuibrowser/i.test(userAgent)) {
+      window.addEventListener('resize', () => {
+        const height = document.documentElement.clientHeight || document.body.clientHeight;
+        this.setState({
+          height,
+        });
+      });
+    }
   }
 
   componentDidUpdate() {

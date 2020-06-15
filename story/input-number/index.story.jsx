@@ -2,6 +2,7 @@ import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
 import InputNumber from '@plutojs/input-number';
+import Modal from '@plutojs/modal';
 import '@plutojs/input-number/build/index.css';
 import './story.css';
 
@@ -37,4 +38,17 @@ export const story1 = () => {
 };
 story1.story = {
   name: '数字输入框',
+};
+
+export const story2 = () => {
+  return (
+      <Modal isOpened={true} position="bottom">
+        <div className="input-number-fixed-demo">
+          <InputNumber min={2} onChange={val => { console.log(val); }} />
+        </div>
+      </Modal>
+  );
+};
+story2.story = {
+  name: '固定底部的数字输入框',
 };
