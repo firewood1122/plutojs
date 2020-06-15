@@ -23,6 +23,7 @@ declare class Modal extends Component<PropsType, StateType> {
         closeOnClickOverlay: boolean;
     };
     private modalEl;
+    private contentEl;
     private prePosition;
     private scrollTop;
     private setStyle;

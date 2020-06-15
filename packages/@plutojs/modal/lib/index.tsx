@@ -40,6 +40,7 @@ class Modal extends Component<PropsType, StateType> {
   }
 
   private modalEl: any = null;
+  private contentEl: any = null;
   private prePosition: string = ''; // 页面原定位方式
   private scrollTop: number = 0; // 页面原滚动高度
 
@@ -76,10 +77,18 @@ class Modal extends Component<PropsType, StateType> {
     const userAgent = window.navigator.userAgent.toLowerCase();
     if (/android|miuibrowser/i.test(userAgent)) {
       window.addEventListener('resize', () => {
+        // 计算高度
         const height = document.documentElement.clientHeight || document.body.clientHeight;
         this.setState({
           height,
         });
+
+        // 定位到对应的输入框
+        const currentEl = document.activeElement as HTMLElement;
+        if (currentEl.tagName.toLowerCase() === 'input') {
+          const scrollTop = currentEl.offsetTop;
+          this.contentEl.scrollTop = scrollTop - 20;
+        }
       });
     }
   }
@@ -140,7 +149,7 @@ class Modal extends Component<PropsType, StateType> {
               style={{ zIndex, height: `${height}px` }}
               className={`${isLock ? style.lockModal : style.modal} ${this.positionMap[position]} ${isMask ? style.mask : ''}`}
               onClick={() => { if (closeOnClickOverlay && onHide) onHide(); }}>
-              <div onClick={e => { e.stopPropagation(); }}>{children}</div>
+              <div ref={this.contentEl} className={style.content} onClick={e => { e.stopPropagation(); }}>{children}</div>
             </div>
           )
         }
