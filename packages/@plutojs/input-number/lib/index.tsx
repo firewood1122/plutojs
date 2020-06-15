@@ -27,7 +27,7 @@ class InputNumber extends Component<PropsType, StateType> {
     this.inputEl = createRef();
   }
 
-  private inputEl;
+  private inputEl; // 输入框实例
 
   /**
    * 响应输入框修改
@@ -36,19 +36,17 @@ class InputNumber extends Component<PropsType, StateType> {
     const { min, max, onChange } = this.props;
     const { value } = event.target;
 
-    // 处理异常输入
-    if (value === '' || !/^[0-9]*$/.test(value)) {
+    if (value === '' || !/^[0-9]*$/.test(value)) { // 处理异常输入
       this.setState({
         count: min,
       });
       return;
-    } else if (parseInt(value) > max) {
+    } else if (max !== 0 && parseInt(value) > max) { // 处理超出最大值
       this.setState({
         count: max,
       });
       return;
     }
-
     const inputValue = parseInt(value);
     this.inputEl.current.value = inputValue;
     this.setState({
@@ -92,19 +90,43 @@ class InputNumber extends Component<PropsType, StateType> {
     onChange && onChange(count + 1);
   }
 
-  render() {
-    const { keyboard, max } = this.props;
-    let { count } = this.state;
-    if (max !== 0 && count > max) {
-      count = max;
+  /**
+   * 响应输入框点击
+   */
+  private onFocus = () => {
+    this.inputEl.current.value = '';
+  }
+
+  /**
+   * 响应输入框失去焦点
+   */
+  private onBlur = () => {
+    const { count } = this.state;
+    const { value } = this.inputEl.current;
+    if (value === '') {
+      this.inputEl.current.value = count;
     }
+  }
+
+  render() {
+    const { keyboard } = this.props;
+    let { count } = this.state;
 
     return (
       <div className={style.container}>
         <div className={style.reduce} onClick={this.reduce}></div>
         {
           keyboard ?
-            <input ref={this.inputEl} className={style.input} type="number" value={count} onChange={this.change} pattern="[0-9]*" />
+            <input
+              ref={this.inputEl}
+              className={style.input}
+              type="number"
+              pattern="[0-9]*"
+              value={count}
+              onFocus={this.onFocus}
+              onBlur={this.onBlur}
+              onChange={this.change}
+            />
             :
             <div className={style.input}>{count}</div>
         }

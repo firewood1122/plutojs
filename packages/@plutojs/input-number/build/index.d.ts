@@ -20,6 +20,8 @@ declare class InputNumber extends Component<PropsType, StateType> {
     private change;
     private reduce;
     private add;
+    private onFocus;
+    private onBlur;
     render(): JSX.Element;
 }
 export default InputNumber;
