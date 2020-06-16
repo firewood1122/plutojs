@@ -6,7 +6,6 @@ interface PropsType {
   videoUrl: string;
   controls?: boolean;
   playsInline?: boolean;
-  disablePictureInPicture?: boolean;
 }
 interface StateType {
   showVideo: boolean,
@@ -22,7 +21,6 @@ export default class Video extends Component<PropsType, StateType> {
   static defaultProps = {
     controls: true,
     playsInline: true,
-    disablePictureInPicture: false,
   }
 
   private videoEl = null; // 视频对象
@@ -49,7 +47,7 @@ export default class Video extends Component<PropsType, StateType> {
   }
 
   render() {
-    const { coverUrl, videoUrl, controls, playsInline, disablePictureInPicture } = this.props;
+    const { coverUrl, videoUrl, controls, playsInline } = this.props;
     const { showVideo } = this.state;
 
     return (
@@ -70,7 +68,6 @@ export default class Video extends Component<PropsType, StateType> {
                 poster={coverUrl}
                 controls={controls}
                 playsInline={playsInline}
-                disablePictureInPicture={disablePictureInPicture}
                 style={{ objectFit: 'contain' }}
                 onEnded={this.onEnded}
               />
