@@ -8,7 +8,7 @@ import '@plutojs/button/build/index.css';
 import './story.css';
 
 export default {
-  title: '页面组件.Countdown 倒计时',
+  title: '视图组件.Countdown 倒计时',
   component: Countdown,
   decorators: [withKnobs, withQuery],
   parameters: {

@@ -5,7 +5,7 @@ import Carousel from '@plutojs/carousel';
 import '@plutojs/carousel/build/index.css';
 
 export default {
-  title: '页面组件.Carousel 轮播图',
+  title: '视图组件.Carousel 轮播图',
   component: Carousel,
   decorators: [withKnobs, withQuery],
   parameters: {

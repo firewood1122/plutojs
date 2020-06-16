@@ -1,0 +1,11 @@
+.toast-demo-btn-field {
+  margin: 40px auto;
+  display: flex;
+  justify-content: center;
+}
+.toast-demo-btn {
+  padding: 10px 40px;
+  border: 1px solid #000;
+  border-radius: 30px;
+  text-align: center;
+}
