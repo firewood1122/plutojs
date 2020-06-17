@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
 import LoadMore from '@plutojs/load-more';
@@ -27,5 +27,19 @@ export const story1 = () => {
   );
 };
 story1.story = {
-  name: '加载更多',
+  name: '页面内加载更多',
+};
+
+export const story2 = () => {
+  return (
+    <LoadMore loadMore={() => { Toast.info('load more'); }} bodyScroll={false}>
+      <div className="load-more-demo-container">
+        <div className="load-more-demo-field">
+        </div>
+      </div>
+    </LoadMore>
+  );
+};
+story2.story = {
+  name: '区块内加载更多',
 };
