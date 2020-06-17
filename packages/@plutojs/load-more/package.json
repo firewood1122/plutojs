@@ -1,6 +1,6 @@
 {
   "name": "@plutojs/load-more",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "LoadMore 加载更多",
   "keywords": [
     "load",
@@ -35,8 +35,8 @@
     "url": "https://github.com/firewood1122/plutojs/issues"
   },
   "dependencies": {
+    "debounce": "^1.2.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "debounce": "^1.2.0"
+    "react-dom": "^16.13.1"
   }
 }
