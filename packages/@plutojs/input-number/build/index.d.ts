@@ -16,6 +16,7 @@ declare class InputNumber extends Component<PropsType, StateType> {
         onChange: () => void;
     };
     constructor(props: any);
+    componentDidUpdate(prevProps: PropsType): void;
     private inputEl;
     private change;
     private reduce;

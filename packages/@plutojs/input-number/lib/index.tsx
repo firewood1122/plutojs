@@ -27,6 +27,18 @@ class InputNumber extends Component<PropsType, StateType> {
     this.inputEl = createRef();
   }
 
+  componentDidUpdate(prevProps: PropsType) {
+    const { max, onChange } = this.props;
+    if (max !== prevProps.max && this.state.count > max) {
+      // 检查最大值
+      this.setState({
+        count: max,
+      });
+      // 回调onChange方法
+      onChange && onChange(max);
+    }
+  }
+
   private inputEl; // 输入框实例
 
   /**
@@ -37,6 +49,11 @@ class InputNumber extends Component<PropsType, StateType> {
     const { value } = event.target;
 
     if (value === '' || !/^[0-9]*$/.test(value)) { // 处理异常输入
+      this.setState({
+        count: value === '' ? 0 : min,
+      });
+      return;
+    } else if (min !== 0 && parseInt(value) < min) { // 处理超出最小值
       this.setState({
         count: min,
       });
@@ -101,10 +118,14 @@ class InputNumber extends Component<PropsType, StateType> {
    * 响应输入框失去焦点
    */
   private onBlur = () => {
-    const { count } = this.state;
+    const { min, onChange } = this.props;
     const { value } = this.inputEl.current;
-    if (value === '') {
-      this.inputEl.current.value = count;
+    if (value === '' || parseInt(value) < min) {
+      this.setState({
+        count: min,
+      });
+      // 回调onChange方法
+      onChange && onChange(min);
     }
   }
 
