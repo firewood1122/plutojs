@@ -6,6 +6,8 @@ interface PropsType {
   videoUrl: string;
   controls?: boolean;
   playsInline?: boolean;
+  closeVideo?: boolean,
+  onClose?: Function,
 }
 interface StateType {
   showVideo: boolean,
@@ -21,6 +23,18 @@ export default class Video extends Component<PropsType, StateType> {
   static defaultProps = {
     controls: true,
     playsInline: true,
+    closeVideo: false,
+    onClose: {},
+  }
+
+  componentDidUpdate(prevProps: PropsType) {
+    const { closeVideo, onClose } = this.props;
+    if (prevProps.closeVideo !== closeVideo && closeVideo === true) {
+      this.setState({
+        showVideo: false,
+      });
+      onClose && onClose();
+    }
   }
 
   private videoEl = null; // 视频对象
@@ -41,9 +55,11 @@ export default class Video extends Component<PropsType, StateType> {
    * 响应结束播放视频
    */
   private onEnded = () => {
+    const { onClose } = this.props;
     this.setState({
       showVideo: false,
     });
+    onClose && onClose();
   }
 
   render() {

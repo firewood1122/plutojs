@@ -19,3 +19,4 @@ import '@plutojs/video/build/index.css';
 | videoUrl | 视频链接 | string | 否 | 无 |
 | controls | 是否有控制条 | boolean | 是 | true |
 | playsInline | 播放时局域播放 | boolean | 是 | true |
+| onClose | 视频关闭回调方法 | function | 是 | 无 |
