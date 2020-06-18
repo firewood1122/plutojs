@@ -34,6 +34,7 @@ export default class Video extends Component<PropsType, StateType> {
         showVideo: false,
       });
       onClose && onClose();
+      this.videoEl.currentTime = 0;
     }
   }
 
@@ -60,6 +61,7 @@ export default class Video extends Component<PropsType, StateType> {
       showVideo: false,
     });
     onClose && onClose();
+    this.videoEl.currentTime = 0;
   }
 
   render() {
@@ -77,8 +79,9 @@ export default class Video extends Component<PropsType, StateType> {
           )}
         {
           videoUrl && (
-            <div className={`${style.videoContainer} ${!showVideo ? style.hidden : ''}`}>
+            <div className={`${style.videoContainer} ${!showVideo ? style.displayHidden : ''}`}>
               <video
+                preload="metadata"
                 ref={item => { this.videoEl = item; }}
                 src={videoUrl}
                 poster={coverUrl}
