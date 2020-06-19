@@ -8,6 +8,7 @@ interface PropsType {
     onClose?: Function;
 }
 interface StateType {
+    initVideo: boolean;
     showVideo: boolean;
 }
 export default class Video extends Component<PropsType, StateType> {

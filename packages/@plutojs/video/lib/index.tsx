@@ -10,12 +10,14 @@ interface PropsType {
   onClose?: Function,
 }
 interface StateType {
+  initVideo: boolean,
   showVideo: boolean,
 }
 export default class Video extends Component<PropsType, StateType> {
   constructor(props) {
     super(props);
     this.state = {
+      initVideo: false,
       showVideo: false,
     };
   }
@@ -46,10 +48,12 @@ export default class Video extends Component<PropsType, StateType> {
   private play = () => {
     this.setState({
       showVideo: true,
+      initVideo: true,
+    }, () => {
+      if (this.videoEl) {
+        this.videoEl.play(); // 自动播放
+      }
     });
-    if (this.videoEl) {
-      this.videoEl.play(); // 自动播放
-    }
   }
 
   /**
@@ -66,7 +70,7 @@ export default class Video extends Component<PropsType, StateType> {
 
   render() {
     const { coverUrl, videoUrl, controls, playsInline } = this.props;
-    const { showVideo } = this.state;
+    const { initVideo, showVideo } = this.state;
 
     return (
       <div className={`${style.container}`}>
@@ -78,7 +82,7 @@ export default class Video extends Component<PropsType, StateType> {
             </div>
           )}
         {
-          videoUrl && (
+          videoUrl && initVideo && (
             <div className={`${style.videoContainer} ${!showVideo ? style.displayHidden : ''}`}>
               <video
                 preload="metadata"
