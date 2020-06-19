@@ -12,7 +12,9 @@ declare class InputCode extends Component<PropsType, StateType> {
         count: number;
         change: () => void;
     };
+    private inputEl;
     private onChange;
+    clear(): void;
     render(): JSX.Element;
 }
 export default InputCode;

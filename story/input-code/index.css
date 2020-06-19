@@ -12,3 +12,8 @@
   width: 232px;
   height: 100%;
 }
+.input-code-demo-btn-field {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}

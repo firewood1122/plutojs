@@ -21,6 +21,8 @@ class InputCode extends Component<PropsType, StateType> {
     change: () => { },
   }
 
+  private inputEl = null; // 输入框
+
   private onChange = (e) => {
     const { change } = this.props;
     const value = e.target.value;
@@ -28,6 +30,18 @@ class InputCode extends Component<PropsType, StateType> {
       value: [...value],
     });
     change(value);
+  }
+
+  /**
+   * 清空输入框
+   */
+  clear() {
+    this.setState({
+      value: [],
+    }, () => {
+      this.inputEl.value = '';
+      this.inputEl.focus();
+    });
   }
 
   render() {
@@ -49,7 +63,9 @@ class InputCode extends Component<PropsType, StateType> {
     return (
       <div className={style.container}>
         {...items}
-        <input className={style.input} maxLength={count} onChange={this.onChange} type="tel" />
+        <input className={style.input} maxLength={count} onChange={this.onChange} type="tel" ref={item => {
+          this.inputEl = item;
+        }} />
       </div>
     );
   }
