@@ -36,7 +36,7 @@ export default class Video extends Component<PropsType, StateType> {
         showVideo: false,
       });
       onClose && onClose();
-      this.videoEl.currentTime = 0;
+      if (this.videoEl) this.videoEl.currentTime = 0;
     }
   }
 
@@ -65,7 +65,7 @@ export default class Video extends Component<PropsType, StateType> {
       showVideo: false,
     });
     onClose && onClose();
-    this.videoEl.currentTime = 0;
+    if (this.videoEl) this.videoEl.currentTime = 0;
   }
 
   render() {
