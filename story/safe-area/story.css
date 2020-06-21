@@ -1,0 +1,11 @@
+body {
+  height: 150vh;
+}
+.safe-area-demo-field {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 0);
+  font-size: 30px;
+  text-align: center;
+}

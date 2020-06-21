@@ -1,0 +1,13 @@
+.container {
+  width: 100%;
+}
+@supports (bottom: env(safe-area-inset-bottom)) {
+  .container {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+@supports (bottom: constant(safe-area-inset-bottom)) {
+  .container {
+    padding-bottom: constant(safe-area-inset-bottom);
+  }
+}

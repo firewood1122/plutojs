@@ -1,0 +1,14 @@
+._1TyZGGF9W8_1DEX9xYurnI {
+  width: 100%;
+}
+@supports (bottom: env(safe-area-inset-bottom)) {
+  ._1TyZGGF9W8_1DEX9xYurnI {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+@supports (bottom: constant(safe-area-inset-bottom)) {
+  ._1TyZGGF9W8_1DEX9xYurnI {
+    padding-bottom: constant(safe-area-inset-bottom);
+  }
+}
+
