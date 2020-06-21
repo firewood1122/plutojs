@@ -19,6 +19,7 @@ script:
 
 after_script:
   - cd ./.out
+  - echo 'pluto.smallpig.cn' > CNAME
   - git init
   - git config user.name "${U_NAME}"
   - git config user.email "${U_EMAIL}"
