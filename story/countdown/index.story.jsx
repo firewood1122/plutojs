@@ -27,5 +27,5 @@ export const story1 = () => {
   )
 };
 story1.story = {
-  name: '默认按钮',
+  name: '倒计时',
 };

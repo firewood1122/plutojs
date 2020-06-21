@@ -29,5 +29,5 @@ export const story1 = () => {
   );
 };
 story1.story = {
-  name: 'Picker 选择器',
+  name: '选择器',
 };
