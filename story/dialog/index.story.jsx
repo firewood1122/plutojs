@@ -21,6 +21,21 @@ export const story1 = () => {
   return (
     <div className="dialog-demo-btn-field">
       <button className="dialog-demo-btn" onClick={() => {
+        Dialog.alert('这是一个Alert对话框，通常用于二次确认', () => {
+          alert('点击了确定');
+        });
+      }}>Alert对话框</button>
+    </div>
+  );
+};
+story1.story = {
+  name: 'Alert对话框',
+};
+
+export const story2 = () => {
+  return (
+    <div className="dialog-demo-btn-field">
+      <button className="dialog-demo-btn" onClick={() => {
         Dialog.confirm('这是一个Confirm对话框，通常用于二次确认', () => {
           alert('点击了确定');
         });
@@ -28,6 +43,6 @@ export const story1 = () => {
     </div>
   );
 };
-story1.story = {
+story2.story = {
   name: 'Confirm对话框',
 };

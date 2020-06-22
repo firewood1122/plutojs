@@ -34,6 +34,18 @@ const getModal = (content: React.ReactNode) => {
 };
 
 export default {
+  alert: (text: string, confirm: Function, confirmText = '确定') => {
+    const content = (
+      <div className={style.container}>
+        <div className={style.text}>{text}</div>
+        <div className={style.btnContainer}>
+          <div className={style.alertBtn} onClick={() => { confirm(); destroy(); }}>{confirmText}</div>
+        </div>
+      </div>
+    );
+    destroy();
+    getModal(content);
+  },
   confirm: (text: string, confirm: Function, cancelText: string = '取消', confirmText = '确定') => {
     const content = (
       <div className={style.container}>
