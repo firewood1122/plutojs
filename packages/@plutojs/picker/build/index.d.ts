@@ -1,5 +1,15 @@
-import '@plutojs/modal/build/index.css';
-declare const _default: {
-    confirm: (text: string, confirm: Function, cancelText?: string, confirmText?: string) => void;
-};
-export default _default;
+import { Component } from 'react';
+interface PickerProps {
+}
+interface PickerState {
+    containerHeight: number;
+}
+export default class extends Component<PickerProps, PickerState> {
+    private scrollContainer;
+    state: {
+        containerHeight: number;
+    };
+    componentDidMount(): void;
+    render(): JSX.Element;
+}
+export {};

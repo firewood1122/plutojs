@@ -1,13 +1,13 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
-import Dialog from '@plutojs/picker';
+import Picker from '@plutojs/picker';
 import '@plutojs/picker/build/index.css';
 import './story.css';
 
 export default {
   title: '表单组件.Picker 选择器',
-  component: Dialog,
+  component: Picker,
   decorators: [withKnobs, withQuery],
   parameters: {
     backgrounds: [
@@ -19,12 +19,8 @@ export default {
 
 export const story1 = () => {
   return (
-    <div className="dialog-demo-btn-field">
-      <button className="dialog-demo-btn" onClick={() => {
-        Dialog.confirm('这是一个Confirm对话框，通常用于二次确认', () => {
-          alert('点击了确定');
-        });
-      }}>Confirm对话框</button>
+    <div className="picker-demo-field">
+      <Picker />
     </div>
   );
 };

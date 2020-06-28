@@ -1,31 +1,53 @@
-.container {
-  width: 540px;
-  border-radius: 16px;
-  background: #fff;
-}
-.text {
-  padding: 40px;
-  line-height: 46px;
-  font-size: 36px;
+.groupItem {
+  height: 72px;
+  line-height: 72px;
+  font-size: 28px;
+  color: #999;
   text-align: center;
-  color: #000;
 }
-.btnContainer {
-  border-top: 1px solid #EDEDED; /*no*/
+.selectedGroupItem {
+  font-size: 34px;
+  color: #222;
+}
+.container {
+  border-top: 1px solid #E7E7E7; /*no*/
+  width: 750px;
+  background: #efeff4;
+}
+.action {
+  padding: 0 30px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
-  line-height: 36px;
+  align-items: center;
+  background: #fbf9fe;
+}
+.cancel {
+  line-height: 1;
+  font-size: 28px;
+  color: #888;
+}
+.title {
+  line-height: 1;
   font-size: 32px;
-  text-align: center;
   color: #0F1520;
 }
-.cancelBtn {
-  width: 50%;
-  padding: 30px 0;
-  border-right: 1px solid #EDEDED; /*no*/
+.confirm {
+  line-height: 1;
+  font-size: 28px;
+  color: #005ae1;
 }
-.confirmBtn {
-  width: 50%;
-  padding: 30px 0;
-  color: #32ADEA;
+.scroll {
+  position: relative;
+  height: 450px;
+}
+.selected {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 100%;
+  height: 72px;
+  border: 1px solid #d9d9d9; /*no*/
+  border-left: none;
+  border-right: none;
 }

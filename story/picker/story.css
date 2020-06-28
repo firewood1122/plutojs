@@ -1,12 +1,5 @@
-.picker-demo-btn-field {
-  margin: 40px auto;
-  display: flex;
-  justify-content: center;
-}
-.picker-demo-btn {
-  height: 40px;
-  padding: 0 40px;
-  border: 1px solid #000;
-  border-radius: 20px;
-  text-align: center;
+.picker-demo-field {
+  position: fixed;
+  left: 0;
+  bottom: 0;
 }
