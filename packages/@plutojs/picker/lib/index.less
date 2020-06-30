@@ -1,3 +1,9 @@
+.groupOuterContainer {
+  height: 100%;
+}
+.groupScrollContainer {
+  transition: .3s ease-out;
+}
 .groupItem {
   height: 72px;
   line-height: 72px;
@@ -40,6 +46,8 @@
 .scroll {
   position: relative;
   height: 450px;
+  overflow: hidden;
+  mask-image: linear-gradient(0deg,transparent,transparent 5%,#fff 20%,#fff 80%,transparent 95%,transparent);
 }
 .selected {
   position: absolute;
