@@ -1,6 +1,6 @@
 {
   "name": "@plutojs/button",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "基础按钮组件",
   "keywords": [
     "button"
