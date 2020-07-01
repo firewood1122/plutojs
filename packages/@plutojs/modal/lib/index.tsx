@@ -2,6 +2,48 @@ import ReactDOM from 'react-dom';
 import React, { Component, createRef } from 'react';
 const style = require('./index.less');
 
+/**
+ * 模态框管理器
+ */
+function ModalManager() {
+  const modalItems: Array<Modal> = [];
+  let showingModalItems: Array<Modal> = [];
+
+  /**
+   * 添加浮层对象
+   */
+  this.addModal = (modal: Modal) => {
+    modalItems.push(modal);
+  };
+
+  /**
+   * 显示当前浮层对象
+   */
+  this.showModal = (modal: Modal) => {
+    showingModalItems.push(modal);
+    modalItems.forEach((item) => {
+      item.setVisibility(modal.modalId === item.modalId ? 'visible' : 'hidden');
+    });
+  };
+
+  /**
+   * 隐藏当前浮层对象
+   */
+  this.hideModal = (modal: Modal) => {
+    const newItems: Array<Modal> = [];
+    showingModalItems.forEach((item: Modal) => {
+      if (modal.modalId !== item.modalId) newItems.push(item);
+    });
+
+    showingModalItems = newItems;
+    if (showingModalItems.length > 0) {
+      // 恢复显示当前浮层对象
+      showingModalItems[showingModalItems.length - 1].setVisibility('visible');
+    }
+  }
+}
+const modalManager = new ModalManager();
+
 interface PropsType {
   children: React.ReactNode,
   isOpened: Boolean,
@@ -15,6 +57,7 @@ interface PropsType {
 };
 interface StateType {
   height: number,
+  visibility: 'visible' | 'hidden',
 }
 
 class Modal extends Component<PropsType, StateType> {
@@ -23,7 +66,12 @@ class Modal extends Component<PropsType, StateType> {
     this.modalEl = createRef();
     this.state = {
       height: 0,
+      visibility: 'visible',
     };
+
+    // 加入模态框管理器
+    this.modalId = `${Date.now()}_${Math.random()}`;
+    modalManager.addModal(this);
   }
 
   private positionMap = {
@@ -40,6 +88,7 @@ class Modal extends Component<PropsType, StateType> {
     closeOnClickOverlay: true,
   }
 
+  public modalId: string = '';
   private modalEl: any = null;
   private contentEl: any = null;
   private prePosition: string = ''; // 页面原定位方式
@@ -103,10 +152,15 @@ class Modal extends Component<PropsType, StateType> {
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps: PropsType) {
     const { isOpened, isLock } = this.props;
-    if (isLock) {
+    if (isLock && prevProps.isOpened !== isOpened) {
       this.setStyle(isOpened);
+      if (isOpened) {
+        modalManager.showModal(this);
+      } else {
+        modalManager.hideModal(this);
+      }
     }
   }
 
@@ -137,6 +191,17 @@ class Modal extends Component<PropsType, StateType> {
     }
   }
 
+  /**
+   * 设置是否可见
+   * 
+   * @param visibility 
+   */
+  setVisibility = (visibility: 'visible' | 'hidden') => {
+    this.setState({
+      visibility,
+    });
+  }
+
   render() {
     const {
       children,
@@ -148,7 +213,7 @@ class Modal extends Component<PropsType, StateType> {
       zIndex,
       onHide,
     }: PropsType = this.props;
-    const { height } = this.state;
+    const { height, visibility } = this.state;
 
     return (
       <React.Fragment>
@@ -156,7 +221,7 @@ class Modal extends Component<PropsType, StateType> {
           isOpened && (
             <div
               ref={this.modalEl}
-              style={{ zIndex, height: `${height}px` }}
+              style={{ zIndex, height: `${height}px`, visibility }}
               className={`${isLock ? style.lockModal : style.modal} ${this.positionMap[position]} ${isMask ? style.mask : ''}`}
               onClick={() => { if (closeOnClickOverlay && onHide) onHide(); }}>
               <div ref={this.contentEl} className={style.content} onClick={e => { e.stopPropagation(); }}>{children}</div>

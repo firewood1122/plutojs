@@ -12,6 +12,7 @@ interface PropsType {
 }
 interface StateType {
     height: number;
+    visibility: 'visible' | 'hidden';
 }
 declare class Modal extends Component<PropsType, StateType> {
     constructor(props: PropsType);
@@ -23,6 +24,7 @@ declare class Modal extends Component<PropsType, StateType> {
         zIndex: number;
         closeOnClickOverlay: boolean;
     };
+    modalId: string;
     private modalEl;
     private contentEl;
     private prePosition;
@@ -30,11 +32,12 @@ declare class Modal extends Component<PropsType, StateType> {
     private containerHeight;
     private setStyle;
     componentDidMount(): void;
-    componentDidUpdate(): void;
+    componentDidUpdate(prevProps: PropsType): void;
     componentWillUnmount(): void;
     static popup: (properties: any) => {
         destroy(): void;
     };
+    setVisibility: (visibility: 'visible' | 'hidden') => void;
     render(): JSX.Element;
 }
 export default Modal;
