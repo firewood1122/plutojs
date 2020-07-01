@@ -6,7 +6,7 @@ const style = require('./index.less');
  * 模态框管理器
  */
 function ModalManager() {
-  const modalItems: Array<Modal> = [];
+  let modalItems: Array<Modal> = [];
   let showingModalItems: Array<Modal> = [];
 
   /**
@@ -14,6 +14,23 @@ function ModalManager() {
    */
   this.addModal = (modal: Modal) => {
     modalItems.push(modal);
+  };
+
+  /**
+   * 删除浮层对象
+   */
+  this.removeModal = (modal: Modal) => {
+    const newModalItems: Array<Modal> = [];
+    modalItems.forEach((item: Modal) => {
+      if (modal.modalId !== item.modalId) newModalItems.push(item);
+    });
+    modalItems = newModalItems;
+
+    const newShowingModalItems: Array<Modal> = [];
+    showingModalItems.forEach((item: Modal) => {
+      if (modal.modalId !== item.modalId) newShowingModalItems.push(item);
+    });
+    showingModalItems = newShowingModalItems;
   };
 
   /**
@@ -40,7 +57,14 @@ function ModalManager() {
       // 恢复显示当前浮层对象
       showingModalItems[showingModalItems.length - 1].setVisibility('visible');
     }
-  }
+  };
+
+  /**
+   * 获取需展示浮层个数
+   */
+  this.getShowingCount = () => {
+    return showingModalItems.length;
+  };
 }
 const modalManager = new ModalManager();
 
@@ -108,10 +132,12 @@ class Modal extends Component<PropsType, StateType> {
       if (this.modalEl) this.modalEl.current.style.top = `${this.scrollTop}px`;
     } else {
       // 重新设置body定位
-      document.body.style.position = this.prePosition || 'static';
-      document.body.style.top = '0px';
-      document.documentElement.scrollTop = this.scrollTop;
-      document.body.scrollTop = this.scrollTop;
+      if (modalManager.getShowingCount() === 0) {
+        document.body.style.position = this.prePosition || 'static';
+        document.body.style.top = '0px';
+        document.documentElement.scrollTop = this.scrollTop;
+        document.body.scrollTop = this.scrollTop;
+      }
     }
   }
 
@@ -155,17 +181,18 @@ class Modal extends Component<PropsType, StateType> {
   componentDidUpdate(prevProps: PropsType) {
     const { isOpened, isLock } = this.props;
     if (isLock && prevProps.isOpened !== isOpened) {
-      this.setStyle(isOpened);
       if (isOpened) {
         modalManager.showModal(this);
       } else {
         modalManager.hideModal(this);
       }
+      this.setStyle(isOpened);
     }
   }
 
   componentWillUnmount() {
     const { isLock } = this.props;
+    modalManager.removeModal(this);
     if (isLock) {
       this.setStyle(false);
     }
