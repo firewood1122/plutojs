@@ -141,7 +141,14 @@ class Group extends Component<GroupProps, GroupState> {
   }
 }
 
+interface PickerItemType {
+  text: string,
+  value: any,
+  children?: Array<PickerItemType>,
+}
 interface PickerProps {
+  group: number,
+  items: Array<PickerItemType>,
 }
 interface PickerState {
   showGroup: boolean,
@@ -156,6 +163,10 @@ export default class extends Component<PickerProps, PickerState> {
     containerHeight: 0,
   }
 
+  static defaultProps = {
+    items: [],
+  }
+
   componentDidMount() {
     // 父容器初始化完毕，再初始化子组件
     const containerHeight = (this.scrollContainer as HTMLElement).clientHeight;
@@ -166,29 +177,8 @@ export default class extends Component<PickerProps, PickerState> {
   }
 
   render() {
+    const { items } = this.props;
     const { showGroup, containerHeight } = this.state;
-    const items = [
-      {
-        text: '个人1',
-        value: 1,
-      },
-      {
-        text: '个人2',
-        value: 2,
-      },
-      {
-        text: '个人3',
-        value: 3,
-      },
-      {
-        text: '个人4',
-        value: 4,
-      },
-      {
-        text: '个人5',
-        value: 5,
-      }
-    ];
 
     return (
       <div className={`${style.container}`}>
@@ -200,8 +190,11 @@ export default class extends Component<PickerProps, PickerState> {
         <div ref={item => { this.scrollContainer = item; }} className={`${style.scroll}`}>
           <div className={style.selected}></div>
           {
-            showGroup && (
-              <Group containerHeight={containerHeight} data={items} />
+            showGroup && items.length > 0 && (
+              <div className={`${style.scrollInner}`}>
+                <Group containerHeight={containerHeight} data={items} />
+                <Group containerHeight={containerHeight} data={items[0].children} />
+              </div>
             )
           }
         </div>

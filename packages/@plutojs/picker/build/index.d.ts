@@ -1,5 +1,12 @@
 import { Component } from 'react';
+interface PickerItemType {
+    text: string;
+    value: any;
+    children?: Array<PickerItemType>;
+}
 interface PickerProps {
+    group: number;
+    items: Array<PickerItemType>;
 }
 interface PickerState {
     showGroup: boolean;
@@ -10,6 +17,9 @@ export default class extends Component<PickerProps, PickerState> {
     state: {
         showGroup: boolean;
         containerHeight: number;
+    };
+    static defaultProps: {
+        items: any[];
     };
     componentDidMount(): void;
     render(): JSX.Element;

@@ -1,5 +1,6 @@
 ._1p4Q3NRlMMybelocXABcCV {
   height: 100%;
+  flex: 1;
 }
 ._1bbF4Chn1rSEjP6WuFVNp6 {
   transition: 0.3s ease-out;
@@ -60,5 +61,8 @@
   /*no*/
   border-left: none;
   border-right: none;
+}
+._39y-cwM7n5VAJtft9eO1IW {
+  display: flex;
 }
 
