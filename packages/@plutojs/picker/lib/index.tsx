@@ -10,6 +10,7 @@ interface GroupProps {
     text: string,
     value: any,
   }>,
+  selected: any,
   onChange: Function,
 }
 interface GroupState {
@@ -28,13 +29,18 @@ class Group extends Component<GroupProps, GroupState> {
   private startY: number = 0; // 移动开始时Y座标 
 
   componentDidMount() {
+    const { data, selected } = this.props;
+    let selectedIndex = data.findIndex(item => item.value === selected);
+    if (selectedIndex < 0) selectedIndex = 0;
+
     // 计算初始偏移值
     const { containerHeight } = this.props;
     const itemHeight = (this.item as HTMLElement).clientHeight;
-    const translateY = (containerHeight - itemHeight) / 2;
+    const translateY = (containerHeight - itemHeight) / 2 - itemHeight * selectedIndex;
     this.itemHeight = itemHeight;
     this.setState({
       translateY,
+      selected: selectedIndex,
     });
   }
 
@@ -162,6 +168,7 @@ interface PickerProps {
   onCancel: () => void,
   onConfirm: (items: Array<PickerItemType>) => void,
   items: Array<PickerItemType>,
+  selected?: Array<PickerItemType>,
   group?: number,
 }
 interface PickerState {
@@ -181,12 +188,13 @@ export default class extends Component<PickerProps, PickerState> {
   }
 
   static defaultProps = {
-    group: 1,
     items: [],
+    selected: [],
+    group: 1,
   }
 
   componentDidMount() {
-    const { group, items } = this.props;
+    const { group, items, selected } = this.props;
     const containerHeight = (this.scrollContainer as HTMLElement).clientHeight; // 父容器初始化完毕，再初始化子组件
 
     // 构造初始化数据
@@ -228,22 +236,25 @@ export default class extends Component<PickerProps, PickerState> {
    * 响应选中单个选择器
    */
   private onChange = (item: PickerItemType, index: number) => {
-    // 处理选中数据
-    this.selected = this.selected.slice(0, index).concat([item]).concat(this.selected.slice(index + 1));
-
-    // 处理列数据项
     if (index < this.selected.length - 1) {
+      // 处理列数据项
       const { group } = this.props;
       const { groupItems } = this.state;
       const newGroupItems = groupItems.slice(0, index + 1).concat(this.initGroupItems(group - index - 1, item.children || []));
       this.setState({
         groupItems: newGroupItems,
       });
+
+      // 处理选中数据
+      this.selected = this.selected.slice(0, index).concat([item]).concat(this.initSelected(newGroupItems).slice(index + 1));
+    } else {
+      // 处理选中数据
+      this.selected = this.selected.slice(0, index).concat([item]).concat(this.selected.slice(index + 1));
     }
   }
 
   render() {
-    const { isOpened, onCancel, onConfirm } = this.props;
+    const { isOpened, onCancel, onConfirm, selected } = this.props;
     const { showGroup, containerHeight, groupItems } = this.state;
 
     return (
@@ -265,6 +276,7 @@ export default class extends Component<PickerProps, PickerState> {
                         key={`item-${index}`}
                         containerHeight={containerHeight}
                         data={items}
+                        selected={selected[index] ? selected[index].value : null}
                         onChange={(item: PickerItemType) => { this.onChange(item, index); }}
                       />
                     ))

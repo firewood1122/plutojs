@@ -41,7 +41,6 @@ export const story1 = () => {
         isOpened={isOpened}
         onCancel={() => { setIsOpened(false); }}
         onConfirm={data => {
-          console.log(data);
           setIsOpened(false);
         }}
         items={items}
@@ -63,15 +62,20 @@ export const story2 = () => {
     })),
   }));
   const [isOpened, setIsOpened] = useState(true);
+  const [selected, setSelected] = useState([]);
   return (
     <div className="picker-demo-field">
+      <div className="picker-text-demo-field" onClick={() => { setIsOpened(true); }}>
+        点击选择：{selected.map(item => item.text).join(' ')}
+      </div>
       <Picker
         isOpened={isOpened}
         onCancel={() => { setIsOpened(false); }}
         onConfirm={data => {
-          console.log(data);
           setIsOpened(false);
+          setSelected(data);
         }}
+        selected={selected}
         group={2}
         items={items}
       />

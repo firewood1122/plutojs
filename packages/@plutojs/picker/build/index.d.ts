@@ -10,6 +10,7 @@ interface PickerProps {
     onCancel: () => void;
     onConfirm: (items: Array<PickerItemType>) => void;
     items: Array<PickerItemType>;
+    selected?: Array<PickerItemType>;
     group?: number;
 }
 interface PickerState {
@@ -26,8 +27,9 @@ export default class extends Component<PickerProps, PickerState> {
         groupItems: any[];
     };
     static defaultProps: {
-        group: number;
         items: any[];
+        selected: any[];
+        group: number;
     };
     componentDidMount(): void;
     private initGroupItems;
