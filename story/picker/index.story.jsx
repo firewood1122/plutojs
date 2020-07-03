@@ -4,6 +4,7 @@ import { withQuery } from '@storybook/addon-queryparams';
 import Picker from '@plutojs/picker';
 import '@plutojs/picker/build/index.css';
 import './story.css';
+import { useState } from 'react';
 const cityData = require('./data.json');
 
 export default {
@@ -33,9 +34,18 @@ export const story1 = () => {
       value: 1,
     },
   ];
+  const [isOpened, setIsOpened] = useState(true);
   return (
     <div className="picker-demo-field">
-      <Picker items={items} />
+      <Picker
+        isOpened={isOpened}
+        onCancel={() => { setIsOpened(false); }}
+        onConfirm={data => {
+          console.log(data);
+          setIsOpened(false);
+        }}
+        items={items}
+      />
     </div>
   );
 };
@@ -52,9 +62,19 @@ export const story2 = () => {
       value: item.cityCode,
     })),
   }));
+  const [isOpened, setIsOpened] = useState(true);
   return (
     <div className="picker-demo-field">
-      <Picker items={items} />
+      <Picker
+        isOpened={isOpened}
+        onCancel={() => { setIsOpened(false); }}
+        onConfirm={data => {
+          console.log(data);
+          setIsOpened(false);
+        }}
+        group={2}
+        items={items}
+      />
     </div>
   );
 };

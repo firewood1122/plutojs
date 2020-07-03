@@ -1,3 +1,39 @@
+._3qT7ogTzSwUZT2fQt7vOg8 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+._2hIktabqOEZfFSgDt6Ky3h {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+._2r0BDlKli0IIG_5nehr5Ha {
+  background: rgba(0, 0, 0, 0.75);
+}
+._1Px9RDy249XjZI6cZoUshA {
+  justify-content: center;
+}
+._8snf9MejSTejfuiGJ3d4w {
+  justify-content: flex-start;
+}
+.Hayhc0EN5q8BkecUmpQCv {
+  justify-content: flex-end;
+}
+._28HMgXDrLiz76_7CJbE9aH {
+  position: relative;
+}
+
+
 ._1p4Q3NRlMMybelocXABcCV {
   height: 100%;
   flex: 1;

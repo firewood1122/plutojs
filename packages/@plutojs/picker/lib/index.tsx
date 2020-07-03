@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Debounce from 'debounce';
+import Modal from '@plutojs/modal';
+import '@plutojs/modal/build/index.css'
 const style = require('./index.less');
 
 interface GroupProps {
@@ -7,6 +10,7 @@ interface GroupProps {
     text: string,
     value: any,
   }>,
+  onChange: Function,
 }
 interface GroupState {
   translateY: number,
@@ -24,6 +28,7 @@ class Group extends Component<GroupProps, GroupState> {
   private startY: number = 0; // 移动开始时Y座标 
 
   componentDidMount() {
+    // 计算初始偏移值
     const { containerHeight } = this.props;
     const itemHeight = (this.item as HTMLElement).clientHeight;
     const translateY = (containerHeight - itemHeight) / 2;
@@ -34,7 +39,7 @@ class Group extends Component<GroupProps, GroupState> {
   }
 
   /**
-   * 获取数据库样式名称
+   * 获取数据项样式名称
    * 
    * @param index 
    */
@@ -98,19 +103,25 @@ class Group extends Component<GroupProps, GroupState> {
    * 响应移动中
    */
   private onTouchMove = (e: React.TouchEvent) => {
-    const translateY = this.computeTranslateY(e);
-    (this.scrollContainer as HTMLElement).style.transform = `translate3d(0px, ${translateY}px, 0px)`;
+    Debounce(() => {
+      const translateY = this.computeTranslateY(e);
+      (this.scrollContainer as HTMLElement).style.transform = `translate3d(0px, ${translateY}px, 0px)`;
+    }, 200);
   }
 
   /**
    * 响应移动结束
    */
   private onTouchEnd = (e: React.TouchEvent) => {
+    const { data, onChange } = this.props;
+    const { selected } = this.state;
     const translateY = this.computeTranslateY(e);
+    const newSelected = this.computeSelected(translateY);
     this.setState({
       translateY,
-      selected: this.computeSelected(translateY),
+      selected: newSelected,
     });
+    selected !== newSelected && data.length > 0 && onChange && onChange(data[newSelected]);
   }
 
   render() {
@@ -147,58 +158,123 @@ interface PickerItemType {
   children?: Array<PickerItemType>,
 }
 interface PickerProps {
-  group: number,
+  isOpened: boolean,
+  onCancel: () => void,
+  onConfirm: (items: Array<PickerItemType>) => void,
   items: Array<PickerItemType>,
+  group?: number,
 }
 interface PickerState {
   showGroup: boolean,
   containerHeight: number,
+  groupItems: Array<Array<PickerItemType>>,
 }
 export default class extends Component<PickerProps, PickerState> {
 
   private scrollContainer: any = null; // 可滚动容器
+  private selected: Array<PickerItemType> = []; // 已选中数据
 
   state = {
     showGroup: false,
     containerHeight: 0,
+    groupItems: [],
   }
 
   static defaultProps = {
+    group: 1,
     items: [],
   }
 
   componentDidMount() {
-    // 父容器初始化完毕，再初始化子组件
-    const containerHeight = (this.scrollContainer as HTMLElement).clientHeight;
+    const { group, items } = this.props;
+    const containerHeight = (this.scrollContainer as HTMLElement).clientHeight; // 父容器初始化完毕，再初始化子组件
+
+    // 构造初始化数据
+    const groupItems = this.initGroupItems(group, items);
+    this.selected = this.initSelected(groupItems);
+
     this.setState({
       showGroup: true,
       containerHeight,
+      groupItems,
     });
   }
 
+  /**
+   * 初始化各列数据项
+   */
+  private initGroupItems = (group: number, items: Array<PickerItemType>, index: number = 0) => {
+    let groupItems = items ? [items] : [];
+    if (index < group) {
+      groupItems = groupItems.concat(this.initGroupItems(group, items[0].children, index + 1));
+      return groupItems;
+    }
+    return groupItems;
+  }
+
+  /**
+   * 初始化选中数据项
+   */
+  private initSelected = (groupItems: Array<Array<PickerItemType>>) => {
+    return groupItems.map((items: Array<PickerItemType>) => {
+      return items.length > 0 ? {
+        text: items[0].text,
+        value: items[0].value,
+      } : null
+    });
+  }
+
+  /**
+   * 响应选中单个选择器
+   */
+  private onChange = (item: PickerItemType, index: number) => {
+    // 处理选中数据
+    this.selected = this.selected.slice(0, index).concat([item]).concat(this.selected.slice(index + 1));
+
+    // 处理列数据项
+    if (index < this.selected.length - 1) {
+      const { group } = this.props;
+      const { groupItems } = this.state;
+      const newGroupItems = groupItems.slice(0, index + 1).concat(this.initGroupItems(group - index - 1, item.children || []));
+      this.setState({
+        groupItems: newGroupItems,
+      });
+    }
+  }
+
   render() {
-    const { items } = this.props;
-    const { showGroup, containerHeight } = this.state;
+    const { isOpened, onCancel, onConfirm } = this.props;
+    const { showGroup, containerHeight, groupItems } = this.state;
 
     return (
-      <div className={`${style.container}`}>
-        <div className={`${style.action}`}>
-          <div className={`${style.cancel}`}>取消</div>
-          <div className={`${style.title}`}>请选择</div>
-          <div className={`${style.confirm}`}>确定</div>
+      <Modal isOpened={isOpened} position="bottom" onHide={onCancel}>
+        <div className={`${style.container}`}>
+          <div className={`${style.action}`}>
+            <div className={`${style.cancel}`} onClick={onCancel}>取消</div>
+            <div className={`${style.title}`}>请选择</div>
+            <div className={`${style.confirm}`} onClick={() => { onConfirm && onConfirm(this.selected); }}>确定</div>
+          </div>
+          <div ref={item => { this.scrollContainer = item; }} className={`${style.scroll}`}>
+            <div className={style.selected}></div>
+            {
+              showGroup && groupItems.length > 0 && (
+                <div className={`${style.scrollInner}`}>
+                  {
+                    groupItems.map((items: Array<PickerItemType>, index: number) => (
+                      <Group
+                        key={`item-${index}`}
+                        containerHeight={containerHeight}
+                        data={items}
+                        onChange={(item: PickerItemType) => { this.onChange(item, index); }}
+                      />
+                    ))
+                  }
+                </div>
+              )
+            }
+          </div>
         </div>
-        <div ref={item => { this.scrollContainer = item; }} className={`${style.scroll}`}>
-          <div className={style.selected}></div>
-          {
-            showGroup && items.length > 0 && (
-              <div className={`${style.scrollInner}`}>
-                <Group containerHeight={containerHeight} data={items} />
-                <Group containerHeight={containerHeight} data={items[0].children} />
-              </div>
-            )
-          }
-        </div>
-      </div>
+      </Modal>
     );
   }
 }
