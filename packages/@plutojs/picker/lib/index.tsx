@@ -29,6 +29,19 @@ class Group extends Component<GroupProps, GroupState> {
   private startY: number = 0; // 移动开始时Y座标 
 
   componentDidMount() {
+    // 计算初始偏移值
+    this.setTranslateY();
+  }
+
+  componentDidUpdate(preProps: GroupProps) {
+    const { selected } = this.props;
+    if (preProps.selected !== selected) this.setTranslateY(); // 更新偏移值
+  }
+
+  /**
+   * 更新偏移值
+   */
+  private setTranslateY = () => {
     const { data, selected } = this.props;
     let selectedIndex = data.findIndex(item => item.value === selected);
     if (selectedIndex < 0) selectedIndex = 0;
@@ -199,7 +212,7 @@ export default class extends Component<PickerProps, PickerState> {
 
     // 构造初始化数据
     const groupItems = this.initGroupItems(group, items);
-    this.selected = this.initSelected(groupItems);
+    this.selected = selected.length > 0 ? selected : this.initSelected(groupItems);
 
     this.setState({
       showGroup: true,
@@ -254,7 +267,7 @@ export default class extends Component<PickerProps, PickerState> {
   }
 
   render() {
-    const { isOpened, onCancel, onConfirm, selected } = this.props;
+    const { isOpened, onCancel, onConfirm } = this.props;
     const { showGroup, containerHeight, groupItems } = this.state;
 
     return (
@@ -276,7 +289,7 @@ export default class extends Component<PickerProps, PickerState> {
                         key={`item-${index}`}
                         containerHeight={containerHeight}
                         data={items}
-                        selected={selected[index] ? selected[index].value : null}
+                        selected={this.selected[index] ? this.selected[index].value : null}
                         onChange={(item: PickerItemType) => { this.onChange(item, index); }}
                       />
                     ))

@@ -27,22 +27,28 @@ export const story1 = () => {
     },
     {
       text: '海珠区',
-      value: 1,
+      value: 2,
     },
     {
       text: '白云区',
-      value: 1,
+      value: 3,
     },
   ];
   const [isOpened, setIsOpened] = useState(true);
+  const [selected, setSelected] = useState([]);
   return (
     <div className="picker-demo-field">
+      <div className="picker-text-demo-field" onClick={() => { setIsOpened(true); }}>
+        点击选择：{selected.map(item => item.text).join(' ')}
+      </div>
       <Picker
         isOpened={isOpened}
         onCancel={() => { setIsOpened(false); }}
         onConfirm={data => {
           setIsOpened(false);
+          setSelected(data);
         }}
+        selected={selected}
         items={items}
       />
     </div>
