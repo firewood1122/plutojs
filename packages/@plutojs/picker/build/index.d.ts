@@ -21,6 +21,7 @@ interface PickerState {
 export default class extends Component<PickerProps, PickerState> {
     private scrollContainer;
     private selected;
+    private updated;
     state: {
         showGroup: boolean;
         containerHeight: number;
@@ -32,9 +33,11 @@ export default class extends Component<PickerProps, PickerState> {
         group: number;
     };
     componentDidMount(): void;
+    componentDidUpdate(): void;
     private initGroupItems;
     private initSelected;
     private onChange;
+    private cancel;
     render(): JSX.Element;
 }
 export {};

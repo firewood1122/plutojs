@@ -193,6 +193,7 @@ export default class extends Component<PickerProps, PickerState> {
 
   private scrollContainer: any = null; // 可滚动容器
   private selected: Array<PickerItemType> = []; // 已选中数据
+  private updated: boolean = false; // 标识是否需更新
 
   state = {
     showGroup: false,
@@ -221,13 +222,29 @@ export default class extends Component<PickerProps, PickerState> {
     });
   }
 
+  componentDidUpdate() {
+    if (this.updated) {
+      const { group, items, selected } = this.props;
+      let { groupItems } = this.state;
+
+      this.selected = selected.length > 0 ? selected : this.initSelected(groupItems);
+      if (selected.length > 0) groupItems = this.initGroupItems(group, items, selected);
+
+      this.updated = false;
+      this.setState({
+        groupItems,
+      });
+    }
+  }
+
   /**
    * 初始化各列数据项
    */
-  private initGroupItems = (group: number, items: Array<PickerItemType>, index: number = 0) => {
+  private initGroupItems = (group: number, items: Array<PickerItemType>, selected: Array<PickerItemType> = [], index: number = 0) => {
     let groupItems = items ? [items] : [];
     if (index < group) {
-      groupItems = groupItems.concat(this.initGroupItems(group, items[0].children, index + 1));
+      const children = selected[index] ? items.find(item => item.value === selected[index].value).children : items[0].children;
+      groupItems = groupItems.concat(this.initGroupItems(group, children, selected, index + 1));
       return groupItems;
     }
     return groupItems;
@@ -266,15 +283,24 @@ export default class extends Component<PickerProps, PickerState> {
     }
   }
 
+  /**
+   * 取消选择
+   */
+  private cancel = () => {
+    const { onCancel } = this.props;
+    onCancel && onCancel();
+    this.updated = true;
+  }
+
   render() {
-    const { isOpened, onCancel, onConfirm } = this.props;
+    const { isOpened, onConfirm } = this.props;
     const { showGroup, containerHeight, groupItems } = this.state;
 
     return (
-      <Modal isOpened={isOpened} position="bottom" onHide={onCancel}>
+      <Modal isOpened={isOpened} position="bottom" onHide={this.cancel}>
         <div className={`${style.container}`}>
           <div className={`${style.action}`}>
-            <div className={`${style.cancel}`} onClick={onCancel}>取消</div>
+            <div className={`${style.cancel}`} onClick={this.cancel}>取消</div>
             <div className={`${style.title}`}>请选择</div>
             <div className={`${style.confirm}`} onClick={() => { onConfirm && onConfirm(this.selected); }}>确定</div>
           </div>
