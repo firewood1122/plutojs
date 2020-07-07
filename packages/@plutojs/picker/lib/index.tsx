@@ -211,9 +211,16 @@ class Picker extends Component<PickerProps, PickerState> {
     const { group, items, selected } = this.props;
     const containerHeight = (this.scrollContainer as HTMLElement).clientHeight; // 父容器初始化完毕，再初始化子组件
 
-    // 构造初始化数据
-    const groupItems = this.initGroupItems(group, items);
-    this.selected = selected.length > 0 ? selected : this.initSelected(groupItems);
+    let groupItems = [];
+    if (selected.length > 0) {
+      // 默认选中
+      this.selected = selected;
+      groupItems = this.initGroupItems(group, items, selected);
+    } else {
+      // 没有默认选中
+      groupItems = this.initGroupItems(group, items);
+      this.selected = this.initSelected(groupItems);
+    }
 
     this.setState({
       showGroup: true,
