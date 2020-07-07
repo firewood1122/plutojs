@@ -189,7 +189,7 @@ interface PickerState {
   containerHeight: number,
   groupItems: Array<Array<PickerItemType>>,
 }
-export default class extends Component<PickerProps, PickerState> {
+class Picker extends Component<PickerProps, PickerState> {
 
   private scrollContainer: any = null; // 可滚动容器
   private selected: Array<PickerItemType> = []; // 已选中数据
@@ -293,11 +293,11 @@ export default class extends Component<PickerProps, PickerState> {
   }
 
   render() {
-    const { isOpened, onConfirm } = this.props;
+    const { onConfirm } = this.props;
     const { showGroup, containerHeight, groupItems } = this.state;
 
     return (
-      <Modal isOpened={isOpened} position="bottom" onHide={this.cancel}>
+      <Modal isOpened={true} position="bottom" onHide={this.cancel}>
         <div className={`${style.container}`}>
           <div className={`${style.action}`}>
             <div className={`${style.cancel}`} onClick={this.cancel}>取消</div>
@@ -328,4 +328,9 @@ export default class extends Component<PickerProps, PickerState> {
       </Modal>
     );
   }
+}
+
+export default (props: PickerProps) => {
+  if (props.isOpened) return <Picker {...props} />
+  return null
 }
