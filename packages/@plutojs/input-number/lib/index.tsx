@@ -2,6 +2,7 @@ import React, { Component, createRef } from 'react';
 const style = require('./index.less');
 
 interface PropsType {
+  default?: number,
   min?: number,
   max?: number,
   keyboard?: boolean,
@@ -22,7 +23,7 @@ class InputNumber extends Component<PropsType, StateType> {
   constructor(props) {
     super(props);
     this.state = {
-      count: props.min,
+      count: props.default || props.min,
     };
     this.inputEl = createRef();
   }

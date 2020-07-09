@@ -1,5 +1,6 @@
 import { Component } from 'react';
 interface PropsType {
+    default?: number;
     min?: number;
     max?: number;
     keyboard?: boolean;
