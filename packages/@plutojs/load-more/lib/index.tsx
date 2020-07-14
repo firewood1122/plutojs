@@ -45,8 +45,14 @@ export default class LoadMore extends Component<PropsType, StateType> {
       let { scrollThreshold, loadMore } = this.props;
       if (scrollThreshold > 1) scrollThreshold = 1;
 
+      // 处理与模态框冲突的问题
+      if (bodyScroll && document.body.style.position === 'fixed') {
+        return;
+      }
+
       // 加载更多
-      if (scrollTop !== 0 && scrollTop + clientHeight >= scrollHeight * scrollThreshold && loadMore) {
+      alert(scrollTop + clientHeight >= scrollHeight * scrollThreshold);
+      if (scrollTop + clientHeight >= scrollHeight * scrollThreshold && loadMore) {
         loadMore();
       }
     }, 500));
