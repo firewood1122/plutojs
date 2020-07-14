@@ -51,7 +51,6 @@ export default class LoadMore extends Component<PropsType, StateType> {
       }
 
       // 加载更多
-      alert(scrollTop + clientHeight >= scrollHeight * scrollThreshold);
       if (scrollTop + clientHeight >= scrollHeight * scrollThreshold && loadMore) {
         loadMore();
       }
