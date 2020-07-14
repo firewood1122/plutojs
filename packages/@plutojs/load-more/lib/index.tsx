@@ -32,7 +32,7 @@ export default class LoadMore extends Component<PropsType, StateType> {
    * 响应滚动事件
    */
   private scroll = (node: HTMLElement | Document, bodyScroll: boolean) => {
-    node.addEventListener('scroll', debounce(() => {
+    node.addEventListener('touchend', debounce(() => {
       let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       let clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
       let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
@@ -46,7 +46,7 @@ export default class LoadMore extends Component<PropsType, StateType> {
       if (scrollThreshold > 1) scrollThreshold = 1;
 
       // 加载更多
-      if (scrollTop + clientHeight >= scrollHeight * scrollThreshold && loadMore) {
+      if (scrollTop !== 0 && scrollTop + clientHeight >= scrollHeight * scrollThreshold && loadMore) {
         loadMore();
       }
     }, 500));
