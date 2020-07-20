@@ -5,8 +5,8 @@ interface PropsType {
   value: string,
   className?: string,
   placeholder?: string,
-  onChange?: (e: React.ChangeEvent) => {},
-  onFocus?: (e: React.FocusEvent) => {},
+  onChange?: (e: React.ChangeEvent) => void,
+  onFocus?: (e: React.FocusEvent) => void,
   maxLength?: number,
   offsetBottom?: number,
 }
