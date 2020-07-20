@@ -12,7 +12,7 @@ interface PropsType {
 }
 interface StateType {
 }
-const noop = () => {};
+const noop = () => { };
 export default class Input extends Component<PropsType, StateType> {
   static defaultProps = {
     type: 'text',
@@ -32,10 +32,12 @@ export default class Input extends Component<PropsType, StateType> {
     // 处理安卓机器，系统键盘遮挡输入区域的问题
     setTimeout(() => {
       const clientHeight = document.body.clientHeight || document.documentElement.clientHeight;
-      const el = this.inputEl.current as HTMLElement;
-      const scrollTop = el.offsetTop - clientHeight + el.offsetHeight + offsetBottom;
-      document.body.scrollTop = scrollTop;
-      document.documentElement.scrollTop = scrollTop;
+      if (this.inputEl) {
+        const el = this.inputEl as HTMLElement;
+        const scrollTop = el.offsetTop - clientHeight + el.offsetHeight + offsetBottom;
+        document.body.scrollTop = scrollTop;
+        document.documentElement.scrollTop = scrollTop;
+      }
     }, 500);
   };
 
