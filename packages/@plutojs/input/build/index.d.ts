@@ -1,11 +1,11 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 interface PropsType {
     type: string;
     value: string;
     className?: string;
     placeholder?: string;
-    onChange?: () => {};
-    onFocus?: () => {};
+    onChange?: (e: React.ChangeEvent) => {};
+    onFocus?: (e: React.FocusEvent) => {};
     maxLength?: number;
     offsetBottom?: number;
 }

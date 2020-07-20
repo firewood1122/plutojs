@@ -5,8 +5,8 @@ interface PropsType {
   value: string,
   className?: string,
   placeholder?: string,
-  onChange?: () => {},
-  onFocus?: () => {},
+  onChange?: (e: React.ChangeEvent) => {},
+  onFocus?: (e: React.FocusEvent) => {},
   maxLength?: number,
   offsetBottom?: number,
 }
@@ -25,9 +25,9 @@ export default class Input extends Component<PropsType, StateType> {
 
   private inputEl = null; // 输入框实例
 
-  private onFocus = () => {
+  private onFocus = (e: React.FocusEvent) => {
     const { onFocus, offsetBottom } = this.props;
-    onFocus();
+    if (onFocus) onFocus(e);
 
     // 处理安卓机器，系统键盘遮挡输入区域的问题
     setTimeout(() => {
