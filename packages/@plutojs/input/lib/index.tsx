@@ -5,8 +5,8 @@ interface PropsType {
   value: string,
   className?: string,
   placeholder?: string,
-  onChange?: (e: React.ChangeEvent) => void,
-  onFocus?: (e: React.FocusEvent) => void,
+  onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
+  onFocus?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
   maxLength?: number,
   offsetBottom?: number,
 }
@@ -25,7 +25,7 @@ export default class Input extends Component<PropsType, StateType> {
 
   private inputEl = null; // 输入框实例
 
-  private onFocus = (e: React.FocusEvent) => {
+  private onFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { onFocus, offsetBottom } = this.props;
     if (onFocus) onFocus(e);
 

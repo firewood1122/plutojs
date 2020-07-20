@@ -4,8 +4,8 @@ interface PropsType {
     value: string;
     className?: string;
     placeholder?: string;
-    onChange?: (e: React.ChangeEvent) => void;
-    onFocus?: (e: React.FocusEvent) => void;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+    onFocus?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     maxLength?: number;
     offsetBottom?: number;
 }
