@@ -12,7 +12,7 @@ interface PropsType {
 }
 interface StateType {
 }
-const noop = {};
+const noop = () => {};
 export default class Input extends Component<PropsType, StateType> {
   static defaultProps = {
     type: 'text',

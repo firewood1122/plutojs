@@ -16,8 +16,8 @@ export default class Input extends Component<PropsType, StateType> {
         type: string;
         className: string;
         placeholder: string;
-        onChange: {};
-        onFocus: {};
+        onChange: () => void;
+        onFocus: () => void;
         offsetBottom: number;
     };
     private inputEl;
