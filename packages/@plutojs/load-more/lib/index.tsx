@@ -6,6 +6,7 @@ interface PropsType {
   bodyScroll?: boolean,
   scrollThreshold?: number,
   loadMore?: Function,
+  debounceTime?: number,
 }
 interface StateType {
 }
@@ -13,26 +14,32 @@ export default class LoadMore extends Component<PropsType, StateType> {
   static defaultProps = {
     bodyScroll: true,
     scrollThreshold: 1,
+    debounceTime: 1000,
   };
 
   private containerEl: HTMLElement = null;
 
   componentDidMount() {
-    const { bodyScroll } = this.props;
+    const { bodyScroll, debounceTime } = this.props;
 
     if (bodyScroll) { // 页面内滚动
-      this.scroll(document, bodyScroll);
+      this.scroll(document, bodyScroll, debounceTime);
     } else { // 区块内滚动
       const childNode = this.containerEl.childNodes[0] as HTMLElement;
-      this.scroll(childNode, bodyScroll);
+      this.scroll(childNode, bodyScroll, debounceTime);
     }
   }
 
   /**
    * 响应滚动事件
    */
-  private scroll = (node: HTMLElement | Document, bodyScroll: boolean) => {
-    node.addEventListener('touchend', debounce(() => {
+  private scroll = (node: HTMLElement | Document, bodyScroll: boolean, debounceTime: number) => {
+    let currentY = 0;
+
+    node.addEventListener('touchstart', (e: TouchEvent) => {
+      currentY = e.changedTouches[0].clientY;
+    });
+    node.addEventListener('touchend', debounce((e: TouchEvent) => {
       let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       let clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
       let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
@@ -52,9 +59,11 @@ export default class LoadMore extends Component<PropsType, StateType> {
 
       // 加载更多
       if (scrollTop + clientHeight >= scrollHeight * scrollThreshold && loadMore) {
-        loadMore();
+        if (!(scrollTop === 0 && clientHeight === scrollHeight && currentY - e.changedTouches[0].clientY < 20)) {
+          loadMore();
+        }
       }
-    }, 500));
+    }, debounceTime));
   }
 
   render() {
