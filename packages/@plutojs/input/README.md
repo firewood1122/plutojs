@@ -20,4 +20,4 @@ const [text, setText] = useState('');
 | onChange | 输入响应方法 | Function | 是 | {} |
 | onFocus | 聚焦响应方法 | Function | 是 | {} |
 | maxLength | 最大输入长度 | number | 是 | 无 |
-| offsetBottom | 底部距离 | number | 是 | 50 |
+| offsetTop | 顶部预留空间 | number | 是 | 100 |

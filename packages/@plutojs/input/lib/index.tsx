@@ -8,7 +8,7 @@ interface PropsType {
   onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
   onFocus?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
   maxLength?: number,
-  offsetBottom?: number,
+  offsetTop?: number,
 }
 interface StateType {
 }
@@ -20,21 +20,20 @@ export default class Input extends Component<PropsType, StateType> {
     placeholder: '',
     onChange: noop,
     onFocus: noop,
-    offsetBottom: 50,
+    offsetTop: 100,
   };
 
   private inputEl = null; // 输入框实例
 
   private onFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { onFocus, offsetBottom } = this.props;
+    const { onFocus, offsetTop } = this.props;
     if (onFocus) onFocus(e);
 
     // 处理安卓机器，系统键盘遮挡输入区域的问题
     setTimeout(() => {
-      const clientHeight = document.body.clientHeight || document.documentElement.clientHeight;
       if (this.inputEl) {
         const el = this.inputEl as HTMLElement;
-        const scrollTop = el.offsetTop - clientHeight + el.offsetHeight + offsetBottom;
+        const scrollTop = el.offsetTop - offsetTop;
         document.body.scrollTop = scrollTop;
         document.documentElement.scrollTop = scrollTop;
       }

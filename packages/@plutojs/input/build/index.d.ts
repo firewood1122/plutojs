@@ -7,7 +7,7 @@ interface PropsType {
     onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     onFocus?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     maxLength?: number;
-    offsetBottom?: number;
+    offsetTop?: number;
 }
 interface StateType {
 }
@@ -18,7 +18,7 @@ export default class Input extends Component<PropsType, StateType> {
         placeholder: string;
         onChange: () => void;
         onFocus: () => void;
-        offsetBottom: number;
+        offsetTop: number;
     };
     private inputEl;
     private onFocus;
