@@ -32,10 +32,10 @@ export default class Input extends Component<PropsType, StateType> {
     // 处理安卓机器，系统键盘遮挡输入区域的问题
     setTimeout(() => {
       if (this.inputEl) {
-        const el = this.inputEl as HTMLElement;
-        const scrollTop = el.offsetTop - offsetTop;
-        document.body.scrollTop = scrollTop;
-        document.documentElement.scrollTop = scrollTop;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const newScrollTop = scrollTop + this.inputEl.getBoundingClientRect().top - offsetTop;
+        document.body.scrollTop = newScrollTop;
+        document.documentElement.scrollTop = newScrollTop;
       }
     }, 500);
   };
