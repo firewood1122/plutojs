@@ -3,7 +3,7 @@ const path = require('path')
 const minimist = require('minimist')
 const webpack = require('webpack')
 
-const webpackConfig = require('../webpack.config')
+const webpackConfig = require('../config/webpack.prod')
 const args = minimist(process.argv.slice(2))
 
 /**
