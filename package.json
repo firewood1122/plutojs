@@ -27,6 +27,7 @@
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-react": "^7.19.0",
+    "express": "^4.17.1",
     "husky": "^4.2.3",
     "lerna": "^3.19.0",
     "less-loader": "^6.1.0",
@@ -38,7 +39,8 @@
     "ts-loader": "^7.0.3",
     "typescript": "^3.8.3",
     "url-loader": "^4.1.0",
-    "webpack": "^4.43.0"
+    "webpack": "^4.43.0",
+    "webpack-dev-middleware": "^3.7.2"
   },
   "dependencies": {
     "@plutojs/postcss-px2rem": "^1.4.1",
@@ -50,6 +52,7 @@
     "react-dom": "16.13.0"
   },
   "scripts": {
+    "dev": "node scripts/dev.js",
     "build": "node scripts/build.js",
     "build:types": "lerna exec -- tsc --emitDeclarationOnly",
     "release": "lerna updated && lerna publish",
