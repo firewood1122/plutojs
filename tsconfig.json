@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/core/*": ["packages/@plutojs/*"]
+    },
     "alwaysStrict": true,
     "declaration": true,
     "skipLibCheck": true,
@@ -13,5 +17,7 @@
   "exclude": [
     "node_modules",
   ],
-  "files": ["modules.d.ts"]
+  "files": [
+    "modules.d.ts"
+  ]
 }

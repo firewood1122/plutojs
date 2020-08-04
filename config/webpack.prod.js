@@ -1,5 +1,7 @@
 const getConfig = require('./webpack.base');
 
 module.exports = (opt) => {
-  return getConfig(opt);
+  const config = getConfig(opt);
+  return Object.assign(config, {
+  });
 }
