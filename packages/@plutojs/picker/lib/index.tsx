@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Debounce from 'debounce';
-import Modal from '@plutojs/modal';
-import '@plutojs/modal/build/index.css'
+import Modal from '~/core/modal/lib';
 const style = require('./index.less');
 
 interface GroupProps {

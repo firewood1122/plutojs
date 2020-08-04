@@ -1,5 +1,4 @@
 /// <reference types="react" />
-import '@plutojs/modal/build/index.css';
 interface PickerItemType {
     text: string;
     value: any;
