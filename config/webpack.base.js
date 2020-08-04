@@ -1,5 +1,4 @@
 const path = require('path');
-const loaderUtils = require('loader-utils');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -56,9 +55,7 @@ module.exports = (opt) => {
                   getLocalIdent: (context, localIdentName, localName, options) => {
                     const libPath = context._compiler.outputPath;
                     const packageName = /@plutojs\/(.*)\/build$/.exec(libPath)[1];
-                    const packageBase64 = loaderUtils.getHashDigest(packageName, 'md5', 'base64');
-                    const nameBase64 = loaderUtils.getHashDigest(localName, 'md5', 'base64');
-                    return `${packageBase64}_${nameBase64}`;
+                    return `plutojs_${packageName}_${localName}`;
                   },
                 },
               }
