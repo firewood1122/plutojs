@@ -30,6 +30,8 @@
   [[使用说明](https://www.npmjs.com/package/@plutojs/modal)]
 - [Toast 轻提示](http://pluto.smallpig.cn/?path=/story/%E6%93%8D%E4%BD%9C%E5%8F%8D%E9%A6%88-toast-%E8%BD%BB%E6%8F%90%E7%A4%BA--story-1)
   [[使用说明](https://www.npmjs.com/package/@plutojs/toast)]
+- [Copy 复制](http://pluto.smallpig.cn/?path=/story/%E6%93%8D%E4%BD%9C%E5%8F%8D%E9%A6%88-copy-%E5%A4%8D%E5%88%B6%E7%BB%84%E4%BB%B6--story-1)
+  [[使用说明](https://www.npmjs.com/package/@plutojs/copy)]
 
 ### 表单组件
 - [InputCode 验证码输入框](http://pluto.smallpig.cn/?path=/story/%E8%A1%A8%E5%8D%95%E7%BB%84%E4%BB%B6-inputcode-%E9%AA%8C%E8%AF%81%E7%A0%81%E8%BE%93%E5%85%A5%E6%A1%86--story-1)
