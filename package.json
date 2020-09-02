@@ -52,6 +52,7 @@
     "react-dom": "16.13.0"
   },
   "scripts": {
+    "bootstrap": "lerna bootstrap",
     "dev": "node scripts/dev.js",
     "build": "node scripts/build.js",
     "build:types": "lerna exec -- tsc --emitDeclarationOnly",

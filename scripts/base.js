@@ -10,7 +10,7 @@ const getEntryPath = (optPath) => {
   const tsPath = path.resolve(optPath, './lib/index.ts');
   const tsxPath = path.resolve(optPath, './lib/index.tsx');
   if (fs.existsSync(tsPath)) {
-    return filePath;
+    return tsPath;
   } else if (fs.existsSync(tsxPath)) {
     return tsxPath;
   }

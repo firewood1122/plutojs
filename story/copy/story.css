@@ -1,0 +1,15 @@
+.copy-demo-btn-field {
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.copy-demo-text {
+  font-size: 28px;
+}
+.copy-demo-btn {
+  padding: 10px 40px;
+  border: 1px solid #000;
+  border-radius: 30px;
+  text-align: center;
+}
