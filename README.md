@@ -6,3 +6,4 @@
 
 ## Links
 - [组件列表](./docs/component.md)
+- [组件开发指南](./docs/dev.md)
