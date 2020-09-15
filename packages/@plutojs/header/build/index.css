@@ -1,8 +1,8 @@
-._3g5wxB6NANNuQPGnoACAny {
+.plutojs_header_container {
   width: 750px;
   position: fixed;
 }
-.bOtL4-91w4OfAfx-PUj43 {
+.plutojs_header_header {
   padding: 32px 40px;
   display: flex;
   flex-direction: row;
@@ -12,7 +12,7 @@
   border-bottom: 1px solid rgba(147, 154, 169, 0.1);
   /*no*/
 }
-._3iPL9qE80kFtI7MnzdaVwR {
+.plutojs_header_left {
   width: 22px;
   height: 22px;
   border: 3px solid #000;
@@ -20,10 +20,10 @@
   border-top: none;
   transform: rotate(135deg);
 }
-._3cveGdFO5Rdb2AftP_-9qY {
+.plutojs_header_blankLeft {
   min-width: 22px;
 }
-.aHdU8d1t3QANAGAsIs5NY {
+.plutojs_header_title {
   max-width: 500px;
   line-height: 36px;
   font-size: 36px;
@@ -33,10 +33,10 @@
   font-weight: bold;
   color: #0f1520;
 }
-._8bdOPXFBk0ypkuWT6zixY {
+.plutojs_header_right {
   min-width: 22px;
 }
-.DqLCHMPxmpO7F0mXqiJkJ {
+.plutojs_header_fakeHeader {
   height: 102px;
 }
 

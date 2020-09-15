@@ -1,8 +1,9 @@
-const minimist = require('minimist');
+const fs = require('fs');
+const path = require('path');
+const inquirer = require('inquirer');
 const webpack = require('webpack');
 const webpackConfig = require('../config/webpack.prod');
 const packageWebpackConfig = require('./base');
-const args = minimist(process.argv.slice(2));
 
 /**
  * 构建方法
@@ -28,14 +29,25 @@ const build = (configs) => {
   })
 }
 
-// 按 -p 参数获取执行对应的webpack配置项
-if (args.p) {
-  if (packageWebpackConfig[args.p]) {
-    build([packageWebpackConfig[args.p]])
-  } else {
-    console.error(`${args.p} package is not find!`)
+// 执行构建
+inquirer.prompt([
+  {
+    type: 'list',
+    name: 'package',
+    message: '请选择package',
+    choices: function () {
+      const packageDir = path.join(__dirname, '../packages/@plutojs');
+      return ['all'].concat(fs.readdirSync(packageDir).filter(item => !item.startsWith('.')));
+    }
   }
-} else {
-  // 执行所有配置
-  build(Object.values(packageWebpackConfig))
-}
+]).then(answers => {
+  if (answers.package !== 'all') {
+    // 构建单一组件
+    build([packageWebpackConfig[answers.package]]);
+  } else {
+    // 构建所有组件
+    build(Object.values(packageWebpackConfig))
+  }
+}).catch(err => {
+  console.error(err);
+});

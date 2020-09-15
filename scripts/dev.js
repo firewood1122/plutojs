@@ -1,28 +1,32 @@
-const minimist = require('minimist');
+const fs = require('fs');
+const path = require('path');
+const inquirer = require('inquirer');
 const express = require('express');
 const webpack = require('webpack');
 const middleware = require('webpack-dev-middleware');
 const webpackConfig = require('../config/webpack.prod');
 const packageWebpackConfig = require('./base');
 
-const args = minimist(process.argv.slice(2));
-if (!args.p || !packageWebpackConfig[args.p]) {
-  if (args.p) {
-    console.error(`${args.p} package is not find!`);
-  } else {
-    console.error(`please enter PackageName: yarn run build -p PackageName`);
+inquirer.prompt([
+  {
+    type: 'list',
+    name: 'package',
+    message: '请选择package',
+    choices: function () {
+      const packageDir = path.join(__dirname, '../packages/@plutojs');
+      return fs.readdirSync(packageDir).filter(item => !item.startsWith('.'));
+    }
   }
-  return;
-}
-
-const compiler = webpack(webpackConfig(packageWebpackConfig[args.p]));
-const app = express();
-
-app.use(
-  middleware(compiler, {
-    writeToDisk: true,
-  })
-);
-
-const PORT = 7777;
-app.listen(PORT, () => console.log(`Plutojs dev server listening on port ${PORT}!`));
+]).then(answers => {
+  const compiler = webpack(webpackConfig(packageWebpackConfig[answers.package]));
+  const PORT = 7777;
+  const app = express();
+  app.use(
+    middleware(compiler, {
+      writeToDisk: true,
+    })
+  );
+  app.listen(PORT, () => console.log(`Plutojs dev server listening on port ${PORT}!`));
+}).catch(err => {
+  console.error(err);
+});

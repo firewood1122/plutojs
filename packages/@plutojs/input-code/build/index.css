@@ -1,4 +1,4 @@
-._2yZ0zfqAbT_3W6DFMGIQHT {
+.plutojs_input-code_container {
   width: 100%;
   height: 100%;
   position: relative;
@@ -6,10 +6,10 @@
   align-items: center;
   overflow: hidden;
 }
-._2yZ0zfqAbT_3W6DFMGIQHT :first-child {
+.plutojs_input-code_container :first-child {
   margin-left: 0;
 }
-._2DNJPK5lR2OKGEdWjpY_X3 {
+.plutojs_input-code_input {
   position: absolute;
   left: -1000px;
   width: 1600px;
@@ -20,14 +20,14 @@
   color: transparent;
   text-indent: -999px;
 }
-._1b2YivTtBG0zdoriEI_1Sr {
+.plutojs_input-code_item {
   margin-left: 20px;
   width: 22px;
   height: 2px;
   /*no*/
   background: #000;
 }
-.gt71p8dTJFFKbOWC7tMyD {
+.plutojs_input-code_value {
   margin-left: 20px;
   width: 22px;
   line-height: 1;

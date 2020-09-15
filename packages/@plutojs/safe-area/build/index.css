@@ -1,13 +1,13 @@
-._1TyZGGF9W8_1DEX9xYurnI {
+.plutojs_safe-area_container {
   width: 100%;
 }
 @supports (bottom: env(safe-area-inset-bottom)) {
-  ._1TyZGGF9W8_1DEX9xYurnI {
+  .plutojs_safe-area_container {
     padding-bottom: env(safe-area-inset-bottom);
   }
 }
 @supports (bottom: constant(safe-area-inset-bottom)) {
-  ._1TyZGGF9W8_1DEX9xYurnI {
+  .plutojs_safe-area_container {
     padding-bottom: constant(safe-area-inset-bottom);
   }
 }
