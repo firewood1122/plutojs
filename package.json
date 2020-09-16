@@ -23,6 +23,7 @@
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.5.3",
+    "download-git-repo": "^3.0.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.1",
@@ -34,6 +35,7 @@
     "less-loader": "^6.1.0",
     "mini-css-extract-plugin": "^0.9.0",
     "minimist": "^1.2.5",
+    "ora": "^5.1.0",
     "postcss-loader": "^3.0.0",
     "react-scripts": "^3.4.1",
     "style-loader": "^1.2.1",
@@ -60,7 +62,8 @@
     "release": "lerna updated && lerna publish",
     "story": "start-storybook -p 9999",
     "build:story": "build-storybook -c .storybook -o .out",
-    "lint": "eslint packages/**/*.js"
+    "lint": "eslint packages/**/*.js",
+    "create": "node scripts/create.js"
   },
   "husky": {
     "hooks": {}
