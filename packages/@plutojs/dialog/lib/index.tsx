@@ -45,6 +45,12 @@ export default {
     destroy();
     getModal(content);
   },
+  alertCustomize: (customize: Function) => {
+    const content = customize && customize(destroy);
+    if (!content) return;
+    destroy();
+    getModal(content);
+  },
   confirm: (text: string, confirm: Function, cancelText: string = '取消', confirmText = '确定') => {
     const content = (
       <div className={style.container}>
