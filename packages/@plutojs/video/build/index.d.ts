@@ -6,6 +6,8 @@ interface PropsType {
     playsInline?: boolean;
     closeVideo?: boolean;
     onClose?: Function;
+    controlsList?: string;
+    disablePictureInPicture?: boolean;
 }
 interface StateType {
     initVideo: boolean;
@@ -18,6 +20,8 @@ export default class Video extends Component<PropsType, StateType> {
         playsInline: boolean;
         closeVideo: boolean;
         onClose: {};
+        controlsList: string;
+        disablePictureInPicture: boolean;
     };
     componentDidUpdate(prevProps: PropsType): void;
     private videoEl;

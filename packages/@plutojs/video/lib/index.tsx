@@ -8,6 +8,8 @@ interface PropsType {
   playsInline?: boolean;
   closeVideo?: boolean,
   onClose?: Function,
+  controlsList?: string,
+  disablePictureInPicture?: boolean,
 }
 interface StateType {
   initVideo: boolean,
@@ -27,6 +29,8 @@ export default class Video extends Component<PropsType, StateType> {
     playsInline: true,
     closeVideo: false,
     onClose: {},
+    controlsList: '',
+    disablePictureInPicture: false,
   }
 
   componentDidUpdate(prevProps: PropsType) {
@@ -75,7 +79,7 @@ export default class Video extends Component<PropsType, StateType> {
   }
 
   render() {
-    const { coverUrl, videoUrl, controls, playsInline } = this.props;
+    const { coverUrl, videoUrl, controls, playsInline, controlsList, disablePictureInPicture } = this.props;
     const { initVideo, showVideo } = this.state;
 
     return (
@@ -99,6 +103,8 @@ export default class Video extends Component<PropsType, StateType> {
                 playsInline={playsInline}
                 style={{ objectFit: 'contain' }}
                 onEnded={this.onEnded}
+                controlsList={controlsList}
+                disablePictureInPicture={disablePictureInPicture}
               />
             </div>
           )

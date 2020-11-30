@@ -28,6 +28,8 @@ export const story1 = () => {
         coverUrl="https://img11.360buyimg.com/n1/s450x450_jfs/t1/112811/33/9121/246982/5ed786a7E22ec29b5/dc259bda64040882.jpg"
         videoUrl="https://media.w3.org/2010/05/sintel/trailer.mp4"
         onClose={() => { setCloseVideo(false); }}
+        controlsList="nodownload"
+        disablePictureInPicture={true}
       />
       <div className="video-demo-btn-field">
         <Button onClick={() => { setCloseVideo(true); }}>关闭视频</Button>
