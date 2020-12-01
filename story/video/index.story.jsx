@@ -30,6 +30,8 @@ export const story1 = () => {
         onClose={() => { setCloseVideo(false); }}
         controlsList="nodownload"
         disablePictureInPicture={true}
+        disableFast={true}
+        disableFastCallback={() => { alert('禁止快进视频'); }}
       />
       <div className="video-demo-btn-field">
         <Button onClick={() => { setCloseVideo(true); }}>关闭视频</Button>

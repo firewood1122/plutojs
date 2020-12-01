@@ -10,6 +10,8 @@ interface PropsType {
   onClose?: Function,
   controlsList?: string,
   disablePictureInPicture?: boolean,
+  disableFast?: boolean,
+  disableFastCallback?: Function,
 }
 interface StateType {
   initVideo: boolean,
@@ -31,6 +33,7 @@ export default class Video extends Component<PropsType, StateType> {
     onClose: {},
     controlsList: '',
     disablePictureInPicture: false,
+    disableFast: false,
   }
 
   componentDidUpdate(prevProps: PropsType) {
@@ -48,6 +51,7 @@ export default class Video extends Component<PropsType, StateType> {
   }
 
   private videoEl = null; // 视频对象
+  private last: number = 0; // 上一次时间
 
   /**
    * 占击播放视频
@@ -64,6 +68,15 @@ export default class Video extends Component<PropsType, StateType> {
   }
 
   /**
+   * 暂停视频
+   */
+  private pause = () => {
+    if (this.videoEl) {
+      this.videoEl.pause();
+    }
+  }
+
+  /**
    * 响应结束播放视频
    */
   private onEnded = () => {
@@ -75,6 +88,22 @@ export default class Video extends Component<PropsType, StateType> {
     if (this.videoEl) {
       this.videoEl.pause();
       this.videoEl.currentTime = 0;
+    }
+  }
+
+  /**
+   * 响应时间进度 
+   */
+  private onTimeUpdate = () => {
+    const { disableFast, disableFastCallback } = this.props;
+    if (disableFast) {
+      const current = this.videoEl.currentTime;
+      if (current - this.last > 2) {
+        this.videoEl.currentTime = this.last;
+        disableFastCallback && disableFastCallback();
+      } else {
+        this.last = current;
+      }
     }
   }
 
@@ -105,6 +134,7 @@ export default class Video extends Component<PropsType, StateType> {
                 onEnded={this.onEnded}
                 controlsList={controlsList}
                 disablePictureInPicture={disablePictureInPicture}
+                onTimeUpdate={this.onTimeUpdate}
               />
             </div>
           )

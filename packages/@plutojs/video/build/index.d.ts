@@ -8,6 +8,8 @@ interface PropsType {
     onClose?: Function;
     controlsList?: string;
     disablePictureInPicture?: boolean;
+    disableFast?: boolean;
+    disableFastCallback?: Function;
 }
 interface StateType {
     initVideo: boolean;
@@ -22,11 +24,15 @@ export default class Video extends Component<PropsType, StateType> {
         onClose: {};
         controlsList: string;
         disablePictureInPicture: boolean;
+        disableFast: boolean;
     };
     componentDidUpdate(prevProps: PropsType): void;
     private videoEl;
+    private last;
     private play;
+    private pause;
     private onEnded;
+    private onTimeUpdate;
     render(): JSX.Element;
 }
 export {};
