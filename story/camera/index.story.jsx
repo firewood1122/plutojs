@@ -6,7 +6,7 @@ import '@plutojs/camera/build/index.css';
 import './story.css';
 
 export default {
-  title: '基础组件.摄像头组件',
+  title: '基础组件.Camera 摄像头组件',
   component: Camera,
   decorators: [withKnobs, withQuery],
   parameters: {
@@ -33,5 +33,5 @@ export const story1 = () => {
   )
 };
 story1.story = {
-  name: 'Camera 摄像头组件',
+  name: '摄像头组件',
 };
