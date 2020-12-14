@@ -33,5 +33,5 @@ export const story1 = () => {
   )
 };
 story1.story = {
-  name: '摄像头组件',
+  name: 'Camera 摄像头组件',
 };
