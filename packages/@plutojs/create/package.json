@@ -1,6 +1,6 @@
 {
   "name": "@plutojs/create",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "创建模板项目",
   "keywords": [
     "create template"
