@@ -1,0 +1,44 @@
+{
+  "name": "@plutojs/create",
+  "version": "0.1.0",
+  "description": "创建模板项目",
+  "keywords": [
+    "create template"
+  ],
+  "author": "firewood1122 <firewood_1122@163.com>",
+  "homepage": "https://github.com/firewood1122/plutojs#readme",
+  "license": "MIT",
+  "directories": {
+    "bin": "bin"
+  },
+  "files": [
+    "bin"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public",
+    "npm-tag": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firewood1122/plutojs.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/firewood1122/plutojs/issues"
+  },
+  "bin": {
+    "plutojs-create": "bin/index.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "figlet": "^1.5.0",
+    "inquirer": "^7.3.3",
+    "ora": "^5.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "shelljs": "^0.8.4"
+  }
+}
