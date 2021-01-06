@@ -13,8 +13,7 @@ inquirer.prompt([
     name: 'package',
     message: '请选择package',
     choices: function () {
-      const packageDir = path.join(__dirname, '../packages/@plutojs');
-      return fs.readdirSync(packageDir).filter(item => !item.startsWith('.'));
+      return Object.keys(packageWebpackConfig);
     }
   }
 ]).then(answers => {

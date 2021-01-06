@@ -41,11 +41,14 @@ packages.forEach(item => {
   const packageJsonPath = path.resolve(packagePath, 'package.json')
   if (fs.existsSync(packageJsonPath) && getEntryPath(packagePath)) {
     const { dependencies } = require(packageJsonPath)
-    packageWebpackConfig[item] = {
-      path: getEntryPath(packagePath),
-      packagePath,
-      name: item,
-      externals: getExternals(dependencies)
+    const entryPath = getEntryPath(packagePath);
+    if (entryPath != '') {
+      packageWebpackConfig[item] = {
+        path: entryPath,
+        packagePath,
+        name: item,
+        externals: getExternals(dependencies)
+      }
     }
   }
 });

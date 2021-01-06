@@ -36,8 +36,7 @@ inquirer.prompt([
     name: 'package',
     message: '请选择package',
     choices: function () {
-      const packageDir = path.join(__dirname, '../packages/@plutojs');
-      return ['all'].concat(fs.readdirSync(packageDir).filter(item => !item.startsWith('.')));
+      return ['all'].concat(Object.keys(packageWebpackConfig));
     }
   }
 ]).then(answers => {
