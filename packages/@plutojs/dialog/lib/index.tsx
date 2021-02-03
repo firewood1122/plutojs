@@ -51,12 +51,12 @@ export default {
     destroy();
     getModal(content);
   },
-  confirm: (text: string, confirm: Function, cancelText: string = '取消', confirmText = '确定') => {
+  confirm: (text: string, confirm: Function, cancelText: string = '取消', confirmText = '确定', cancel = () => {}) => {
     const content = (
       <div className={style.container}>
         <div className={style.text}>{text}</div>
         <div className={style.btnContainer}>
-          <div className={style.cancelBtn} onClick={destroy}>{cancelText}</div>
+          <div className={style.cancelBtn} onClick={() => { cancel(); destroy(); }}>{cancelText}</div>
           <div className={style.confirmBtn} onClick={() => { confirm(); destroy(); }}>{confirmText}</div>
         </div>
       </div>
