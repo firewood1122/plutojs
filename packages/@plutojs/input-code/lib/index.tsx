@@ -24,12 +24,17 @@ class InputCode extends Component<PropsType, StateType> {
   private inputEl = null; // 输入框
 
   private onChange = (e) => {
-    const { change } = this.props;
+    const { count, change } = this.props;
     const value = e.target.value;
     this.setState({
       value: [...value],
     });
     change(value);
+
+    // 输入完毕，自动关闭键盘
+    if (value && value.length === count) {
+      this.inputEl.blur();
+    }
   }
 
   /**
