@@ -4,6 +4,11 @@ const style = require('./index.less');
 
 let modal = null;
 
+interface PropsType {
+  isMask?: boolean,
+  closeOnClickOverlay?: boolean,
+}
+
 /**
  * 销毁对话框
  */
@@ -19,8 +24,8 @@ const destroy = () => {
  *  
  * @param content 
  */
-const getModal = (content: React.ReactNode) => {
-  modal = Modal.popup({
+const getModal = (content: React.ReactNode, options: PropsType = {}) => {
+  const opts = Object.assign({
     children: content,
     isOpened: true,
     isMask: true,
@@ -29,7 +34,8 @@ const getModal = (content: React.ReactNode) => {
     onHide: () => {
       destroy();
     },
-  });
+  }, options);
+  modal = Modal.popup(opts);
 };
 
 export default {
@@ -45,13 +51,13 @@ export default {
     destroy();
     getModal(content);
   },
-  alertCustomize: (customize: Function) => {
+  alertCustomize: (customize: Function, options: PropsType = {}) => {
     const content = customize && customize(destroy);
     if (!content) return;
     destroy();
-    getModal(content);
+    getModal(content, options);
   },
-  confirm: (text: string, confirm: Function, cancelText: string = '取消', confirmText = '确定', cancel = () => {}) => {
+  confirm: (text: string, confirm: Function, cancelText: string = '取消', confirmText = '确定', cancel = () => { }) => {
     const content = (
       <div className={style.container}>
         <div className={style.text}>{text}</div>
