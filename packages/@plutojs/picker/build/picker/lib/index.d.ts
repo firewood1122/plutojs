@@ -1,4 +1,3 @@
-/// <reference types="react" />
 interface PickerItemType {
     text: string;
     value: any;
@@ -11,6 +10,7 @@ interface PickerProps {
     items: Array<PickerItemType>;
     selected?: Array<PickerItemType>;
     group?: number;
+    renderItem?: Function;
 }
 declare const _default: (props: PickerProps) => JSX.Element;
 export default _default;

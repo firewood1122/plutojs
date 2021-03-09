@@ -11,6 +11,7 @@ interface GroupProps {
   }>,
   selected: any,
   onChange: Function,
+  renderItem?: Function,
 }
 interface GroupState {
   translateY: number,
@@ -143,7 +144,7 @@ class Group extends Component<GroupProps, GroupState> {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, renderItem } = this.props;
     const { translateY } = this.state;
     const transfromStyle = { transform: `translate3d(0px, ${translateY}px, 0px)` }; // 选择框偏移量
 
@@ -160,7 +161,7 @@ class Group extends Component<GroupProps, GroupState> {
           {
             data.map((item, index) => (
               <div ref={item => { if (index === 0) this.item = item; }} key={`item-${index}`} className={this.getItemClassName(index)}>
-                {item.text}
+                {renderItem ? renderItem(item, index) : item.text}
               </div>
             ))
           }
@@ -182,6 +183,7 @@ interface PickerProps {
   items: Array<PickerItemType>,
   selected?: Array<PickerItemType>,
   group?: number,
+  renderItem?: Function,
 }
 interface PickerState {
   showGroup: boolean,
@@ -299,7 +301,7 @@ class Picker extends Component<PickerProps, PickerState> {
   }
 
   render() {
-    const { onConfirm } = this.props;
+    const { onConfirm, renderItem } = this.props;
     const { showGroup, containerHeight, groupItems } = this.state;
 
     return (
@@ -323,6 +325,7 @@ class Picker extends Component<PickerProps, PickerState> {
                         data={items}
                         selected={this.selected[index] ? this.selected[index].value : null}
                         onChange={(item: PickerItemType) => { this.onChange(item, index); }}
+                        renderItem={renderItem}
                       />
                     ))
                   }

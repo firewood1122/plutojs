@@ -42,3 +42,4 @@ const [selected, setSelected] = useState([]);
 | items | 可选择节点 | Array<{ text: string, value: any }> | 否 | [] |
 | selected | 已选择节点 | Array<{ text: string, value: any }> | 是 | [] |
 | group | 可选择列数 | Number | 是 | 1 |
+| renderItem | 选择项渲染方法 | Function(item, index) | 是 | 无 |
