@@ -184,6 +184,11 @@ interface PickerProps {
   selected?: Array<PickerItemType>,
   group?: number,
   renderItem?: Function,
+  text?: {
+    confirm: string,
+    title: string,
+    cancel: string,
+  }
 }
 interface PickerState {
   showGroup: boolean,
@@ -206,6 +211,11 @@ class Picker extends Component<PickerProps, PickerState> {
     items: [],
     selected: [],
     group: 1,
+    text: {
+      confirm: '确定',
+      title: '请选择',
+      cancel: '取消',
+    },
   }
 
   componentDidMount() {
@@ -301,16 +311,16 @@ class Picker extends Component<PickerProps, PickerState> {
   }
 
   render() {
-    const { onConfirm, renderItem } = this.props;
+    const { onConfirm, renderItem, text } = this.props;
     const { showGroup, containerHeight, groupItems } = this.state;
 
     return (
       <Modal isOpened={true} position="bottom" onHide={this.cancel}>
         <div className={`${style.container}`}>
           <div className={`${style.action}`}>
-            <div className={`${style.cancel}`} onClick={this.cancel}>取消</div>
-            <div className={`${style.title}`}>请选择</div>
-            <div className={`${style.confirm}`} onClick={() => { onConfirm && onConfirm(this.selected); }}>确定</div>
+            <div className={`${style.cancel}`} onClick={this.cancel}>{text.cancel}</div>
+            <div className={`${style.title}`}>{text.title}</div>
+            <div className={`${style.confirm}`} onClick={() => { onConfirm && onConfirm(this.selected); }}>{text.confirm}</div>
           </div>
           <div ref={item => { this.scrollContainer = item; }} className={`${style.scroll}`}>
             <div className={style.selected}></div>

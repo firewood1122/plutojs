@@ -11,6 +11,11 @@ interface PickerProps {
     selected?: Array<PickerItemType>;
     group?: number;
     renderItem?: Function;
+    text?: {
+        confirm: string;
+        title: string;
+        cancel: string;
+    };
 }
 declare const _default: (props: PickerProps) => JSX.Element;
 export default _default;
