@@ -42,8 +42,8 @@ export default class extends Component<PropsType, StateType> {
   }
 
   componentWillUnmount() {
-    this.timer = null;
     window.clearTimeout(this.timer);
+    this.timer = null;
     this.setState = (state, callback) => {
       return;
     };
@@ -66,8 +66,8 @@ export default class extends Component<PropsType, StateType> {
           this.setState({
             second: 0,
           });
-          this.timer = null;
           window.clearTimeout(this.timer);
+          this.timer = null;
           if (done) done();
         }
       }, 1000);
