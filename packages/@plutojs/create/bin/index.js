@@ -12,17 +12,15 @@ const download = require('download-git-repo');
 /**
  * 下载模板代码
  */
-const downloadTemplate = (downloadDir) => {
-  return new Promise((resolve, reject) => {
-    download('firewood1122/plutojs-template', downloadDir, {}, (err) => {
-      if (err) {
-        console.error(err);
-        reject();
-      }
-      resolve();
-    });
+const downloadTemplate = (downloadDir) => new Promise((resolve, reject) => {
+  download('firewood1122/plutojs-template', downloadDir, {}, (err) => {
+    if (err) {
+      console.error(err);
+      reject();
+    }
+    resolve();
   });
-};
+});
 
 /**
  * 收集项目信息
@@ -33,16 +31,14 @@ const askQuestions = (data) => {
       type: 'input',
       name: 'PROJECT_NAME',
       message: chalk.green('请输入项目名称'),
-      validate: (val) => {
-        return val.trim() !== '';
-      }
+      validate: (val) => val.trim() !== '',
     },
     {
       type: 'list',
       name: 'NAME',
       message: chalk.green('请选择需要下载的模板：'),
       choices: Object.keys(data),
-    }
+    },
   ];
   return inquirer.prompt(questions);
 };
@@ -55,8 +51,8 @@ const init = async () => {
         font: 'Ghost',
         horizontalLayout: 'default',
         verticalLayout: 'default',
-      })
-    )
+      }),
+    ),
   );
 
   // 下载模板代码
@@ -81,10 +77,9 @@ const init = async () => {
     console.log(chalk.red(`已存在该项目目录：${dir}`));
     return;
   }
-  shell.mkdir(dir);
 
   // 复制模板代码
-  shell.cp('-r', `${downloadDir}/${info.dir}/*`, dir);
+  shell.mv('-f', `${downloadDir}/${info.dir}/`, dir);
 
   // 删除下载目录
   shell.rm('-rf', downloadDir);
