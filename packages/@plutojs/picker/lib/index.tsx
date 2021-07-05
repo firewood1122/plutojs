@@ -220,6 +220,7 @@ class Picker extends Component<PickerProps, PickerState> {
 
   componentDidMount() {
     const { group, items, selected } = this.props;
+    if (!selected[0]) selected.pop();
     const containerHeight = (this.scrollContainer as HTMLElement).clientHeight; // 父容器初始化完毕，再初始化子组件
 
     let groupItems = [];
