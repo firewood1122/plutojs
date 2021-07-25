@@ -29,7 +29,12 @@ class InputNumber extends Component<PropsType, StateType> {
   }
 
   componentDidUpdate(prevProps: PropsType) {
-    const { max, onChange } = this.props;
+    const { default: defaultValue, max, onChange } = this.props;
+    if (defaultValue !== prevProps.default) {
+      this.setState({
+        count: defaultValue,
+      });
+    }
     if (max !== prevProps.max && this.state.count > max) {
       // 检查最大值
       this.setState({

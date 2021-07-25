@@ -7,7 +7,7 @@ const getModal = (content: React.ReactNode, duration: number) => {
     children: content,
     isOpened: true,
     isMask: false,
-    isLock: false,
+    isLock: true,
     closeOnClickOverlay: false,
     onHide: () => { destroy(); },
   });
@@ -24,5 +24,5 @@ export default {
   },
   error: (err: Error, duration: number = 2000) => {
     getModal(<div className={style.info}>{err.toString()}</div>, duration);
-  }
-}
+  },
+};

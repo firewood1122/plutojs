@@ -8,7 +8,7 @@ const getModal = (content: React.ReactNode, zIndex: number) => {
     children: content,
     isOpened: true,
     isMask: false,
-    isLock: false,
+    isLock: true,
     closeOnClickOverlay: false,
     zIndex,
     onHide: () => { },
@@ -19,7 +19,7 @@ export default {
   show: (text: string = '加载中', zIndex: number = 999) => {
     const content = (
       <div className={style.container}>
-        <div className={style.img}></div>
+        <div className={style.img} />
         <div className={style.info}>{text}</div>
       </div>
     );
@@ -34,5 +34,5 @@ export default {
       loading.destroy();
       loading = null;
     }
-  }
+  },
 };
