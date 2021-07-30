@@ -7,7 +7,7 @@ const getModal = (content: React.ReactNode, duration: number) => {
     children: content,
     isOpened: true,
     isMask: false,
-    isLock: true,
+    isLock: false,
     closeOnClickOverlay: false,
     onHide: () => { destroy(); },
   });

@@ -8,7 +8,7 @@ const getModal = (content: React.ReactNode, zIndex: number) => {
     children: content,
     isOpened: true,
     isMask: false,
-    isLock: true,
+    isLock: false,
     closeOnClickOverlay: false,
     zIndex,
     onHide: () => { },
