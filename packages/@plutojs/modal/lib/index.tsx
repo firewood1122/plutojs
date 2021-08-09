@@ -129,6 +129,7 @@ class Modal extends Component<PropsType, StateType> {
       document.body.style.position = 'fixed';
       document.body.style.width = '100%';
       document.body.style.top = `-${this.scrollTop}px`;
+      document.body.style.overflow = 'hidden';
       if (this.modalEl) this.modalEl.current.style.top = `${this.scrollTop}px`;
     } else {
       // 重新设置body定位
@@ -137,6 +138,7 @@ class Modal extends Component<PropsType, StateType> {
         document.body.style.top = '0px';
         document.documentElement.scrollTop = this.scrollTop;
         document.body.scrollTop = this.scrollTop;
+        document.body.style.overflow = 'auto';
       }
     }
   }
