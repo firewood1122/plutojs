@@ -190,6 +190,7 @@ interface PickerProps {
     title: string,
     cancel: string,
   },
+  className?: string,
   renderBottom?: (onConfirm: () => void) => JSX.Element,
 }
 interface PickerState {
@@ -325,12 +326,12 @@ class Picker extends Component<PickerProps, PickerState> {
   }
 
   render() {
-    const { onConfirm, renderItem, text, renderBottom } = this.props;
+    const { onConfirm, renderItem, text, className = '', renderBottom } = this.props;
     const { showGroup, containerHeight, groupItems } = this.state;
 
     return (
       <Modal isOpened={true} position="bottom" onHide={this.cancel}>
-        <div className={`${style.container}`}>
+        <div className={`${style.container} ${className}`}>
           <div className={`${style.action}`}>
             <div className={`${style.cancel}`} onClick={this.cancel}>{text.cancel}</div>
             <div className={`${style.title}`}>{text.title}</div>
