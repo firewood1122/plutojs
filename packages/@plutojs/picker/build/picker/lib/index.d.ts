@@ -16,6 +16,7 @@ interface PickerProps {
         title: string;
         cancel: string;
     };
+    renderBottom?: (onConfirm: () => void) => JSX.Element;
 }
 declare const _default: (props: PickerProps) => JSX.Element;
 export default _default;

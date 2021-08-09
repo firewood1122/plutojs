@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Debounce from 'debounce';
 import Modal from '~/core/modal/lib';
 const style = require('./index.less');
 
@@ -26,7 +25,8 @@ class Group extends Component<GroupProps, GroupState> {
   private scrollContainer: any = null; // 可滚动容器
   private item: any = null; // 第一个数据项对象，用于取出高度
   private itemHeight: number = 0; // 数据项高度
-  private startY: number = 0; // 移动开始时Y座标 
+  private startY: number = 0; // 移动开始时Y座标
+  private lastMoveTime: number = 0; // 上次移动开始时间，用于节流
 
   componentDidMount() {
     // 计算初始偏移值
@@ -122,10 +122,11 @@ class Group extends Component<GroupProps, GroupState> {
    * 响应移动中
    */
   private onTouchMove = (e: React.TouchEvent) => {
-    Debounce(() => {
-      const translateY = this.computeTranslateY(e);
-      (this.scrollContainer as HTMLElement).style.transform = `translate3d(0px, ${translateY}px, 0px)`;
-    }, 200);
+    const now = Date.now();
+    if (now - this.lastMoveTime < 100) return;
+    this.lastMoveTime = now;
+    const translateY = this.computeTranslateY(e);
+    (this.scrollContainer as HTMLElement).style.transform = `translate3d(0px, ${translateY}px, 0px)`;
   }
 
   /**
@@ -188,7 +189,8 @@ interface PickerProps {
     confirm: string,
     title: string,
     cancel: string,
-  }
+  },
+  renderBottom?: (onConfirm: () => void) => JSX.Element,
 }
 interface PickerState {
   showGroup: boolean,
@@ -239,6 +241,9 @@ class Picker extends Component<PickerProps, PickerState> {
       containerHeight,
       groupItems,
     });
+
+    // 阻止默认行为
+    document.body.addEventListener('touchmove', this.preventDefault, { passive: false });
   }
 
   componentDidUpdate() {
@@ -254,6 +259,14 @@ class Picker extends Component<PickerProps, PickerState> {
         groupItems,
       });
     }
+  }
+
+  componentWillUnmount() {
+    document.body.removeEventListener('touchmove', this.preventDefault);
+  }
+
+  private preventDefault = (e: TouchEvent) => {
+    e.preventDefault();
   }
 
   /**
@@ -312,7 +325,7 @@ class Picker extends Component<PickerProps, PickerState> {
   }
 
   render() {
-    const { onConfirm, renderItem, text } = this.props;
+    const { onConfirm, renderItem, text, renderBottom } = this.props;
     const { showGroup, containerHeight, groupItems } = this.state;
 
     return (
@@ -344,6 +357,7 @@ class Picker extends Component<PickerProps, PickerState> {
               )
             }
           </div>
+          {renderBottom && renderBottom(() => { onConfirm(this.selected); })}
         </div>
       </Modal>
     );
