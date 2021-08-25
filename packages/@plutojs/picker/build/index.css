@@ -42,6 +42,8 @@
 }
 .plutojs_picker_groupItem {
   height: 72px;
+  border: 1px solid transparent;
+  /*no*/
   line-height: 72px;
   font-size: 28px;
   color: #999;

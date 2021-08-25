@@ -48,7 +48,7 @@ class Group extends Component<GroupProps, GroupState> {
 
     // 计算初始偏移值
     const { containerHeight } = this.props;
-    const itemHeight = (this.item as HTMLElement).clientHeight;
+    const itemHeight = (this.item as HTMLElement).getBoundingClientRect().height;
     const translateY = (containerHeight - itemHeight) / 2 - itemHeight * selectedIndex;
     this.itemHeight = itemHeight;
     this.setState({
