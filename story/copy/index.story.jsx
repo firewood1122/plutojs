@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
-import Copy from '@plutojs/copy';
+import Copy from '@/copy';
 import './story.css';
 
 export default {
-  title: '操作反馈.Copy 复制组件',
+  title: '基础.Copy 复制',
   component: Copy,
   decorators: [withKnobs, withQuery],
   parameters: {
@@ -18,20 +18,29 @@ export default {
 
 export const story1 = () => {
   let copyEle = null;
-  const copy = useCallback(node => {
+  const copy = useCallback((node) => {
     copyEle = node;
   });
   return (
     <div className="copy-demo-btn-field">
-      <div className="copy-demo-text">需复制的内容：<span ref={copy}>测试内容</span></div>
+      <div className="copy-demo-text">
+        需复制的内容：
+        <span ref={copy}>测试内容</span>
+      </div>
       <div>
-        <button className="copy-demo-btn" onClick={() => {
-          Copy.copy(copyEle);
-        }}>复制</button>
+        <button
+          className="copy-demo-btn"
+          onClick={() => {
+            Copy.copy(copyEle);
+          }}
+        >
+          复制
+
+        </button>
       </div>
     </div>
   );
 };
 story1.story = {
-  name: '复制文案',
+  name: '复制',
 };

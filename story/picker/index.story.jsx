@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
-import Picker from '@plutojs/picker';
-import '@plutojs/picker/build/index.css';
+import Picker from '@/picker';
+import '@/picker/build/index.css';
 import './story.css';
-import { useState } from 'react';
+
 const cityData = require('./data.json');
 
 export default {
-  title: '表单组件.Picker 选择器',
+  title: '表单.Picker 选择器',
   component: Picker,
   decorators: [withKnobs, withQuery],
   parameters: {
@@ -39,12 +39,13 @@ export const story1 = () => {
   return (
     <div className="picker-demo-field">
       <div className="picker-text-demo-field" onClick={() => { setIsOpened(true); }}>
-        点击选择：{selected.map(item => item.text).join(' ')}
+        点击选择：
+        {selected.map((item) => item.text).join(' ')}
       </div>
       <Picker
         isOpened={isOpened}
         onCancel={() => { setIsOpened(false); }}
-        onConfirm={data => {
+        onConfirm={(data) => {
           setIsOpened(false);
           setSelected(data);
         }}
@@ -59,10 +60,10 @@ story1.story = {
 };
 
 export const story2 = () => {
-  const items = cityData.items.map(item => ({
+  const items = cityData.items.map((item) => ({
     text: item.province.name,
     value: item.province.cityCode,
-    children: item.cities.map(item => ({
+    children: item.cities.map((item) => ({
       text: item.name,
       value: item.cityCode,
     })),
@@ -72,12 +73,13 @@ export const story2 = () => {
   return (
     <div className="picker-demo-field">
       <div className="picker-text-demo-field" onClick={() => { setIsOpened(true); }}>
-        点击选择：{selected.map(item => item.text).join(' ')}
+        点击选择：
+        {selected.map((item) => item.text).join(' ')}
       </div>
       <Picker
         isOpened={isOpened}
         onCancel={() => { setIsOpened(false); }}
-        onConfirm={data => {
+        onConfirm={(data) => {
           setIsOpened(false);
           setSelected(data);
         }}

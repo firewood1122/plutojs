@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
-import Video from '@plutojs/video';
-import Button from '@plutojs/button';
-import '@plutojs/video/build/index.css';
-import '@plutojs/button/build/index.css';
+import Video from '@/video';
+import Button from '@/button';
+import '@/video/build/index.css';
+import '@/button/build/index.css';
 import './story.css';
 
 export default {
-  title: '视图组件.Video 视频组件',
+  title: '多媒体.Video 播放视频',
   component: Video,
   decorators: [withKnobs, withQuery],
   parameters: {
@@ -29,8 +29,8 @@ export const story1 = () => {
         videoUrl="https://media.w3.org/2010/05/sintel/trailer.mp4"
         onClose={() => { setCloseVideo(false); }}
         controlsList="nodownload"
-        disablePictureInPicture={true}
-        disableFast={true}
+        disablePictureInPicture
+        disableFast
         disableFastCallback={() => { alert('禁止快进视频'); }}
       />
       <div className="video-demo-btn-field">
@@ -40,5 +40,5 @@ export const story1 = () => {
   );
 };
 story1.story = {
-  name: '视频组件',
+  name: '播放视频',
 };

@@ -1,12 +1,12 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
-import Dialog from '@plutojs/dialog';
-import '@plutojs/dialog/build/index.css';
+import Dialog from '@/dialog';
+import '@/dialog/build/index.css';
 import './story.css';
 
 export default {
-  title: '操作反馈.Dialog 对话框',
+  title: '提示.Dialog 对话框',
   component: Dialog,
   decorators: [withKnobs, withQuery],
   parameters: {
@@ -17,32 +17,38 @@ export default {
   },
 };
 
-export const story1 = () => {
-  return (
-    <div className="dialog-demo-btn-field">
-      <button className="dialog-demo-btn" onClick={() => {
+export const story1 = () => (
+  <div className="dialog-demo-btn-field">
+    <button
+      className="dialog-demo-btn"
+      onClick={() => {
         Dialog.alert('这是一个Alert对话框，通常用于二次确认', () => {
           alert('点击了确定');
         });
-      }}>Alert对话框</button>
-    </div>
-  );
-};
+      }}
+    >
+      Alert对话框
+    </button>
+  </div>
+);
 story1.story = {
   name: 'Alert对话框',
 };
 
-export const story2 = () => {
-  return (
-    <div className="dialog-demo-btn-field">
-      <button className="dialog-demo-btn" onClick={() => {
+export const story2 = () => (
+  <div className="dialog-demo-btn-field">
+    <button
+      className="dialog-demo-btn"
+      onClick={() => {
         Dialog.confirm('这是一个Confirm对话框，通常用于二次确认', () => {
           alert('点击了确定');
         });
-      }}>Confirm对话框</button>
-    </div>
-  );
-};
+      }}
+    >
+      Confirm对话框
+    </button>
+  </div>
+);
 story2.story = {
   name: 'Confirm对话框',
 };

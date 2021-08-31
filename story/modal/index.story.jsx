@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
-import Modal from '@plutojs/modal';
-import '@plutojs/modal/build/index.css';
+import Modal from '@/modal';
+import '@/modal/build/index.css';
 import './story.css';
 
 export default {
-  title: '操作反馈.Modal 模态框',
+  title: '提示.Modal 模态框',
   component: Modal,
   decorators: [withKnobs, withQuery],
   parameters: {
@@ -23,7 +23,7 @@ export const story1 = () => {
   const isMask = boolean('是否有不透明背景', true);
   return (
     <div className="modal-demo-wrap">
-      <div className="modal-demo-field"></div>
+      <div className="modal-demo-field" />
       <div className="modal-demo-btn-field">
         <button className="modal-demo-btn" onClick={() => { setIsOpened(true); }}>显示模态框</button>
       </div>
@@ -32,7 +32,8 @@ export const story1 = () => {
         position={position}
         isLock={false}
         onHide={() => { setIsOpened(false); }}
-        isMask={isMask}>
+        isMask={isMask}
+      >
         <div className="modal-demo-text">模态框内容</div>
       </Modal>
     </div>
@@ -57,18 +58,19 @@ export const story2 = () => {
   const isMask = boolean('是否有不透明背景', true);
   return (
     <div className="modal-demo-wrap">
-      <div className="modal-demo-top-field"></div>
-      <div className="modal-demo-fake-top-field"></div>
-      <div className="modal-demo-field"></div>
+      <div className="modal-demo-top-field" />
+      <div className="modal-demo-fake-top-field" />
+      <div className="modal-demo-field" />
       <div className="modal-demo-btn-field">
         <button className="modal-demo-btn" onClick={() => { setIsOpened(true); }}>显示模态框</button>
       </div>
       <Modal
         isOpened={isOpened}
         position={position}
-        isLock={true}
+        isLock
         onHide={() => { setIsOpened(false); }}
-        isMask={isMask}>
+        isMask={isMask}
+      >
         <input ref={inputEl} type="text" className="modal-demo-input" placeholder="请输入文字" onBlur={onBlur} />
       </Modal>
     </div>
@@ -95,7 +97,7 @@ export const story3 = () => {
 
   return (
     <div className="modal-demo-wrap">
-      <div className="modal-demo-field"></div>
+      <div className="modal-demo-field" />
       <div className="modal-demo-btn-field">
         <button className="modal-demo-btn" onClick={popupModal}>显示模态框</button>
       </div>

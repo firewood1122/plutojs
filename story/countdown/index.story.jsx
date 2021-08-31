@@ -1,14 +1,13 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
-import Toast from '@plutojs/toast';
-import Countdown from '@plutojs/countdown';
-import '@plutojs/toast/build/index.css';
-import '@plutojs/button/build/index.css';
+import Toast from '@/toast';
+import Countdown from '@/countdown';
+import '@/toast/build/index.css';
 import './story.css';
 
 export default {
-  title: '视图组件.Countdown 倒计时',
+  title: '基础.Countdown 倒计时',
   component: Countdown,
   decorators: [withKnobs, withQuery],
   parameters: {
@@ -19,13 +18,11 @@ export default {
   },
 };
 
-export const story1 = () => {
-  return (
-    <div className="countdown-demo-field">
-      <Countdown leftSecond={20} done={() => { Toast.info('倒计时结束'); }} />
-    </div>
-  )
-};
+export const story1 = () => (
+  <div className="countdown-demo-field">
+    <Countdown leftSecond={20} done={() => { Toast.info('倒计时结束'); }} />
+  </div>
+);
 story1.story = {
   name: '倒计时',
 };

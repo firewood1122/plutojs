@@ -1,12 +1,12 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
-import Camera from '@plutojs/camera';
-import '@plutojs/camera/build/index.css';
+import Camera from '@/camera';
+import '@/camera/build/index.css';
 import './story.css';
 
 export default {
-  title: '基础组件.Camera 摄像头组件',
+  title: '实验室.Camera 调用摄像头',
   component: Camera,
   decorators: [withKnobs, withQuery],
   parameters: {
@@ -22,16 +22,16 @@ export const story1 = () => {
     console.log(files);
   };
   return (
-    <React.Fragment>
+    <>
       <div className="camera-demo-field">
         <Camera text="点击录制" onChange={onChange} />
       </div>
       <div className="camera-demo-field">
         <Camera text="点击拍照" type="image" onChange={onChange} />
       </div>
-    </React.Fragment>
-  )
+    </>
+  );
 };
 story1.story = {
-  name: '摄像头组件',
+  name: '调用摄像头',
 };

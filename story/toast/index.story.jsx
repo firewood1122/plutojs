@@ -1,12 +1,12 @@
 import React from 'react';
 import { withKnobs, text } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
-import Toast from '@plutojs/toast';
-import '@plutojs/toast/build/index.css';
+import Toast from '@/toast';
+import '@/toast/build/index.css';
 import './story.css';
 
 export default {
-  title: '操作反馈.Toast 轻提示',
+  title: '提示.Toast 文字提示',
   component: Toast,
   decorators: [withKnobs, withQuery],
   parameters: {
@@ -21,21 +21,19 @@ export const story1 = () => {
   const name = text('提示内容', '你点击了按钮');
   return (
     <div className="toast-demo-btn-field">
-        <button className="toast-demo-btn" onClick={() => { Toast.info(name); }}>点击弹出提示</button>
+      <button className="toast-demo-btn" onClick={() => { Toast.info(name); }}>点击弹出提示</button>
     </div>
   );
 };
 story1.story = {
-  name: 'INFO提示框',
+  name: 'INFO文字提示',
 };
 
-export const story2 = () => {
-  return (
-    <div className="toast-demo-btn-field">
-        <button className="toast-demo-btn" onClick={() => { Toast.error(new Error('发生了错误')); }}>点击弹出提示</button>
-    </div>
-  );
-};
+export const story2 = () => (
+  <div className="toast-demo-btn-field">
+    <button className="toast-demo-btn" onClick={() => { Toast.error(new Error('发生了错误')); }}>点击弹出提示</button>
+  </div>
+);
 story2.story = {
-  name: 'ERROR提示框',
+  name: 'ERROR文字提示',
 };

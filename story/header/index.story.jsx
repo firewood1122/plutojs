@@ -1,11 +1,11 @@
 import React from 'react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
-import Header from '@plutojs/header';
-import '@plutojs/header/build/index.css';
+import Header from '@/header';
+import '@/header/build/index.css';
 
 export default {
-  title: '基础组件.Header 头部导航',
+  title: '导航.Header 页头',
   component: Header,
   decorators: [withKnobs, withQuery],
   parameters: {
@@ -26,5 +26,5 @@ export const story1 = () => {
   );
 };
 story1.story = {
-  name: '头部导航',
+  name: '页头',
 };
