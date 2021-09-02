@@ -1,9 +1,10 @@
-import { Component } from 'react';
+/// <reference types="react" />
 interface Props {
+    startColor?: string;
+    endColor?: string;
+    contentColor?: string;
+    barLineWidth?: number;
+    contentLineWidth?: number;
 }
-interface States {
-}
-export default class ProgressBar extends Component<Props, States> {
-    render(): JSX.Element;
-}
-export {};
+declare const _default: (props: Props) => JSX.Element;
+export default _default;

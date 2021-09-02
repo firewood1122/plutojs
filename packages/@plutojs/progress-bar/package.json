@@ -1,9 +1,19 @@
 {
   "name": "@plutojs/progress-bar",
-  "version": "0.10.1",
-  "description": "",
+  "version": "1.0.0",
+  "description": "进度条组件",
+  "keywords": [
+    "progress"
+  ],
+  "author": "firewood1122 <firewood_1122@163.com>",
+  "homepage": "http://pluto-ui.smallpig.cn/",
+  "license": "MIT",
   "main": "build/index.js",
   "types": "build/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
   "files": [
     "build",
     "lib"
@@ -13,11 +23,18 @@
     "access": "public",
     "npm-tag": "latest"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firewood1122/plutojs.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "gitHead": "9b3623b6c1b3adbb2828417f635882c7238b2cd7"
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/firewood1122/plutojs/issues"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
 }

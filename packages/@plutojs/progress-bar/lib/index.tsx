@@ -1,11 +1,112 @@
-import React, { Component } from 'react';
+import React, { useEffect, useRef } from 'react';
+const style = require('./index.less');
 
 interface Props {
+  startColor?: string,
+  endColor?: string,
+  contentColor?: string,
+  barLineWidth?: number,
+  contentLineWidth?: number,
 }
-interface States {
+interface ProcessBarType {
+  startColor: string,
+  endColor: string,
+  barLineWidth: number,
 }
-export default class ProgressBar extends Component<Props, States> {
-  render() {
-    return <div></div>;
-  }
+interface ProcessBarContentType {
+  contentColor: string,
+  contentLineWidth: number,
+}
+
+/**
+ * 初始化canvas区域
+ */
+const initCanvas = (container: HTMLDivElement, canvas: HTMLCanvasElement) => {
+  const { width, height } = container.getBoundingClientRect();
+  canvas.width = width;
+  canvas.height = height;
+};
+
+/**
+ * 绘画圆形
+ */
+const drawCircle = (circleObj) => {
+  const ctx = circleObj.ctx;
+  ctx.beginPath();
+  ctx.arc(circleObj.x, circleObj.y, circleObj.radius, circleObj.startAngle, circleObj.endAngle);
+  ctx.lineWidth = circleObj.lineWidth;
+  ctx.strokeStyle = circleObj.color;
+  ctx.lineCap = 'round';
+  ctx.stroke();
+  ctx.closePath();
+};
+
+/**
+ * 绘画进度条
+ */
+const drawProcessBar = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, options: ProcessBarType) => {
+  const { startColor, endColor, barLineWidth } = options;
+  let grd = ctx.createLinearGradient(canvas.width / 2, 0, 0, canvas.height);
+  grd.addColorStop(0, startColor);
+  grd.addColorStop(1, endColor);
+  drawCircle({
+    ctx,
+    x: canvas.width / 2,
+    y: canvas.height / 2,
+    radius: canvas.width / 2 - 20,
+    lineWidth: barLineWidth,
+    color: grd,
+    startAngle: Math.PI * (2 - 0.3),
+    endAngle: Math.PI * (2 + 1.5),
+  });
+};
+
+/**
+ * 绘画进度条底层圆环
+ */
+const drawProcessBarContainer = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, options: ProcessBarContentType) => {
+  const { contentColor, contentLineWidth } = options;
+  drawCircle({
+    ctx,
+    x: canvas.width / 2,
+    y: canvas.height / 2,
+    radius: canvas.width / 2 - 20,
+    lineWidth: contentLineWidth,
+    color: contentColor,
+    startAngle: 0,
+    endAngle: Math.PI * 2,
+  });
+};
+
+export default (props: Props) => {
+  const {
+    startColor = '#6DC9FF',
+    endColor = '#3B99FF',
+    barLineWidth = 20,
+    contentColor = '#EAEFF3',
+    contentLineWidth = 36,
+  } = props;
+  const containerRef = useRef(null);
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+
+    // 初始化canvas区域
+    initCanvas(containerRef.current, canvas);
+
+    // 初始化进度条底层圆环
+    drawProcessBarContainer(ctx, canvas, { contentColor, contentLineWidth });
+
+    // 初始化进度条
+    drawProcessBar(ctx, canvas, { startColor, endColor, barLineWidth });
+  }, []);
+
+  return (
+    <div ref={item => containerRef.current = item} className={`${style.container}`}>
+      <canvas ref={item => canvasRef.current = item}></canvas>
+      <div className={`${style.info}`}>15:00</div>
+    </div>
+  );
 }

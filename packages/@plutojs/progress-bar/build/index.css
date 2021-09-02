@@ -1,0 +1,12 @@
+.plutojs_progress-bar_container {
+  position: relative;
+  width: 480px;
+  height: 480px;
+}
+.plutojs_progress-bar_info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
