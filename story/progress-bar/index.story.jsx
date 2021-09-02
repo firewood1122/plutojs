@@ -18,10 +18,13 @@ export default {
 };
 
 export const story1 = () => {
+  const percent = text('百分比', 10);
   return (
     <>
       <div className="progress-bar-demo-field">
-        <ProgressBar />
+        <ProgressBar percent={percent}>
+          <div className="progress-bar-demo-info">15:00</div>
+        </ProgressBar>
       </div>
     </>
   );
