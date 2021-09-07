@@ -5,7 +5,7 @@ import Carousel from '@/carousel';
 import '@/carousel/build/index.css';
 
 export default {
-  title: '基础.Carousel 走马灯',
+  title: '滚动.Carousel 走马灯',
   component: Carousel,
   decorators: [withKnobs, withQuery],
   parameters: {

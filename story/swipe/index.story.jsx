@@ -7,7 +7,7 @@ import '@/toast/build/index.css';
 import './story.css';
 
 export default {
-  title: '滚动.LoadMore 下拉加载',
+  title: '滚动.Swipe 滑块',
   component: LoadMore,
   decorators: [withKnobs, withQuery],
   parameters: {
