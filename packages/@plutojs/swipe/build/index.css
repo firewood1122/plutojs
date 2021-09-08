@@ -1,16 +1,17 @@
-.swipeWrapper {
+.plutojs_swipe_swipeWrapper {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
 }
-.swipeAction {
+.plutojs_swipe_swipeAction {
   width: 100%;
   background-color: #fff;
 }
-.moveActive {
+.plutojs_swipe_moveActive {
   transition: height ease 0.4s;
 }
-.container {
+.plutojs_swipe_container {
   width: 100%;
 }
+

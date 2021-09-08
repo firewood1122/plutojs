@@ -1,14 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withQuery } from '@storybook/addon-queryparams';
-import LoadMore from '@/load-more';
-import Toast from '@/toast';
-import '@/toast/build/index.css';
+import Swipe from '@/swipe';
+import '@/swipe/build/index.css';
 import './story.css';
 
 export default {
   title: '滚动.Swipe 滑块',
-  component: LoadMore,
+  component: Swipe,
   decorators: [withKnobs, withQuery],
   parameters: {
     backgrounds: [
@@ -18,22 +17,15 @@ export default {
   },
 };
 
-export const story1 = () => (
-  <LoadMore loadMore={() => { Toast.info('load more'); }}>
-    <div className="load-more-demo-field" />
-  </LoadMore>
-);
-story1.story = {
-  name: '页面内加载更多',
+export const story1 = () => {
+  const [show, setShow] = useState(false);
+  return (
+    <Swipe show={show} setShow={setShow}>
+      <div className="swipe-demo-field" />
+      {show && <div className="swipe-extend-demo-field" />}
+    </Swipe>
+  );
 };
-
-export const story2 = () => (
-  <LoadMore loadMore={() => { Toast.info('load more'); }} bodyScroll={false}>
-    <div className="load-more-demo-container">
-      <div className="load-more-demo-field" />
-    </div>
-  </LoadMore>
-);
-story2.story = {
-  name: '区块内加载更多',
+story1.story = {
+  name: '滑块',
 };
