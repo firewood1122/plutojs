@@ -1,6 +1,6 @@
 {
   "name": "@plutojs/progress-bar",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "进度条组件",
   "keywords": [
     "progress"
