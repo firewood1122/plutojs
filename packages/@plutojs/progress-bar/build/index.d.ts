@@ -3,6 +3,7 @@ interface Props {
     startColor?: string;
     endColor?: string;
     contentColor?: string;
+    backgroundColor?: string;
     barLineWidth?: number;
     contentLineWidth?: number;
     percent?: number;

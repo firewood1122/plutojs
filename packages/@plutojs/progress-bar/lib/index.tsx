@@ -5,6 +5,7 @@ interface Props {
   startColor?: string,
   endColor?: string,
   contentColor?: string,
+  backgroundColor?: string,
   barLineWidth?: number,
   contentLineWidth?: number,
   percent?: number,
@@ -19,6 +20,7 @@ interface ProcessBarType {
 }
 interface ProcessBarContentType {
   contentColor: string,
+  backgroundColor: string,
   contentLineWidth: number,
 }
 
@@ -32,7 +34,19 @@ const initCanvas = (container: HTMLDivElement, canvas: HTMLCanvasElement) => {
 };
 
 /**
- * 绘画圆形
+ * 绘画实心圆
+ */
+const drawSolidCircle = (circleObj) => {
+  const ctx = circleObj.ctx;
+  ctx.beginPath();
+  ctx.arc(circleObj.x, circleObj.y, circleObj.radius, circleObj.startAngle, circleObj.endAngle);
+  ctx.fillStyle = circleObj.color;
+  ctx.fill();
+  ctx.closePath();
+};
+
+/**
+ * 绘画圆环
  */
 const drawCircle = (circleObj) => {
   const ctx = circleObj.ctx;
@@ -83,7 +97,16 @@ const drawProcessBar = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement
  * 绘画进度条底层圆环
  */
 const drawProcessBarContainer = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, options: ProcessBarContentType) => {
-  const { contentColor, contentLineWidth } = options;
+  const { contentColor, backgroundColor, contentLineWidth } = options;
+  drawSolidCircle({
+    ctx,
+    x: canvas.width / 2,
+    y: canvas.height / 2,
+    radius: canvas.width / 2 - 20,
+    color: backgroundColor,
+    startAngle: 0,
+    endAngle: Math.PI * 2,
+  });
   drawCircle({
     ctx,
     x: canvas.width / 2,
@@ -102,6 +125,7 @@ export default (props: Props) => {
     endColor = '#3B99FF',
     barLineWidth = 20,
     contentColor = '#EAEFF3',
+    backgroundColor = '#FFF',
     contentLineWidth = 32,
     percent = 100,
     children = null,
@@ -117,7 +141,7 @@ export default (props: Props) => {
     initCanvas(containerRef.current, canvas);
 
     // 初始化进度条底层圆环
-    drawProcessBarContainer(ctx, canvas, { contentColor, contentLineWidth });
+    drawProcessBarContainer(ctx, canvas, { contentColor, backgroundColor, contentLineWidth });
 
     // 初始化进度条
     drawProcessBar(ctx, canvas, {
@@ -134,6 +158,13 @@ export default (props: Props) => {
     const ctx = canvas.getContext('2d');
 
     // 更新进度条
+    drawProcessBar(ctx, canvas, {
+      startColor: contentColor,
+      endColor: contentColor,
+      contentColor,
+      barLineWidth: barLineWidth + 1,
+      percent: 100,
+    });
     drawProcessBar(ctx, canvas, {
       startColor,
       endColor,
