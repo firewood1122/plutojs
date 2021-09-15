@@ -1,6 +1,6 @@
 {
   "name": "@plutojs/countdown",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Countdown 倒计时组件",
   "keywords": [
     "countdown"
