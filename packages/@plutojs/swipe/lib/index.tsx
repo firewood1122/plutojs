@@ -77,8 +77,10 @@ const Swipe = (props: PropsType) => {
 
     const curHeight = currentHight.current;
     if (clientY > startY.current) { // 向下移动
+      if (!showRef.current) return;
       currentHight.current = curHeight - distance;
     } else { // 向上移动
+      if (showRef.current) return;
       currentHight.current = curHeight + distance;
     }
 
@@ -96,6 +98,7 @@ const Swipe = (props: PropsType) => {
     const endHeight = swipeRef.current.getBoundingClientRect().height;
     currentHight.current = endHeight;
     setNewHeight(endHeight);
+    if (!showRef.current) initHeight.current = endHeight;
   };
 
   /**
@@ -109,9 +112,8 @@ const Swipe = (props: PropsType) => {
       if (showRef.current) {
         // 当前状态为展开状态，移动距离大于阀值，状态设为收起
         if (preY.current - startY.current > closeDistance) {
-          currentHight.current = initHeight.current;
-          setNewHeight(initHeight.current);
           setShow(false);
+          setTimeout(updateContentHeight, 0);
         } else {
           updateContentHeight();
         }
