@@ -17,8 +17,29 @@
   flex-direction: column;
   align-items: center;
 }
+@keyframes popUpBg {
+  from {
+    background: transparent;
+  }
+  to {
+    background: rgba(0, 0, 0, 0.75);
+  }
+}
 .mask {
+  animation: popUpBg 0.5s;
   background: rgba(0, 0, 0, 0.75);
+}
+@keyframes popUpContent {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.content {
+  position: relative;
+  animation: popUpContent 0.5s;
 }
 .center {
   justify-content: center;
@@ -28,7 +49,4 @@
 }
 .bottom {
   justify-content: flex-end;
-}
-.content {
-  position: relative;
 }

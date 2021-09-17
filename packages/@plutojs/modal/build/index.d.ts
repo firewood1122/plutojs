@@ -37,7 +37,7 @@ declare class Modal extends Component<PropsType, StateType> {
     static popup: (properties: any) => {
         destroy(): void;
     };
-    setVisibility: (visibility: 'visible' | 'hidden') => void;
+    setVisibility: (visibility: "visible" | "hidden") => void;
     render(): JSX.Element;
 }
 export default Modal;
