@@ -9,6 +9,7 @@ interface PropsType {
     playsInline?: boolean;
     closeVideo?: boolean;
     onClose?: Function;
+    onCloseFullscreenVideo?: (time: number) => {};
     controlsList?: string;
     disablePictureInPicture?: boolean;
     disableFast?: boolean;
@@ -28,6 +29,7 @@ export default class Video extends Component<PropsType, StateType> {
         playsInline: boolean;
         closeVideo: boolean;
         onClose: {};
+        onCloseFullscreenVideo: {};
         controlsList: string;
         disablePictureInPicture: boolean;
         disableFast: boolean;

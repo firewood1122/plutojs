@@ -12,6 +12,7 @@ interface PropsType {
   playsInline?: boolean;
   closeVideo?: boolean,
   onClose?: Function,
+  onCloseFullscreenVideo?: (time: number) => {},
   controlsList?: string,
   disablePictureInPicture?: boolean,
   disableFast?: boolean,
@@ -38,6 +39,7 @@ export default class Video extends Component<PropsType, StateType> {
     playsInline: true,
     closeVideo: false,
     onClose: {},
+    onCloseFullscreenVideo: {},
     controlsList: '',
     disablePictureInPicture: false,
     disableFast: false,
@@ -105,7 +107,7 @@ export default class Video extends Component<PropsType, StateType> {
    * 响应时间进度 
    */
   private onTimeUpdate = () => {
-    const { currentTime, disableFast, disableFastCallback } = this.props;
+    const { disableFast, disableFastCallback } = this.props;
     if (disableFast) {
       const current = this.videoEl.currentTime;
       if (current - this.last > 2) {
@@ -121,6 +123,8 @@ export default class Video extends Component<PropsType, StateType> {
    * 关闭全屏视频
    */
   private closeFullscreenVideo = () => {
+    const { onCloseFullscreenVideo } = this.props;
+    onCloseFullscreenVideo && onCloseFullscreenVideo(this.videoEl.currentTime);
     this.setState({
       showVideo: false,
     });
