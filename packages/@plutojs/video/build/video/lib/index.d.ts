@@ -28,8 +28,8 @@ export default class Video extends Component<PropsType, StateType> {
         controls: boolean;
         playsInline: boolean;
         closeVideo: boolean;
-        onClose: {};
-        onCloseFullscreenVideo: {};
+        onClose: () => void;
+        onCloseFullscreenVideo: () => void;
         controlsList: string;
         disablePictureInPicture: boolean;
         disableFast: boolean;
