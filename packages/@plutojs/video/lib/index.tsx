@@ -153,7 +153,7 @@ export default class Video extends Component<PropsType, StateType> {
             <React.Fragment>
               {
                 fullscreen ? (
-                  <Modal isOpened={showVideo} onHide={() => {}}>
+                  <Modal isOpened={showVideo} isLock={false} onHide={() => {}}>
                     <React.Fragment>
                       <div className={`${style.close}`}>
                         <div className={`${style.tips}`}>{fullscreenTips}</div>
@@ -166,7 +166,7 @@ export default class Video extends Component<PropsType, StateType> {
                           src={videoUrl}
                           controls={controls}
                           playsInline={playsInline}
-                          style={{ objectFit: 'contain', height: '100%' }}
+                          style={{ objectFit: 'contain', width: '100%', height: '100%' }}
                           onEnded={this.onEnded}
                           controlsList={controlsList}
                           disablePictureInPicture={disablePictureInPicture}
