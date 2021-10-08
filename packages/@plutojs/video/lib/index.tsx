@@ -157,7 +157,7 @@ export default class Video extends Component<PropsType, StateType> {
             <React.Fragment>
               {
                 fullscreen ? (
-                  <Modal isOpened={showVideo} isLock={false} onHide={() => {}}>
+                  <Modal isOpened={showVideo} isLock={true} onHide={() => {}}>
                     <React.Fragment>
                       <div className={`${style.close}`}>
                         <div className={`${style.tips}`}>{fullscreenTips}</div>
