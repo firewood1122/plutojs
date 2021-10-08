@@ -38,6 +38,7 @@ export default class Video extends Component<PropsType, StateType> {
     private videoEl;
     private last;
     private play;
+    private onCanPlay;
     private pause;
     private onEnded;
     private onTimeUpdate;

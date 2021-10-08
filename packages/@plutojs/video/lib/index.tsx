@@ -38,8 +38,8 @@ export default class Video extends Component<PropsType, StateType> {
     controls: true,
     playsInline: true,
     closeVideo: false,
-    onClose: () => {},
-    onCloseFullscreenVideo: () => {},
+    onClose: () => { },
+    onCloseFullscreenVideo: () => { },
     controlsList: '',
     disablePictureInPicture: false,
     disableFast: false,
@@ -66,17 +66,26 @@ export default class Video extends Component<PropsType, StateType> {
    * 占击播放视频
    */
   private play = () => {
-    const { currentTime } : PropsType = this.props;
+    const { currentTime }: PropsType = this.props;
     this.setState({
       showVideo: true,
       initVideo: true,
     }, () => {
       if (this.videoEl) {
         this.last = currentTime;
-        this.videoEl.currentTime = currentTime;
         this.videoEl.play(); // 自动播放
       }
     });
+  }
+
+  /**
+   * 响应开始播放视频
+   */
+  private onCanPlay = () => {
+    const { currentTime }: PropsType = this.props;
+    if (currentTime > 0 && this.videoEl.currentTime < currentTime) {
+      this.videoEl.currentTime = currentTime;
+    }
   }
 
   /**
@@ -157,7 +166,7 @@ export default class Video extends Component<PropsType, StateType> {
             <React.Fragment>
               {
                 fullscreen ? (
-                  <Modal isOpened={showVideo} isLock={true} onHide={() => {}}>
+                  <Modal isOpened={showVideo} isLock={true} onHide={() => { }}>
                     <React.Fragment>
                       <div className={`${style.close}`}>
                         <div className={`${style.tips}`}>{fullscreenTips}</div>
@@ -175,6 +184,7 @@ export default class Video extends Component<PropsType, StateType> {
                           controlsList={controlsList}
                           disablePictureInPicture={disablePictureInPicture}
                           onTimeUpdate={this.onTimeUpdate}
+                          onCanPlay={this.onCanPlay}
                         />
                       </div>
                     </React.Fragment>
