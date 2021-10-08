@@ -144,7 +144,7 @@ export default class Video extends Component<PropsType, StateType> {
     const { initVideo, showVideo } = this.state;
 
     return (
-      <div className={`${style.container}`}>
+      <div className={`${initVideo && fullscreen && showVideo ? style.fullscreenContainer : style.container}`}>
         {
           coverUrl && (
             <div className={`${showVideo ? style.hidden : ''}`}>

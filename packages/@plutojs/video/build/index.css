@@ -55,6 +55,9 @@
   width: 100%;
   position: relative;
 }
+.plutojs_video_fullscreenContainer {
+  width: 100%;
+}
 .plutojs_video_coverIcon {
   width: 250px;
   height: 250px;
