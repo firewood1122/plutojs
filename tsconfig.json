@@ -12,12 +12,8 @@
     "esModuleInterop": true,
     "jsx": "react",
     "target": "ES5",
-    "moduleResolution": "Node",
+    "moduleResolution": "Node"
   },
-  "exclude": [
-    "node_modules",
-  ],
-  "files": [
-    "modules.d.ts"
-  ]
+  "exclude": ["node_modules"],
+  "files": ["modules.d.ts"]
 }
