@@ -1,11 +1,11 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
-const style = require('./index.less');
+import React, { useState, useRef, useCallback, useEffect } from "react";
+const style = require("./index.less");
 
 interface PropsType {
   className?: string;
-  disabled?: boolean;               // 是否开启拖拽
-  show: boolean;                    // 是否展开状态
-  setShow: (bol: boolean) => void;  // 设置展开状态
+  disabled?: boolean; // 是否开启拖拽
+  show: boolean; // 是否展开状态
+  setShow: (bol: boolean) => void; // 设置展开状态
   zIndex?: number;
   openDistance?: number;
   closeDistance?: number;
@@ -13,16 +13,25 @@ interface PropsType {
 }
 
 const Swipe = (props: PropsType) => {
-  const { className, disabled, show, setShow, zIndex, openDistance, closeDistance, children } = props;
-  const classString = [style.swipeAction, className].join(' ');
+  const {
+    className,
+    disabled,
+    show,
+    setShow,
+    zIndex,
+    openDistance,
+    closeDistance,
+    children,
+  } = props;
+  const classString = [style.swipeAction, className].join(" ");
 
   const [newHeight, setNewHeight] = useState(0);
   const showRef = useRef(show);
-  const swipeRef = useRef(null);      // 滑块对象
-  const initHeight = useRef(0);       // 初始高度
-  const currentHight = useRef(0);     // 当前高度
-  const startY = useRef(0);           // 开始移动时的Y坐标
-  const preY = useRef(0);             // 最新移动的Y坐标
+  const swipeRef = useRef(null); // 滑块对象
+  const initHeight = useRef(0); // 初始高度
+  const currentHight = useRef(0); // 当前高度
+  const startY = useRef(0); // 开始移动时的Y坐标
+  const preY = useRef(0); // 最新移动的Y坐标
 
   // 获取初始高度
   const setSwipeRef = useCallback((node: HTMLElement) => {
@@ -36,9 +45,9 @@ const Swipe = (props: PropsType) => {
   // 绑定事件
   const setContainerRef = useCallback((node: HTMLElement) => {
     if (node === null) return;
-    node.addEventListener('touchstart', handleTouchStart, { passive: false });
-    node.addEventListener('touchmove', handleTouchMove, { passive: false });
-    node.addEventListener('touchend', handleTouchEnd, { passive: false });
+    node.addEventListener("touchstart", handleTouchStart, { passive: false });
+    node.addEventListener("touchmove", handleTouchMove, { passive: false });
+    node.addEventListener("touchend", handleTouchEnd, { passive: false });
   }, []);
 
   useEffect(() => {
@@ -76,10 +85,12 @@ const Swipe = (props: PropsType) => {
     if (clientY === startY.current) return;
 
     const curHeight = currentHight.current;
-    if (clientY > startY.current) { // 向下移动
+    if (clientY > startY.current) {
+      // 向下移动
       if (!showRef.current) return;
       currentHight.current = curHeight - distance;
-    } else { // 向上移动
+    } else {
+      // 向上移动
       if (showRef.current) return;
       currentHight.current = curHeight + distance;
     }
@@ -135,7 +146,8 @@ const Swipe = (props: PropsType) => {
       <div
         ref={setContainerRef}
         className={classString}
-        style={{ height: newHeight ? `${newHeight}px` : 'auto' }}>
+        style={{ height: newHeight ? `${newHeight}px` : "auto" }}
+      >
         <div ref={setSwipeRef} className={`${style.container}`}>
           {children}
         </div>
@@ -145,7 +157,7 @@ const Swipe = (props: PropsType) => {
 };
 
 Swipe.defaultProps = {
-  calssName: '',
+  calssName: "",
   disabled: false,
   zIndex: 999,
   openDistance: 150,

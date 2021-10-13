@@ -1,17 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 interface PropsType {
   leftSecond: any; // 剩余秒数
   callback?: (secod: number) => void;
-  renderChildren?: (hour: number, min: number, second: number) => React.ReactNode; // 倒计时内容
+  renderChildren?: (
+    hour: number,
+    min: number,
+    second: number
+  ) => React.ReactNode; // 倒计时内容
   done?: any; // 回调函数
-};
+}
 
 interface StateType {
   hour: number;
   min: number;
   second: number;
-};
+}
 
 export default class extends Component<PropsType, StateType> {
   constructor(props) {
@@ -19,19 +23,19 @@ export default class extends Component<PropsType, StateType> {
     this.state = {
       hour: 0,
       min: 0,
-      second: 0
+      second: 0,
     };
   }
 
   private timer = null;
 
   static defaultProps = {
-    callback: (second: number) => { },
+    callback: (second: number) => {},
     renderChildren: (hour: number, min: number, second: number) => {
       return `${hour}小时${min}分${second}秒`;
     },
-    done: () => { },
-  }
+    done: () => {},
+  };
 
   componentDidMount() {
     const { leftSecond, callback } = this.props;

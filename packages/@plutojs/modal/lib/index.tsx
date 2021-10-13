@@ -1,6 +1,6 @@
-import ReactDOM from 'react-dom';
-import React, { Component, createRef } from 'react';
-const style = require('./index.less');
+import ReactDOM from "react-dom";
+import React, { Component, createRef } from "react";
+const style = require("./index.less");
 
 /**
  * 模态框管理器
@@ -39,7 +39,7 @@ function ModalManager() {
   this.showModal = (modal: Modal) => {
     showingModalItems.push(modal);
     modalItems.forEach((item) => {
-      item.setVisibility(modal.modalId === item.modalId ? 'visible' : 'hidden');
+      item.setVisibility(modal.modalId === item.modalId ? "visible" : "hidden");
     });
   };
 
@@ -55,7 +55,7 @@ function ModalManager() {
     showingModalItems = newItems;
     if (showingModalItems.length > 0) {
       // 恢复显示当前浮层对象
-      showingModalItems[showingModalItems.length - 1].setVisibility('visible');
+      showingModalItems[showingModalItems.length - 1].setVisibility("visible");
     }
   };
 
@@ -69,19 +69,19 @@ function ModalManager() {
 const modalManager = new ModalManager();
 
 interface PropsType {
-  children: React.ReactNode,
-  isOpened: Boolean,
-  position?: 'top' | 'center' | 'bottom',
-  isMask?: boolean,
-  isLock?: boolean,
-  closeOnClickOverlay?: boolean,
-  zIndex?: number,
-  target?: React.RefObject<HTMLElement>,
-  onHide: () => void,
-};
+  children: React.ReactNode;
+  isOpened: Boolean;
+  position?: "top" | "center" | "bottom";
+  isMask?: boolean;
+  isLock?: boolean;
+  closeOnClickOverlay?: boolean;
+  zIndex?: number;
+  target?: React.RefObject<HTMLElement>;
+  onHide: () => void;
+}
 interface StateType {
-  height: number,
-  visibility: 'visible' | 'hidden',
+  height: number;
+  visibility: "visible" | "hidden";
 }
 
 class Modal extends Component<PropsType, StateType> {
@@ -90,7 +90,7 @@ class Modal extends Component<PropsType, StateType> {
     this.modalEl = createRef();
     this.state = {
       height: 0,
-      visibility: 'visible',
+      visibility: "visible",
     };
 
     // 加入模态框管理器
@@ -105,17 +105,17 @@ class Modal extends Component<PropsType, StateType> {
   };
 
   static defaultProps = {
-    position: 'center',
+    position: "center",
     isMask: true,
     isLock: true,
     zIndex: 999,
     closeOnClickOverlay: true,
-  }
+  };
 
-  public modalId: string = '';
+  public modalId: string = "";
   private modalEl: any = null;
   private contentEl: any = null;
-  private prePosition: string = ''; // 页面原定位方式
+  private prePosition: string = ""; // 页面原定位方式
   private scrollTop: number = 0; // 页面原滚动高度
   private containerHeight: number = 0; // 浮层容器高度
 
@@ -124,24 +124,25 @@ class Modal extends Component<PropsType, StateType> {
    */
   private setStyle = (isOpened: Boolean) => {
     if (isOpened) {
-      if (document.body.style.position === 'fixed') return;
-      this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
+      if (document.body.style.position === "fixed") return;
+      this.scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
       document.body.style.top = `-${this.scrollTop}px`;
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
       if (this.modalEl) this.modalEl.current.style.top = `${this.scrollTop}px`;
     } else {
       // 重新设置body定位
       if (modalManager.getShowingCount() === 0) {
-        document.body.style.position = this.prePosition || 'static';
-        document.body.style.top = '0px';
+        document.body.style.position = this.prePosition || "static";
+        document.body.style.top = "0px";
         document.documentElement.scrollTop = this.scrollTop;
         document.body.scrollTop = this.scrollTop;
-        document.body.style.overflow = 'auto';
+        document.body.style.overflow = "auto";
       }
     }
-  }
+  };
 
   componentDidMount() {
     const { isOpened, isLock, target } = this.props;
@@ -150,14 +151,16 @@ class Modal extends Component<PropsType, StateType> {
       this.setStyle(isOpened);
     }
     this.setState({
-      height: document.documentElement.clientHeight || document.body.clientHeight,
+      height:
+        document.documentElement.clientHeight || document.body.clientHeight,
     });
 
     // 安卓机型，键盘弹出/收起时，重新计算高度
     const userAgent = window.navigator.userAgent.toLowerCase();
     if (/android|miuibrowser/i.test(userAgent)) {
-      window.addEventListener('resize', () => {
-        const height = document.documentElement.clientHeight || document.body.clientHeight;
+      window.addEventListener("resize", () => {
+        const height =
+          document.documentElement.clientHeight || document.body.clientHeight;
         if (this.containerHeight === height) {
           return;
         }
@@ -170,10 +173,13 @@ class Modal extends Component<PropsType, StateType> {
 
         // 定位到对应的输入框
         const currentEl = document.activeElement as HTMLElement;
-        if (currentEl.tagName.toLowerCase() === 'input') {
+        if (currentEl.tagName.toLowerCase() === "input") {
           if (target && target.current) {
             const targetEl: HTMLElement = target.current;
-            targetEl.scrollTop = currentEl.offsetTop - targetEl.offsetHeight + currentEl.offsetHeight;
+            targetEl.scrollTop =
+              currentEl.offsetTop -
+              targetEl.offsetHeight +
+              currentEl.offsetHeight;
           }
         }
       });
@@ -205,7 +211,7 @@ class Modal extends Component<PropsType, StateType> {
    */
   static popup = (properties: any) => {
     const { ...props } = properties || {};
-    const div = document.createElement('div');
+    const div = document.createElement("div");
     document.body.appendChild(div);
     ReactDOM.render(<Modal {...props} />, div);
 
@@ -214,22 +220,21 @@ class Modal extends Component<PropsType, StateType> {
         try {
           ReactDOM.unmountComponentAtNode(div);
           document.body.removeChild(div);
-        } catch (err) {
-        }
-      }
-    }
-  }
+        } catch (err) {}
+      },
+    };
+  };
 
   /**
    * 设置是否可见
-   * 
-   * @param visibility 
+   *
+   * @param visibility
    */
-  setVisibility = (visibility: 'visible' | 'hidden') => {
+  setVisibility = (visibility: "visible" | "hidden") => {
     this.setState({
       visibility,
     });
-  }
+  };
 
   render() {
     const {
@@ -246,17 +251,28 @@ class Modal extends Component<PropsType, StateType> {
 
     return (
       <React.Fragment>
-        {
-          isOpened && (
+        {isOpened && (
+          <div
+            ref={this.modalEl}
+            style={{ zIndex, height: `${height}px`, visibility }}
+            className={`${isLock ? style.lockModal : style.modal} ${
+              this.positionMap[position]
+            } ${isMask ? style.mask : ""}`}
+            onClick={() => {
+              if (closeOnClickOverlay && onHide) onHide();
+            }}
+          >
             <div
-              ref={this.modalEl}
-              style={{ zIndex, height: `${height}px`, visibility }}
-              className={`${isLock ? style.lockModal : style.modal} ${this.positionMap[position]} ${isMask ? style.mask : ''}`}
-              onClick={() => { if (closeOnClickOverlay && onHide) onHide(); }}>
-              <div ref={this.contentEl} className={style.content} onClick={e => { e.stopPropagation(); }}>{children}</div>
+              ref={this.contentEl}
+              className={style.content}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            >
+              {children}
             </div>
-          )
-        }
+          </div>
+        )}
       </React.Fragment>
     );
   }

@@ -1,6 +1,6 @@
-import React from 'react';
-import Modal from '~/core/modal/lib';
-const style = require('./index.less');
+import React from "react";
+import Modal from "~/core/modal/lib";
+const style = require("./index.less");
 
 const getModal = (content: React.ReactNode, duration: number) => {
   const { destroy } = Modal.popup({
@@ -9,7 +9,9 @@ const getModal = (content: React.ReactNode, duration: number) => {
     isMask: false,
     isLock: false,
     closeOnClickOverlay: false,
-    onHide: () => { destroy(); },
+    onHide: () => {
+      destroy();
+    },
   });
 
   // 定时关闭

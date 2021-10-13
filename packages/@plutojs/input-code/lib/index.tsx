@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-const style = require('./index.less');
+import React, { Component } from "react";
+const style = require("./index.less");
 
 interface PropsType {
-  count: number, // 验证码位数
-  change: Function, // 输入回调方法
-};
+  count: number; // 验证码位数
+  change: Function; // 输入回调方法
+}
 interface StateType {
-  value: Array<number>,
-};
+  value: Array<number>;
+}
 class InputCode extends Component<PropsType, StateType> {
   constructor(props: PropsType) {
     super(props);
@@ -18,8 +18,8 @@ class InputCode extends Component<PropsType, StateType> {
 
   static defaultProps = {
     count: 4,
-    change: () => { },
-  }
+    change: () => {},
+  };
 
   private inputEl = null; // 输入框
 
@@ -35,18 +35,21 @@ class InputCode extends Component<PropsType, StateType> {
     if (value && value.length === count) {
       this.inputEl.blur();
     }
-  }
+  };
 
   /**
    * 清空输入框
    */
   clear() {
-    this.setState({
-      value: [],
-    }, () => {
-      this.inputEl.value = '';
-      this.inputEl.focus();
-    });
+    this.setState(
+      {
+        value: [],
+      },
+      () => {
+        this.inputEl.value = "";
+        this.inputEl.focus();
+      }
+    );
   }
 
   render() {
@@ -56,21 +59,31 @@ class InputCode extends Component<PropsType, StateType> {
     const items = [];
     for (let i = 0; i < count; i++) {
       if (value[i]) {
-        items.push(( // 输入数字
-          <div key={`item-${i}`} className={style.value}>{value[i]}</div>
-        ));
+        items.push(
+          // 输入数字
+          <div key={`item-${i}`} className={style.value}>
+            {value[i]}
+          </div>
+        );
       } else {
-        items.push(( // 显示占位
+        items.push(
+          // 显示占位
           <div key={`item-${i}`} className={style.item}></div>
-        ));
+        );
       }
     }
     return (
       <div className={style.container}>
         {...items}
-        <input className={style.input} maxLength={count} onChange={this.onChange} type="tel" ref={item => {
-          this.inputEl = item;
-        }} />
+        <input
+          className={style.input}
+          maxLength={count}
+          onChange={this.onChange}
+          type="tel"
+          ref={(item) => {
+            this.inputEl = item;
+          }}
+        />
       </div>
     );
   }

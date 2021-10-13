@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 /**
  * 选择节点
- * 
+ *
  * @param ele 节点对象
  */
 const select = (ele: HTMLElement) => {
-  if (ele.hasAttribute('contenteditable')) ele.focus();
+  if (ele.hasAttribute("contenteditable")) ele.focus();
 
   const range = document.createRange();
   range.selectNodeContents(ele);
@@ -18,14 +18,13 @@ const select = (ele: HTMLElement) => {
 };
 
 export default class Copy extends Component<any, any> {
-
   /**
    * 检查是否支持复制
-   * 
-   * @param action 
+   *
+   * @param action
    */
-  static isSupported(action = ['copy', 'cut']) {
-    const actions = (typeof action === 'string') ? [action] : action;
+  static isSupported(action = ["copy", "cut"]) {
+    const actions = typeof action === "string" ? [action] : action;
     let support = !!document.queryCommandSupported;
 
     actions.forEach((action) => {
@@ -36,13 +35,13 @@ export default class Copy extends Component<any, any> {
 
   /**
    * 复制文案
-   * 
-   * @param ele 
+   *
+   * @param ele
    */
   static copy = (ele: HTMLElement) => {
     select(ele);
-    document.execCommand('copy');
-  }
+    document.execCommand("copy");
+  };
 
   render() {
     return null;

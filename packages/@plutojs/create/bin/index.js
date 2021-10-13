@@ -1,26 +1,27 @@
 #!/usr/bin/env node
-const os = require('os');
-const fs = require('fs');
-const path = require('path');
-const figlet = require('figlet');
-const ora = require('ora');
-const inquirer = require('inquirer');
-const chalk = require('chalk');
-const shell = require('shelljs');
-const download = require('download-git-repo');
+const os = require("os");
+const fs = require("fs");
+const path = require("path");
+const figlet = require("figlet");
+const ora = require("ora");
+const inquirer = require("inquirer");
+const chalk = require("chalk");
+const shell = require("shelljs");
+const download = require("download-git-repo");
 
 /**
  * 下载模板代码
  */
-const downloadTemplate = (downloadDir) => new Promise((resolve, reject) => {
-  download('firewood1122/plutojs-template', downloadDir, {}, (err) => {
-    if (err) {
-      console.error(err);
-      reject();
-    }
-    resolve();
+const downloadTemplate = (downloadDir) =>
+  new Promise((resolve, reject) => {
+    download("firewood1122/plutojs-template", downloadDir, {}, (err) => {
+      if (err) {
+        console.error(err);
+        reject();
+      }
+      resolve();
+    });
   });
-});
 
 /**
  * 收集项目信息
@@ -28,15 +29,15 @@ const downloadTemplate = (downloadDir) => new Promise((resolve, reject) => {
 const askQuestions = (data) => {
   const questions = [
     {
-      type: 'input',
-      name: 'PROJECT_NAME',
-      message: chalk.green('请输入项目名称'),
-      validate: (val) => val.trim() !== '',
+      type: "input",
+      name: "PROJECT_NAME",
+      message: chalk.green("请输入项目名称"),
+      validate: (val) => val.trim() !== "",
     },
     {
-      type: 'list',
-      name: 'NAME',
-      message: chalk.green('请选择需要下载的模板：'),
+      type: "list",
+      name: "NAME",
+      message: chalk.green("请选择需要下载的模板："),
       choices: Object.keys(data),
     },
   ];
@@ -47,27 +48,27 @@ const init = async () => {
   // 显示标题
   console.log(
     chalk.green(
-      figlet.textSync('plutojs', {
-        font: 'Ghost',
-        horizontalLayout: 'default',
-        verticalLayout: 'default',
-      }),
-    ),
+      figlet.textSync("plutojs", {
+        font: "Ghost",
+        horizontalLayout: "default",
+        verticalLayout: "default",
+      })
+    )
   );
 
   // 下载模板代码
-  const spinner = ora('正在下载模板代码，请稍候').start();
-  const downloadDir = fs.mkdtempSync(path.join(os.tmpdir(), 'plutojs-'));
+  const spinner = ora("正在下载模板代码，请稍候").start();
+  const downloadDir = fs.mkdtempSync(path.join(os.tmpdir(), "plutojs-"));
   await downloadTemplate(downloadDir);
   spinner.stop();
 
   // 收集项目信息
-  const dataFile = path.join(downloadDir, 'data.json');
+  const dataFile = path.join(downloadDir, "data.json");
   if (!fs.existsSync(dataFile)) {
-    console.log(chalk.red('模板代码不存在，请重试'));
+    console.log(chalk.red("模板代码不存在，请重试"));
     return;
   }
-  const data = JSON.parse(fs.readFileSync(dataFile, 'utf-8'));
+  const data = JSON.parse(fs.readFileSync(dataFile, "utf-8"));
   const { PROJECT_NAME, NAME } = await askQuestions(data);
   const info = data[NAME];
 
@@ -79,11 +80,11 @@ const init = async () => {
   }
 
   // 复制模板代码
-  shell.mv('-f', `${downloadDir}/${info.dir}/`, dir);
+  shell.mv("-f", `${downloadDir}/${info.dir}/`, dir);
 
   // 删除下载目录
-  shell.rm('-rf', downloadDir);
-  console.log(chalk.green('创建项目已完成'));
+  shell.rm("-rf", downloadDir);
+  console.log(chalk.green("创建项目已完成"));
 };
 
 const run = () => {

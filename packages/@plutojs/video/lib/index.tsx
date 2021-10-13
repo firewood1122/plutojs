@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import Modal from '~/core/modal/lib';
-const style = require('./index.less');
+import React, { Component } from "react";
+import Modal from "~/core/modal/lib";
+const style = require("./index.less");
 
 interface PropsType {
   coverUrl: string;
@@ -10,17 +10,17 @@ interface PropsType {
   currentTime?: number;
   controls?: boolean;
   playsInline?: boolean;
-  closeVideo?: boolean,
-  onClose?: Function,
-  onCloseFullscreenVideo?: (time: number) => {},
-  controlsList?: string,
-  disablePictureInPicture?: boolean,
-  disableFast?: boolean,
-  disableFastCallback?: Function,
+  closeVideo?: boolean;
+  onClose?: Function;
+  onCloseFullscreenVideo?: (time: number) => {};
+  controlsList?: string;
+  disablePictureInPicture?: boolean;
+  disableFast?: boolean;
+  disableFastCallback?: Function;
 }
 interface StateType {
-  initVideo: boolean,
-  showVideo: boolean,
+  initVideo: boolean;
+  showVideo: boolean;
 }
 export default class Video extends Component<PropsType, StateType> {
   constructor(props) {
@@ -33,17 +33,17 @@ export default class Video extends Component<PropsType, StateType> {
 
   static defaultProps = {
     fullscreen: false,
-    fullscreenTips: '',
+    fullscreenTips: "",
     currentTime: 0,
     controls: true,
     playsInline: true,
     closeVideo: false,
-    onClose: () => { },
-    onCloseFullscreenVideo: () => { },
-    controlsList: '',
+    onClose: () => {},
+    onCloseFullscreenVideo: () => {},
+    controlsList: "",
     disablePictureInPicture: false,
     disableFast: false,
-  }
+  };
 
   componentDidUpdate(prevProps: PropsType) {
     const { closeVideo, onClose } = this.props;
@@ -67,16 +67,19 @@ export default class Video extends Component<PropsType, StateType> {
    */
   private play = () => {
     const { currentTime }: PropsType = this.props;
-    this.setState({
-      showVideo: true,
-      initVideo: true,
-    }, () => {
-      if (this.videoEl) {
-        this.last = currentTime;
-        this.videoEl.play(); // 自动播放
+    this.setState(
+      {
+        showVideo: true,
+        initVideo: true,
+      },
+      () => {
+        if (this.videoEl) {
+          this.last = currentTime;
+          this.videoEl.play(); // 自动播放
+        }
       }
-    });
-  }
+    );
+  };
 
   /**
    * 响应开始播放视频
@@ -86,7 +89,7 @@ export default class Video extends Component<PropsType, StateType> {
     if (currentTime > 0 && this.videoEl.currentTime < currentTime) {
       this.videoEl.currentTime = currentTime;
     }
-  }
+  };
 
   /**
    * 暂停视频
@@ -95,7 +98,7 @@ export default class Video extends Component<PropsType, StateType> {
     if (this.videoEl) {
       this.videoEl.pause();
     }
-  }
+  };
 
   /**
    * 响应结束播放视频
@@ -110,10 +113,10 @@ export default class Video extends Component<PropsType, StateType> {
       this.videoEl.pause();
       this.videoEl.currentTime = 0;
     }
-  }
+  };
 
   /**
-   * 响应时间进度 
+   * 响应时间进度
    */
   private onTimeUpdate = () => {
     const { disableFast, disableFastCallback } = this.props;
@@ -126,7 +129,7 @@ export default class Video extends Component<PropsType, StateType> {
         this.last = current;
       }
     }
-  }
+  };
 
   /**
    * 关闭全屏视频
@@ -137,7 +140,7 @@ export default class Video extends Component<PropsType, StateType> {
     this.setState({
       showVideo: false,
     });
-  }
+  };
 
   render() {
     const {
@@ -153,63 +156,79 @@ export default class Video extends Component<PropsType, StateType> {
     const { initVideo, showVideo } = this.state;
 
     return (
-      <div className={`${initVideo && fullscreen && showVideo ? style.fullscreenContainer : style.container}`}>
-        {
-          coverUrl && (
-            <div className={`${showVideo ? style.hidden : ''}`}>
-              <div className={`${style.coverIcon}`} onClick={this.play}></div>
-              <img className={`${style.cover}`} src={coverUrl} />
-            </div>
-          )}
-        {
-          videoUrl && initVideo && (
-            <React.Fragment>
-              {
-                fullscreen ? (
-                  <Modal isOpened={showVideo} isLock={true} onHide={() => { }}>
-                    <React.Fragment>
-                      <div className={`${style.close}`}>
-                        <div className={`${style.tips}`}>{fullscreenTips}</div>
-                        <div className={`${style.closeIcon}`} onClick={this.closeFullscreenVideo}></div>
-                      </div>
-                      <div className={`${style.videoContent}`}>
-                        <video
-                          preload="metadata"
-                          ref={item => { this.videoEl = item; }}
-                          src={videoUrl}
-                          controls={controls}
-                          playsInline={playsInline}
-                          style={{ objectFit: 'contain', width: '100%', height: '100%' }}
-                          onEnded={this.onEnded}
-                          controlsList={controlsList}
-                          disablePictureInPicture={disablePictureInPicture}
-                          onTimeUpdate={this.onTimeUpdate}
-                          onCanPlay={this.onCanPlay}
-                        />
-                      </div>
-                    </React.Fragment>
-                  </Modal>
-                ) : (
-                  <div className={`${style.videoContainer} ${!showVideo ? style.displayHidden : ''}`}>
+      <div
+        className={`${
+          initVideo && fullscreen && showVideo
+            ? style.fullscreenContainer
+            : style.container
+        }`}
+      >
+        {coverUrl && (
+          <div className={`${showVideo ? style.hidden : ""}`}>
+            <div className={`${style.coverIcon}`} onClick={this.play}></div>
+            <img className={`${style.cover}`} src={coverUrl} />
+          </div>
+        )}
+        {videoUrl && initVideo && (
+          <React.Fragment>
+            {fullscreen ? (
+              <Modal isOpened={showVideo} isLock={true} onHide={() => {}}>
+                <React.Fragment>
+                  <div className={`${style.close}`}>
+                    <div className={`${style.tips}`}>{fullscreenTips}</div>
+                    <div
+                      className={`${style.closeIcon}`}
+                      onClick={this.closeFullscreenVideo}
+                    ></div>
+                  </div>
+                  <div className={`${style.videoContent}`}>
                     <video
                       preload="metadata"
-                      ref={item => { this.videoEl = item; }}
+                      ref={(item) => {
+                        this.videoEl = item;
+                      }}
                       src={videoUrl}
-                      poster={coverUrl}
                       controls={controls}
                       playsInline={playsInline}
-                      style={{ objectFit: 'contain' }}
+                      style={{
+                        objectFit: "contain",
+                        width: "100%",
+                        height: "100%",
+                      }}
                       onEnded={this.onEnded}
                       controlsList={controlsList}
                       disablePictureInPicture={disablePictureInPicture}
                       onTimeUpdate={this.onTimeUpdate}
+                      onCanPlay={this.onCanPlay}
                     />
                   </div>
-                )
-              }
-            </React.Fragment>
-          )
-        }
+                </React.Fragment>
+              </Modal>
+            ) : (
+              <div
+                className={`${style.videoContainer} ${
+                  !showVideo ? style.displayHidden : ""
+                }`}
+              >
+                <video
+                  preload="metadata"
+                  ref={(item) => {
+                    this.videoEl = item;
+                  }}
+                  src={videoUrl}
+                  poster={coverUrl}
+                  controls={controls}
+                  playsInline={playsInline}
+                  style={{ objectFit: "contain" }}
+                  onEnded={this.onEnded}
+                  controlsList={controlsList}
+                  disablePictureInPicture={disablePictureInPicture}
+                  onTimeUpdate={this.onTimeUpdate}
+                />
+              </div>
+            )}
+          </React.Fragment>
+        )}
       </div>
     );
   }
