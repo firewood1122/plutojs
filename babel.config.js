@@ -1,19 +1,16 @@
 /* eslint-disable */
-const path = require('path')
-
 module.exports = function (api) {
-  const presets = ['@babel/react', '@babel/typescript'];
-  const plugins = [
-  ];
+  const presets = ['@babel/react', '@babel/typescript']
+  const plugins = []
 
   if (api.env('node')) {
-    presets.push(['@babel/env', { targets: { node: true } }]);
+    presets.push(['@babel/env', { targets: { node: true } }])
   }
 
-  api.cache(true);
+  api.cache(true)
 
   return {
     presets,
-    plugins
-  };
-};
+    plugins,
+  }
+}
