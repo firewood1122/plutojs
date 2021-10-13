@@ -5,9 +5,7 @@ interface PropsType {
     disabled?: boolean;
     onClick: (event: React.MouseEvent) => void;
 }
-interface StateType {
-}
-export default class Button extends Component<PropsType, StateType> {
+export default class Button extends Component<PropsType> {
     static defaultProps: {
         type: string;
         className: string;
