@@ -1,10 +1,11 @@
+import React from 'react';
 interface PropsType {
     isMask?: boolean;
     closeOnClickOverlay?: boolean;
 }
 declare const _default: {
-    alert: (text: string, confirm: Function, confirmText?: string) => void;
-    alertCustomize: (customize: Function, options?: PropsType) => void;
-    confirm: (text: string, confirm: Function, cancelText?: string, confirmText?: string, cancel?: () => void) => void;
+    alert: (text: string, confirm: () => void, confirmText?: string, customizeClass?: string) => void;
+    alertCustomize: (customize: (destroy: () => void) => React.ReactNode, options?: PropsType) => void;
+    confirm: (text: string, confirm: () => void, cancelText?: string, confirmText?: string, cancel?: () => void) => void;
 };
 export default _default;

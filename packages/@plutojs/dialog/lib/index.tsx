@@ -1,12 +1,12 @@
-import React from 'react';
-import Modal from '~/core/modal/lib';
-const style = require('./index.less');
+import React from 'react'
+import Modal from '~/core/modal/lib'
+import style from './index.less'
 
-let modal = null;
+let modal = null
 
 interface PropsType {
-  isMask?: boolean,
-  closeOnClickOverlay?: boolean,
+  isMask?: boolean
+  closeOnClickOverlay?: boolean
 }
 
 /**
@@ -14,60 +14,107 @@ interface PropsType {
  */
 const destroy = () => {
   if (modal) {
-    modal.destroy();
-    modal = null;
+    modal.destroy()
+    modal = null
   }
-};
+}
 
 /**
  * 显示对话框
- *  
- * @param content 
+ *
+ * @param content
  */
 const getModal = (content: React.ReactNode, options: PropsType = {}) => {
-  const opts = Object.assign({
+  const opts = {
     children: content,
     isOpened: true,
     isMask: true,
     isLock: true,
     closeOnClickOverlay: true,
     onHide: () => {
-      destroy();
+      destroy()
     },
-  }, options);
-  modal = Modal.popup(opts);
-};
+    ...options,
+  }
+  modal = Modal.popup(opts)
+}
 
 export default {
-  alert: (text: string, confirm: Function, confirmText = '确定') => {
+  alert: (
+    text: string,
+    confirm: () => void,
+    confirmText = '确定',
+    customizeClass = '',
+  ) => {
+    const content = (
+      <div className={`${style.container} ${customizeClass}`}>
+        <div className={style.text}>{text}</div>
+        <div className={style.btnContainer}>
+          <div
+            role="button"
+            tabIndex={0}
+            className={style.alertBtn}
+            onClick={() => {
+              confirm()
+              destroy()
+            }}
+          >
+            {confirmText}
+          </div>
+        </div>
+      </div>
+    )
+    destroy()
+    getModal(content)
+  },
+  alertCustomize: (
+    customize: (destroy: () => void) => React.ReactNode,
+    options: PropsType = {},
+  ) => {
+    const content = customize && customize(destroy)
+    if (!content) return
+    destroy()
+    getModal(content, options)
+  },
+  confirm: (
+    text: string,
+    confirm: () => void,
+    cancelText = '取消',
+    confirmText = '确定',
+    cancel = () => {
+      /* do nothing */
+    },
+  ) => {
     const content = (
       <div className={style.container}>
         <div className={style.text}>{text}</div>
         <div className={style.btnContainer}>
-          <div className={style.alertBtn} onClick={() => { confirm(); destroy(); }}>{confirmText}</div>
+          <div
+            role="button"
+            tabIndex={0}
+            className={style.cancelBtn}
+            onClick={() => {
+              cancel()
+              destroy()
+            }}
+          >
+            {cancelText}
+          </div>
+          <div
+            role="button"
+            tabIndex={0}
+            className={style.confirmBtn}
+            onClick={() => {
+              confirm()
+              destroy()
+            }}
+          >
+            {confirmText}
+          </div>
         </div>
       </div>
-    );
-    destroy();
-    getModal(content);
+    )
+    destroy()
+    getModal(content)
   },
-  alertCustomize: (customize: Function, options: PropsType = {}) => {
-    const content = customize && customize(destroy);
-    if (!content) return;
-    destroy();
-    getModal(content, options);
-  },
-  confirm: (text: string, confirm: Function, cancelText: string = '取消', confirmText = '确定', cancel = () => { }) => {
-    const content = (
-      <div className={style.container}>
-        <div className={style.text}>{text}</div>
-        <div className={style.btnContainer}>
-          <div className={style.cancelBtn} onClick={() => { cancel(); destroy(); }}>{cancelText}</div>
-          <div className={style.confirmBtn} onClick={() => { confirm(); destroy(); }}>{confirmText}</div>
-        </div>
-      </div>
-    );
-    destroy();
-    getModal(content);
-  }
-};
+}

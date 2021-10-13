@@ -17,8 +17,29 @@
   flex-direction: column;
   align-items: center;
 }
+@keyframes plutojs_dialog_popUpBg {
+  from {
+    background: transparent;
+  }
+  to {
+    background: rgba(0, 0, 0, 0.75);
+  }
+}
 .plutojs_dialog_mask {
+  animation: plutojs_dialog_popUpBg 0.5s;
   background: rgba(0, 0, 0, 0.75);
+}
+@keyframes plutojs_dialog_popUpContent {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.plutojs_dialog_content {
+  position: relative;
+  animation: plutojs_dialog_popUpContent 0.5s;
 }
 .plutojs_dialog_center {
   justify-content: center;
@@ -28,9 +49,6 @@
 }
 .plutojs_dialog_bottom {
   justify-content: flex-end;
-}
-.plutojs_dialog_content {
-  position: relative;
 }
 
 .plutojs_dialog_container {
