@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import style from './index.less';
+import style from "./index.less";
 
 interface PropsType {
   type?: "submit" | "button" | "reset";
