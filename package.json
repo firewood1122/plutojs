@@ -24,7 +24,7 @@
     "download-git-repo": "^3.0.2",
     "eslint": "^8.0.0",
     "eslint-config-prettier": "^8.3.0",
-    "husky": ">=6",
+    "husky": "^7.0.2",
     "inquirer": "^7.3.3",
     "lerna": "^3.19.0",
     "less-loader": "^6.1.0",
