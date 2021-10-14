@@ -59,7 +59,7 @@ export default class LoadMore extends Component<PropsType> {
         }
 
         let { scrollThreshold } = this.props;
-        const { loadMore } = this.props; 
+        const { loadMore } = this.props;
         if (scrollThreshold > 1) scrollThreshold = 1;
 
         // 处理与模态框冲突的问题
