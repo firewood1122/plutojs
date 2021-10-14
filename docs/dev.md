@@ -10,7 +10,7 @@
 - docs              文档目录
 - packages          组件目录
 - scripts           构建脚本
--- base.js          构建脚本通用方法 
+-- base.js          构建脚本通用方法
 -- dev.js           开发环境构建脚本
 -- build.js         生产环境构建脚本
 - story             组件story目录
@@ -20,24 +20,30 @@
 ### 开发流程
 
 - 安装项目依赖
-> yarn
 
-- 安装packages依赖
-> yarn run bootstrap
+  > yarn
+
+- 安装 packages 依赖
+
+  > yarn run bootstrap
 
 - 开发实时编译更新
-> yarn run dev
-> 选择某个package进行开发
+
+  > yarn run dev
+  > 选择某个 package 进行开发
 
 - 生产构建
-> yarn run build
-> 选择 all 或某个package进行构建
 
-- 发布package
-> yarn run release
+  > yarn run build
+  > 选择 all 或某个 package 进行构建
 
-- 本地查看story
-> yarn run story
+- 发布 package
 
-- storybook生产构建
-> yarn run build:story
+  > yarn run release
+
+- 本地查看 story
+
+  > yarn run story
+
+- storybook 生产构建
+  > yarn run build:story

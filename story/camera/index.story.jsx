@@ -1,18 +1,18 @@
-import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { withQuery } from '@storybook/addon-queryparams';
-import Camera from '@/camera';
-import '@/camera/build/index.css';
-import './story.css';
+import React from "react";
+import { withKnobs } from "@storybook/addon-knobs";
+import { withQuery } from "@storybook/addon-queryparams";
+import Camera from "@/camera";
+import "@/camera/build/index.css";
+import "./story.css";
 
 export default {
-  title: '实验室.Camera 调用摄像头',
+  title: "实验室.Camera 调用摄像头",
   component: Camera,
   decorators: [withKnobs, withQuery],
   parameters: {
     backgrounds: [
-      { name: '默认背景', value: '#fff', default: true },
-      { name: '黑色背景', value: '#2f2f2f' },
+      { name: "默认背景", value: "#fff", default: true },
+      { name: "黑色背景", value: "#2f2f2f" },
     ],
   },
 };
@@ -33,5 +33,5 @@ export const story1 = () => {
   );
 };
 story1.story = {
-  name: '调用摄像头',
+  name: "调用摄像头",
 };

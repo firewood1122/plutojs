@@ -1,59 +1,59 @@
-import { addParameters } from '@storybook/react';
+import { addParameters } from "@storybook/react";
 
 const newViewports = {
-  'iPhone5': {
-    name: 'iPhone 5/SE',
+  iPhone5: {
+    name: "iPhone 5/SE",
     styles: {
-      width: '320px',
-      height: '568px',
+      width: "320px",
+      height: "568px",
     },
-    type: 'mobile',
+    type: "mobile",
   },
-  'iPhone6': {
-    name: 'iPhone 6/7/8',
+  iPhone6: {
+    name: "iPhone 6/7/8",
     styles: {
-      width: '375px',
-      height: '667px',
+      width: "375px",
+      height: "667px",
     },
-    type: 'mobile',
+    type: "mobile",
   },
-  'iPhone6+': {
-    name: 'iPhone 6/7/8 Plus',
+  "iPhone6+": {
+    name: "iPhone 6/7/8 Plus",
     styles: {
-      width: '414px',
-      height: '736px',
+      width: "414px",
+      height: "736px",
     },
-    type: 'mobile',
+    type: "mobile",
   },
-  'iPhoneX': {
-    name: 'iPhone X',
+  iPhoneX: {
+    name: "iPhone X",
     styles: {
-      width: '375px',
-      height: '812px',
+      width: "375px",
+      height: "812px",
     },
-    type: 'mobile',
+    type: "mobile",
   },
-  'iPad': {
-    name: 'iPad',
+  iPad: {
+    name: "iPad",
     styles: {
-      width: '768px',
-      height: '1024px',
+      width: "768px",
+      height: "1024px",
     },
-    type: 'tablet',
+    type: "tablet",
   },
-  'iPadPro': {
-    name: 'iPad Pro',
+  iPadPro: {
+    name: "iPad Pro",
     styles: {
-      width: '1024px',
-      height: '1366px',
+      width: "1024px",
+      height: "1366px",
     },
-    type: 'tablet',
+    type: "tablet",
   },
 };
 
 addParameters({
   viewport: {
     viewports: newViewports,
-    defaultViewport: 'iPhone6',
+    defaultViewport: "iPhone6",
   },
 });

@@ -1,7 +1,7 @@
 language: node_js
 # nodejs版本
 node_js:
-  - '10'
+  - "10"
 
 # Travis-CI Caching
 cache:
@@ -15,7 +15,7 @@ install:
 before_script:
 
 script:
-  - yarn run build:story 
+  - yarn run build:story
 
 after_script:
   - cd ./.out
@@ -32,6 +32,6 @@ after_script:
 branches:
   only:
     - master
-    
+
 env:
   global:

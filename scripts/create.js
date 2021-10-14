@@ -1,14 +1,14 @@
-const fs = require('fs');
-const path = require('path');
-const ora = require('ora');
-const downloadGitRepo = require('download-git-repo');
-const inquirer = require('inquirer');
-const { tmpdir } = require('os');
+const fs = require("fs");
+const path = require("path");
+const ora = require("ora");
+const downloadGitRepo = require("download-git-repo");
+const inquirer = require("inquirer");
+const { tmpdir } = require("os");
 
 /**
  * 删除文件夹
- * 
- * @param {string} dir 
+ *
+ * @param {string} dir
  */
 const removeDir = (dir) => {
   if (!fs.existsSync(dir)) return;
@@ -23,7 +23,7 @@ const removeDir = (dir) => {
       fs.unlinkSync(newPath); // 删除文件
     }
   }
-  fs.rmdirSync(dir) // 删除空文件夹
+  fs.rmdirSync(dir); // 删除空文件夹
 };
 
 /**
@@ -38,42 +38,45 @@ const genCode = (tempDir, answers) => {
  * 获取组件信息
  */
 const question = (tempDir) => {
-  inquirer.prompt([
-    {
-      type: 'list',
-      name: 'type',
-      message: '请选择模板类型',
-      choices: ['component', 'story']
-    },
-    {
-      type: 'input',
-      name: 'name',
-      message: '请输入组件名称（示例：button）',
-      when: function (answers) {
-        return answers.type === 'component';
-      }
-    },
-    {
-      type: 'input',
-      name: 'description',
-      message: '请输入组件描述',
-      when: function (answers) {
-        return answers.type === 'component';
-      }
-    },
-    {
-      type: 'input',
-      name: 'keywords',
-      message: '请输入组件关键词，以英文逗号为分割',
-      when: function (answers) {
-        return answers.type === 'component';
-      }
-    },
-  ]).then(answers => {
-    genCode(tmpdir, answers);
-  }).catch(err => {
-    console.error(err);
-  });
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "type",
+        message: "请选择模板类型",
+        choices: ["component", "story"],
+      },
+      {
+        type: "input",
+        name: "name",
+        message: "请输入组件名称（示例：button）",
+        when: function (answers) {
+          return answers.type === "component";
+        },
+      },
+      {
+        type: "input",
+        name: "description",
+        message: "请输入组件描述",
+        when: function (answers) {
+          return answers.type === "component";
+        },
+      },
+      {
+        type: "input",
+        name: "keywords",
+        message: "请输入组件关键词，以英文逗号为分割",
+        when: function (answers) {
+          return answers.type === "component";
+        },
+      },
+    ])
+    .then((answers) => {
+      genCode(tmpdir, answers);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };
 
 /**
@@ -84,19 +87,23 @@ const download = (tempDir) => {
   removeDir(tempDir);
 
   // 下载模板
-  const spinner = ora('下载模板中...').start();
-  downloadGitRepo('github:firewood1122/plutojs-template', tempDir, function (err) {
-    spinner.stop();
-    console.log(err ? `下载模板失败${err}` : '下载模板成功');
-    question();
-  });
+  const spinner = ora("下载模板中...").start();
+  downloadGitRepo(
+    "github:firewood1122/plutojs-template",
+    tempDir,
+    function (err) {
+      spinner.stop();
+      console.log(err ? `下载模板失败${err}` : "下载模板成功");
+      question();
+    }
+  );
 };
 
 /**
  * 从模板创建
  */
 const create = () => {
-  const tempDir = path.join(__dirname, '../.temp');
+  const tempDir = path.join(__dirname, "../.temp");
   download(tempDir);
 };
 create();

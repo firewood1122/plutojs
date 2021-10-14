@@ -58,6 +58,7 @@
     "story": "start-storybook -p 9999",
     "build:story": "build-storybook -c .storybook -o .out",
     "lint": "eslint packages --ext .js,.jsx,.ts,.tsx --fix",
+    "format": "prettier --write .",
     "create": "node scripts/create.js"
   },
   "husky": {

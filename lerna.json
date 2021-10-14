@@ -1,7 +1,5 @@
 {
-  "packages": [
-    "packages/@plutojs/*"
-  ],
+  "packages": ["packages/@plutojs/*"],
   "npmClient": "yarn",
   "useWorkspaces": true,
   "version": "independent"

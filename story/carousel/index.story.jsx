@@ -1,17 +1,17 @@
-import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { withQuery } from '@storybook/addon-queryparams';
-import Carousel from '@/carousel';
-import '@/carousel/build/index.css';
+import React from "react";
+import { withKnobs } from "@storybook/addon-knobs";
+import { withQuery } from "@storybook/addon-queryparams";
+import Carousel from "@/carousel";
+import "@/carousel/build/index.css";
 
 export default {
-  title: '滚动.Carousel 走马灯',
+  title: "滚动.Carousel 走马灯",
   component: Carousel,
   decorators: [withKnobs, withQuery],
   parameters: {
     backgrounds: [
-      { name: '默认背景', value: '#fff', default: true },
-      { name: '黑色背景', value: '#2f2f2f' },
+      { name: "默认背景", value: "#fff", default: true },
+      { name: "黑色背景", value: "#2f2f2f" },
     ],
   },
 };
@@ -23,5 +23,5 @@ export const story1 = () => (
   </Carousel>
 );
 story1.story = {
-  name: '走马灯',
+  name: "走马灯",
 };

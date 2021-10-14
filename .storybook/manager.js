@@ -1,5 +1,5 @@
-import { addons } from '@storybook/addons';
-import { themes } from '@storybook/theming';
+import { addons } from "@storybook/addons";
+import { themes } from "@storybook/theming";
 
 addons.setConfig({
   /**
@@ -24,7 +24,7 @@ addons.setConfig({
    * where to show the addon panel
    * @type {('bottom'|'right')}
    */
-  panelPosition: 'right',
+  panelPosition: "right",
 
   /**
    * sidebar tree animations

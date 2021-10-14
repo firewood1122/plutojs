@@ -1,37 +1,46 @@
-import React, { useRef, useState } from 'react';
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
-import { withQuery } from '@storybook/addon-queryparams';
-import Modal from '@/modal';
-import '@/modal/build/index.css';
-import './story.css';
+import React, { useRef, useState } from "react";
+import { withKnobs, text, boolean } from "@storybook/addon-knobs";
+import { withQuery } from "@storybook/addon-queryparams";
+import Modal from "@/modal";
+import "@/modal/build/index.css";
+import "./story.css";
 
 export default {
-  title: '提示.Modal 模态框',
+  title: "提示.Modal 模态框",
   component: Modal,
   decorators: [withKnobs, withQuery],
   parameters: {
     backgrounds: [
-      { name: '默认背景', value: '#fff', default: true },
-      { name: '黑色背景', value: '#2f2f2f' },
+      { name: "默认背景", value: "#fff", default: true },
+      { name: "黑色背景", value: "#2f2f2f" },
     ],
   },
 };
 
 export const story1 = () => {
   const [isOpened, setIsOpened] = useState(false);
-  const position = text('模态框内容定位', 'center');
-  const isMask = boolean('是否有不透明背景', true);
+  const position = text("模态框内容定位", "center");
+  const isMask = boolean("是否有不透明背景", true);
   return (
     <div className="modal-demo-wrap">
       <div className="modal-demo-field" />
       <div className="modal-demo-btn-field">
-        <button className="modal-demo-btn" onClick={() => { setIsOpened(true); }}>显示模态框</button>
+        <button
+          className="modal-demo-btn"
+          onClick={() => {
+            setIsOpened(true);
+          }}
+        >
+          显示模态框
+        </button>
       </div>
       <Modal
         isOpened={isOpened}
         position={position}
         isLock={false}
-        onHide={() => { setIsOpened(false); }}
+        onHide={() => {
+          setIsOpened(false);
+        }}
         isMask={isMask}
       >
         <div className="modal-demo-text">模态框内容</div>
@@ -40,7 +49,7 @@ export const story1 = () => {
   );
 };
 story1.story = {
-  name: '不锁定背景模态框',
+  name: "不锁定背景模态框",
 };
 
 export const story2 = () => {
@@ -54,35 +63,50 @@ export const story2 = () => {
     }, 0);
   };
 
-  const position = text('模态框内容定位', 'center');
-  const isMask = boolean('是否有不透明背景', true);
+  const position = text("模态框内容定位", "center");
+  const isMask = boolean("是否有不透明背景", true);
   return (
     <div className="modal-demo-wrap">
       <div className="modal-demo-top-field" />
       <div className="modal-demo-fake-top-field" />
       <div className="modal-demo-field" />
       <div className="modal-demo-btn-field">
-        <button className="modal-demo-btn" onClick={() => { setIsOpened(true); }}>显示模态框</button>
+        <button
+          className="modal-demo-btn"
+          onClick={() => {
+            setIsOpened(true);
+          }}
+        >
+          显示模态框
+        </button>
       </div>
       <Modal
         isOpened={isOpened}
         position={position}
         isLock
-        onHide={() => { setIsOpened(false); }}
+        onHide={() => {
+          setIsOpened(false);
+        }}
         isMask={isMask}
       >
-        <input ref={inputEl} type="text" className="modal-demo-input" placeholder="请输入文字" onBlur={onBlur} />
+        <input
+          ref={inputEl}
+          type="text"
+          className="modal-demo-input"
+          placeholder="请输入文字"
+          onBlur={onBlur}
+        />
       </Modal>
     </div>
   );
 };
 story2.story = {
-  name: '销定背景模态框',
+  name: "销定背景模态框",
 };
 
 export const story3 = () => {
-  const position = text('模态框内容定位', 'center');
-  const isMask = boolean('是否有不透明背景', true);
+  const position = text("模态框内容定位", "center");
+  const isMask = boolean("是否有不透明背景", true);
 
   const popupModal = () => {
     const { destroy } = Modal.popup({
@@ -91,7 +115,9 @@ export const story3 = () => {
       position,
       isMask,
       isLock: true,
-      onHide: () => { destroy(); },
+      onHide: () => {
+        destroy();
+      },
     });
   };
 
@@ -99,11 +125,13 @@ export const story3 = () => {
     <div className="modal-demo-wrap">
       <div className="modal-demo-field" />
       <div className="modal-demo-btn-field">
-        <button className="modal-demo-btn" onClick={popupModal}>显示模态框</button>
+        <button className="modal-demo-btn" onClick={popupModal}>
+          显示模态框
+        </button>
       </div>
     </div>
   );
 };
 story3.story = {
-  name: '动态创建模态框',
+  name: "动态创建模态框",
 };

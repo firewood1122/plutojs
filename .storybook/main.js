@@ -1,12 +1,12 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-  stories: ['../story/**/*.jsx'],
+  stories: ["../story/**/*.jsx"],
   addons: [
-    '@storybook/addon-viewport',
-    '@storybook/addon-backgrounds',
-    '@storybook/addon-queryparams',
-    '@storybook/addon-knobs',
+    "@storybook/addon-viewport",
+    "@storybook/addon-backgrounds",
+    "@storybook/addon-queryparams",
+    "@storybook/addon-knobs",
     {
       name: "@storybook/addon-docs",
       options: {
@@ -14,11 +14,11 @@ module.exports = {
       },
     },
     {
-      name: '@storybook/addon-storysource',
+      name: "@storybook/addon-storysource",
       options: {
         rule: {
           test: /\.story\.jsx$/,
-          include: [path.resolve(__dirname, '../packages/')],
+          include: [path.resolve(__dirname, "../packages/")],
         },
         loaderOptions: {
           prettierConfig: { printWidth: 80, singleQuote: false },

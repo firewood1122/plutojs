@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { withQuery } from '@storybook/addon-queryparams';
-import Swipe from '@/swipe';
-import '@/swipe/build/index.css';
-import './story.css';
+import React, { useState } from "react";
+import { withKnobs } from "@storybook/addon-knobs";
+import { withQuery } from "@storybook/addon-queryparams";
+import Swipe from "@/swipe";
+import "@/swipe/build/index.css";
+import "./story.css";
 
 export default {
-  title: '滚动.Swipe 滑块',
+  title: "滚动.Swipe 滑块",
   component: Swipe,
   decorators: [withKnobs, withQuery],
   parameters: {
     backgrounds: [
-      { name: '默认背景', value: '#fff', default: true },
-      { name: '黑色背景', value: '#2f2f2f' },
+      { name: "默认背景", value: "#fff", default: true },
+      { name: "黑色背景", value: "#2f2f2f" },
     ],
   },
 };
@@ -27,5 +27,5 @@ export const story1 = () => {
   );
 };
 story1.story = {
-  name: '滑块',
+  name: "滑块",
 };
