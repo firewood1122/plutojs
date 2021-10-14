@@ -75,7 +75,7 @@ const Swipe = (props: PropsType) => {
     // 处理滑动超出上边界
     const { clientY } = e.touches[0];
     if (clientY < 0) {
-      handleTouchEnd(e);
+      handleTouchEnd();
       return;
     }
 
@@ -115,7 +115,7 @@ const Swipe = (props: PropsType) => {
   /**
    * 移动结束
    */
-  const handleTouchEnd = (e: TouchEvent) => {
+  const handleTouchEnd = () => {
     if (disabled) return;
 
     if (Math.abs(preY.current - startY.current) > 0) {

@@ -57,7 +57,7 @@
     "release": "lerna updated && lerna publish",
     "story": "start-storybook -p 9999",
     "build:story": "build-storybook -c .storybook -o .out",
-    "lint": "eslint packages --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint packages --ext .js,.jsx,.ts,.tsx --fix",
     "create": "node scripts/create.js"
   },
   "husky": {

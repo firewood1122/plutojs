@@ -31,7 +31,7 @@ export default class extends Component<PropsType, StateType> {
 
   static defaultProps = {
     callback: (second: number) => {
-      // do nothing
+      console.log(second);
     },
     renderChildren: (hour: number, min: number, second: number) => {
       return `${hour}小时${min}分${second}秒`;
@@ -54,7 +54,7 @@ export default class extends Component<PropsType, StateType> {
   componentWillUnmount() {
     window.clearTimeout(this.timer);
     this.timer = null;
-    this.setState = (state, callback) => {
+    this.setState = () => {
       return;
     };
   }

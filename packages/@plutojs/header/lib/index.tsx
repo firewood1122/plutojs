@@ -22,7 +22,7 @@ export default class extends Component<PropsType, StateType> {
     zIndex: 999,
   };
 
-  static getDerivedStateFromProps(props: PropsType, state: StateType) {
+  static getDerivedStateFromProps(props: PropsType) {
     const { hide } = props;
 
     // 默认微信&支付宝，不显示头部
