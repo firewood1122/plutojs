@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
-const style = require("./index.less");
+import style from "./index.less";
 
 interface PropsType {
   className?: string;

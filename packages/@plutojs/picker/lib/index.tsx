@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import Modal from "~/core/modal/lib";
-const style = require("./index.less");
+import style from "./index.less";
 
+interface GroupItemType {
+  text: string;
+  value: any;
+}
 interface GroupProps {
   containerHeight: number;
-  data: Array<{
-    text: string;
-    value: any;
-  }>;
+  data: Array<GroupItemType>;
   selected: any;
-  onChange: Function;
-  renderItem?: Function;
+  onChange: (item: GroupItemType) => void;
+  renderItem?: (item: GroupItemType, index: number) => React.ReactNode;
 }
 interface GroupState {
   translateY: number;
@@ -24,9 +25,9 @@ class Group extends Component<GroupProps, GroupState> {
 
   private scrollContainer: any = null; // 可滚动容器
   private item: any = null; // 第一个数据项对象，用于取出高度
-  private itemHeight: number = 0; // 数据项高度
-  private startY: number = 0; // 移动开始时Y座标
-  private lastMoveTime: number = 0; // 上次移动开始时间，用于节流
+  private itemHeight = 0; // 数据项高度
+  private startY = 0; // 移动开始时Y座标
+  private lastMoveTime = 0; // 上次移动开始时间，用于节流
 
   componentDidMount() {
     // 计算初始偏移值
@@ -206,7 +207,7 @@ interface PickerProps {
   items: Array<PickerItemType>;
   selected?: Array<PickerItemType>;
   group?: number;
-  renderItem?: Function;
+  renderItem?: (item: GroupItemType, index: number) => React.ReactNode;
   text?: {
     confirm: string;
     title: string;
@@ -223,7 +224,7 @@ interface PickerState {
 class Picker extends Component<PickerProps, PickerState> {
   private scrollContainer: any = null; // 可滚动容器
   private selected: Array<PickerItemType> = []; // 已选中数据
-  private updated: boolean = false; // 标识是否需更新
+  private updated = false; // 标识是否需更新
 
   state = {
     showGroup: false,
@@ -302,7 +303,7 @@ class Picker extends Component<PickerProps, PickerState> {
     group: number,
     items: Array<PickerItemType>,
     selected: Array<PickerItemType> = [],
-    index: number = 0
+    index = 0
   ) => {
     let groupItems = items ? [items] : [];
     if (index < group) {

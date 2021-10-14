@@ -14,9 +14,10 @@ interface PropsType {
   maxLength?: number;
   offsetTop?: number;
 }
-interface StateType {}
-const noop = () => {};
-export default class Input extends Component<PropsType, StateType> {
+const noop = () => {
+  // do nothing
+};
+export default class Input extends Component<PropsType> {
   static defaultProps = {
     type: "text",
     className: "",

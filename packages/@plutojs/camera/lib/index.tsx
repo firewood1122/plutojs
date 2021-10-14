@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-const style = require("./index.less");
+import style from "./index.less";
 
 interface PropsType {
   type?: string;
   text?: string;
-  onChange?: Function;
+  onChange?: (files: any) => void;
 }
-interface StateType {}
-export default class Camera extends Component<PropsType, StateType> {
+export default class Camera extends Component<PropsType> {
   static defaultProps = {
     type: "video",
     text: "开始录制",

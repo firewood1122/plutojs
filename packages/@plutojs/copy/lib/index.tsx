@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 
 /**
  * 选择节点

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-const style = require("./index.less");
+import style from "./index.less";
 
 interface PropsType {
   children: React.ReactChild[];
@@ -13,9 +13,8 @@ interface PropsType {
   transitionTime?: number;
   onChange?: () => void;
 }
-interface StateType {}
 
-export default class extends Component<PropsType, StateType> {
+export default class extends Component<PropsType> {
   private startX = 0; // 开始滑动位置
   private componentObj: any = null;
 
@@ -26,7 +25,9 @@ export default class extends Component<PropsType, StateType> {
     showThumbs: false,
     showIndicators: true,
     transitionTime: 150,
-    onChange: () => {},
+    onChange: () => {
+      // do nothing
+    },
   };
 
   componentDidMount() {

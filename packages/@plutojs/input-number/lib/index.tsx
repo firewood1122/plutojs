@@ -1,12 +1,12 @@
 import React, { Component, createRef } from "react";
-const style = require("./index.less");
+import style from "./index.less";
 
 interface PropsType {
   default?: number;
   min?: number;
   max?: number;
   keyboard?: boolean;
-  onChange: Function;
+  onChange: (count: number) => void;
 }
 interface StateType {
   count: number;
@@ -16,7 +16,9 @@ class InputNumber extends Component<PropsType, StateType> {
     min: 1,
     max: 0,
     keyboard: true,
-    onChange: () => {},
+    onChange: () => {
+      // do nothing
+    },
   };
 
   constructor(props) {
@@ -139,7 +141,7 @@ class InputNumber extends Component<PropsType, StateType> {
 
   render() {
     const { keyboard } = this.props;
-    let { count } = this.state;
+    const { count } = this.state;
 
     return (
       <div className={style.container}>

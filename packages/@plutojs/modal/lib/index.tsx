@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import React, { Component, createRef } from "react";
-const style = require("./index.less");
+import style from "./index.less";
 
 /**
  * 模态框管理器
@@ -70,7 +70,7 @@ const modalManager = new ModalManager();
 
 interface PropsType {
   children: React.ReactNode;
-  isOpened: Boolean;
+  isOpened: boolean;
   position?: "top" | "center" | "bottom";
   isMask?: boolean;
   isLock?: boolean;
@@ -112,17 +112,17 @@ class Modal extends Component<PropsType, StateType> {
     closeOnClickOverlay: true,
   };
 
-  public modalId: string = "";
+  public modalId = "";
   private modalEl: any = null;
   private contentEl: any = null;
-  private prePosition: string = ""; // 页面原定位方式
-  private scrollTop: number = 0; // 页面原滚动高度
-  private containerHeight: number = 0; // 浮层容器高度
+  private prePosition = ""; // 页面原定位方式
+  private scrollTop = 0; // 页面原滚动高度
+  private containerHeight = 0; // 浮层容器高度
 
   /**
    * 锁定/解锁页面滚动
    */
-  private setStyle = (isOpened: Boolean) => {
+  private setStyle = (isOpened: boolean) => {
     if (isOpened) {
       if (document.body.style.position === "fixed") return;
       this.scrollTop =
@@ -220,7 +220,9 @@ class Modal extends Component<PropsType, StateType> {
         try {
           ReactDOM.unmountComponentAtNode(div);
           document.body.removeChild(div);
-        } catch (err) {}
+        } catch (err) {
+          // do nothing
+        }
       },
     };
   };

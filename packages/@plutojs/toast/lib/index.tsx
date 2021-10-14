@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "~/core/modal/lib";
-const style = require("./index.less");
+import style from "./index.less";
 
 const getModal = (content: React.ReactNode, duration: number) => {
   const { destroy } = Modal.popup({
@@ -21,10 +21,10 @@ const getModal = (content: React.ReactNode, duration: number) => {
 };
 
 export default {
-  info: (text: string, duration: number = 2000) => {
+  info: (text: string, duration = 2000) => {
     getModal(<div className={style.info}>{text}</div>, duration);
   },
-  error: (err: Error, duration: number = 2000) => {
+  error: (err: Error, duration = 2000) => {
     getModal(<div className={style.info}>{err.toString()}</div>, duration);
   },
 };

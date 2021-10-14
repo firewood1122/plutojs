@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-const style = require("./index.less");
+import style from "./index.less";
 
 interface PropsType {
   title?: string;

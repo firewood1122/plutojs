@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-const style = require("./index.less");
+import style from "./index.less";
 
 export const SafeAreaBottom = class extends Component<any, any> {
   render() {

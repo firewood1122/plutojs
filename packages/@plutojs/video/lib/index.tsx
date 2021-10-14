@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Modal from "~/core/modal/lib";
-const style = require("./index.less");
+import style from "./index.less";
 
 interface PropsType {
   coverUrl: string;
@@ -11,12 +11,12 @@ interface PropsType {
   controls?: boolean;
   playsInline?: boolean;
   closeVideo?: boolean;
-  onClose?: Function;
-  onCloseFullscreenVideo?: (time: number) => {};
+  onClose?: () => void;
+  onCloseFullscreenVideo?: (time: number) => void;
   controlsList?: string;
   disablePictureInPicture?: boolean;
   disableFast?: boolean;
-  disableFastCallback?: Function;
+  disableFastCallback?: () => void;
 }
 interface StateType {
   initVideo: boolean;
@@ -38,8 +38,12 @@ export default class Video extends Component<PropsType, StateType> {
     controls: true,
     playsInline: true,
     closeVideo: false,
-    onClose: () => {},
-    onCloseFullscreenVideo: () => {},
+    onClose: () => {
+      // do nothing
+    },
+    onCloseFullscreenVideo: () => {
+      // do nothing
+    },
     controlsList: "",
     disablePictureInPicture: false,
     disableFast: false,
@@ -60,7 +64,7 @@ export default class Video extends Component<PropsType, StateType> {
   }
 
   private videoEl = null; // 视频对象
-  private last: number = 0; // 上一次时间
+  private last = 0; // 上一次时间
 
   /**
    * 占击播放视频
@@ -172,7 +176,13 @@ export default class Video extends Component<PropsType, StateType> {
         {videoUrl && initVideo && (
           <React.Fragment>
             {fullscreen ? (
-              <Modal isOpened={showVideo} isLock={true} onHide={() => {}}>
+              <Modal
+                isOpened={showVideo}
+                isLock={true}
+                onHide={() => {
+                  // do nothing
+                }}
+              >
                 <React.Fragment>
                   <div className={`${style.close}`}>
                     <div className={`${style.tips}`}>{fullscreenTips}</div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-const style = require("./index.less");
+import style from "./index.less";
 
 interface Props {
   startColor?: string;
@@ -80,7 +80,7 @@ const drawProcessBar = (
   options: ProcessBarType
 ) => {
   const { startColor, endColor, contentColor, barLineWidth, percent } = options;
-  let grd = ctx.createLinearGradient(canvas.width / 2, 0, 0, canvas.height);
+  const grd = ctx.createLinearGradient(canvas.width / 2, 0, 0, canvas.height);
   grd.addColorStop(0, startColor);
   grd.addColorStop(1, endColor);
 

@@ -30,11 +30,15 @@ export default class extends Component<PropsType, StateType> {
   private timer = null;
 
   static defaultProps = {
-    callback: (second: number) => {},
+    callback: (second: number) => {
+      // do nothing
+    },
     renderChildren: (hour: number, min: number, second: number) => {
       return `${hour}小时${min}分${second}秒`;
     },
-    done: () => {},
+    done: () => {
+      // do nothing
+    },
   };
 
   componentDidMount() {
@@ -57,7 +61,7 @@ export default class extends Component<PropsType, StateType> {
 
   private handleCountdown(leftSecond, callback) {
     const { done } = this.props;
-    let deadLine = Date.now() + leftSecond * 1000;
+    const deadLine = Date.now() + leftSecond * 1000;
     if (Date.now() < deadLine) {
       this.timer = window.setTimeout(() => {
         if (Date.now() < deadLine) {

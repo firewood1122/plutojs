@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-const style = require("./index.less");
+import style from "./index.less";
 
 interface PropsType {
   count: number; // 验证码位数
-  change: Function; // 输入回调方法
+  change: (val: string) => void; // 输入回调方法
 }
 interface StateType {
   value: Array<number>;
@@ -18,7 +18,9 @@ class InputCode extends Component<PropsType, StateType> {
 
   static defaultProps = {
     count: 4,
-    change: () => {},
+    change: () => {
+      // do nothing
+    },
   };
 
   private inputEl = null; // 输入框
