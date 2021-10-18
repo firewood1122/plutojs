@@ -2,17 +2,17 @@ import React from "react";
 import Modal from "~/core/modal/lib";
 import style from "./index.less";
 
-interface AlertOptions {
+export interface AlertOptions {
   text: string;
   customizeClass?: string;
   confirmText?: string;
   confirm: () => void;
 }
-interface AlertCustomizeOptions {
+export interface AlertCustomizeOptions {
   isMask?: boolean;
   closeOnClickOverlay?: boolean;
 }
-interface ConfirmOptions {
+export interface ConfirmOptions {
   text: string;
   customizeClass?: string;
   confirmText: string;

@@ -17,38 +17,41 @@ export default {
   },
 };
 
-export const story1 = () => (
-  <div className="dialog-demo-btn-field">
-    <button
-      className="dialog-demo-btn"
-      onClick={() => {
-        Dialog.alert("这是一个Alert对话框，通常用于二次确认", () => {
-          alert("点击了确定");
-        });
-      }}
-    >
-      Alert对话框
-    </button>
-  </div>
-);
-story1.story = {
-  name: "Alert对话框",
-};
+export const story1 = () => {
+  const alertOptions = {
+    text: "这是一个Alert对话框，通常用于二次确认",
+    confirm: () => {
+      alert("点击了确定");
+    },
+  };
+  const confirmOptions = {
+    text: "这是一个Confirm对话框，通常用于二次确认",
+    confirm: () => {
+      alert("点击了确定");
+    },
+  };
 
-export const story2 = () => (
-  <div className="dialog-demo-btn-field">
-    <button
-      className="dialog-demo-btn"
-      onClick={() => {
-        Dialog.confirm("这是一个Confirm对话框，通常用于二次确认", () => {
-          alert("点击了确定");
-        });
-      }}
-    >
-      Confirm对话框
-    </button>
-  </div>
-);
-story2.story = {
-  name: "Confirm对话框",
+  return (
+    <div className="dialog-demo-field">
+      <button
+        className="dialog-demo-field-btn"
+        onClick={() => {
+          Dialog.alert(alertOptions);
+        }}
+      >
+        Alert对话框
+      </button>
+      <button
+        className="dialog-demo-field-btn"
+        onClick={() => {
+          Dialog.confirm(confirmOptions);
+        }}
+      >
+        Confirm对话框
+      </button>
+    </div>
+  );
+};
+story1.story = {
+  name: "Dialog对话框",
 };

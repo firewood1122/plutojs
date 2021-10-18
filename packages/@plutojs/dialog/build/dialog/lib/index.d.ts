@@ -1,15 +1,15 @@
 import React from "react";
-interface AlertOptions {
+export interface AlertOptions {
     text: string;
     customizeClass?: string;
     confirmText?: string;
     confirm: () => void;
 }
-interface AlertCustomizeOptions {
+export interface AlertCustomizeOptions {
     isMask?: boolean;
     closeOnClickOverlay?: boolean;
 }
-interface ConfirmOptions {
+export interface ConfirmOptions {
     text: string;
     customizeClass?: string;
     confirmText: string;
@@ -25,4 +25,3 @@ export default class {
     static alertCustomize(customize: (destroy: () => void) => React.ReactNode, options?: AlertCustomizeOptions): void;
     static confirm(options: ConfirmOptions): void;
 }
-export {};
