@@ -103,10 +103,10 @@ export default class {
    * @returns
    */
   static alertCustomize(
-    customize: (destroy: () => void) => React.ReactNode,
+    customize: () => React.ReactNode,
     options: AlertCustomizeOptions = {}
   ) {
-    const content = customize && customize(this.destroy);
+    const content = customize && customize();
     if (!content) return;
     this.destroy();
     this.getModal(content, options);

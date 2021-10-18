@@ -22,6 +22,6 @@ export default class {
     static destroy(): void;
     static getModal(content: React.ReactNode, options?: AlertCustomizeOptions): void;
     static alert(options: AlertOptions): void;
-    static alertCustomize(customize: (destroy: () => void) => React.ReactNode, options?: AlertCustomizeOptions): void;
+    static alertCustomize(customize: () => React.ReactNode, options?: AlertCustomizeOptions): void;
     static confirm(options: ConfirmOptions): void;
 }
