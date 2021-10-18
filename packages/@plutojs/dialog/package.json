@@ -1,6 +1,6 @@
 {
   "name": "@plutojs/dialog",
-  "version": "1.2.7",
+  "version": "2.0.0",
   "description": "Dialog 对话框组件",
   "keywords": [
     "Dialog"
