@@ -1,11 +1,28 @@
-import React from 'react';
-interface PropsType {
+import React from "react";
+interface AlertOptions {
+    text: string;
+    customizeClass?: string;
+    confirmText?: string;
+    confirm: () => void;
+}
+interface AlertCustomizeOptions {
     isMask?: boolean;
     closeOnClickOverlay?: boolean;
 }
-declare const _default: {
-    alert: (text: string, confirm: () => void, confirmText?: string, customizeClass?: string) => void;
-    alertCustomize: (customize: (destroy: () => void) => React.ReactNode, options?: PropsType) => void;
-    confirm: (text: string, confirm: () => void, cancelText?: string, confirmText?: string, cancel?: () => void) => void;
-};
-export default _default;
+interface ConfirmOptions {
+    text: string;
+    customizeClass?: string;
+    confirmText: string;
+    cancelText: string;
+    confirm: () => void;
+    cancel: () => void;
+}
+export default class {
+    static modal: any;
+    static destroy(): void;
+    static getModal(content: React.ReactNode, options?: AlertCustomizeOptions): void;
+    static alert(options: AlertOptions): void;
+    static alertCustomize(customize: (destroy: () => void) => React.ReactNode, options?: AlertCustomizeOptions): void;
+    static confirm(options: ConfirmOptions): void;
+}
+export {};

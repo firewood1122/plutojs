@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 interface PropsType {
     children: React.ReactNode;
-    isOpened: Boolean;
-    position?: 'top' | 'center' | 'bottom';
+    isOpened: boolean;
+    position?: "top" | "center" | "bottom";
     isMask?: boolean;
     isLock?: boolean;
     closeOnClickOverlay?: boolean;
@@ -12,7 +12,7 @@ interface PropsType {
 }
 interface StateType {
     height: number;
-    visibility: 'visible' | 'hidden';
+    visibility: "visible" | "hidden";
 }
 declare class Modal extends Component<PropsType, StateType> {
     constructor(props: PropsType);
@@ -37,7 +37,7 @@ declare class Modal extends Component<PropsType, StateType> {
     static popup: (properties: any) => {
         destroy(): void;
     };
-    setVisibility: (visibility: 'visible' | 'hidden') => void;
+    setVisibility: (visibility: "visible" | "hidden") => void;
     render(): JSX.Element;
 }
 export default Modal;

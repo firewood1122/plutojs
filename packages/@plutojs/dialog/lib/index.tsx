@@ -2,50 +2,77 @@ import React from "react";
 import Modal from "~/core/modal/lib";
 import style from "./index.less";
 
-let modal = null;
-
-interface PropsType {
+interface AlertOptions {
+  text: string;
+  customizeClass?: string;
+  confirmText?: string;
+  confirm: () => void;
+}
+interface AlertCustomizeOptions {
   isMask?: boolean;
   closeOnClickOverlay?: boolean;
 }
+interface ConfirmOptions {
+  text: string;
+  customizeClass?: string;
+  confirmText: string;
+  cancelText: string;
+  confirm: () => void;
+  cancel: () => void;
+}
+const emptyFunction = () => {
+  // do nothing
+};
 
-/**
- * 销毁对话框
- */
-const destroy = () => {
-  if (modal) {
-    modal.destroy();
-    modal = null;
+export default class {
+  static modal = null;
+
+  /**
+   * 销毁对话框
+   */
+  static destroy() {
+    if (this.modal) {
+      this.modal.destroy();
+      this.modal = null;
+    }
   }
-};
 
-/**
- * 显示对话框
- *
- * @param content
- */
-const getModal = (content: React.ReactNode, options: PropsType = {}) => {
-  const opts = {
-    children: content,
-    isOpened: true,
-    isMask: true,
-    isLock: true,
-    closeOnClickOverlay: true,
-    onHide: () => {
-      destroy();
-    },
-    ...options,
-  };
-  modal = Modal.popup(opts);
-};
+  /**
+   * 显示对话框
+   *
+   * @param content
+   */
+  static getModal(
+    content: React.ReactNode,
+    options: AlertCustomizeOptions = {}
+  ) {
+    const opts = {
+      children: content,
+      isOpened: true,
+      isMask: true,
+      isLock: true,
+      closeOnClickOverlay: true,
+      onHide: () => {
+        this.destroy();
+      },
+      ...options,
+    };
+    this.modal = Modal.popup(opts);
+  }
 
-export default {
-  alert: (
-    text: string,
-    confirm: () => void,
-    confirmText = "确定",
-    customizeClass = ""
-  ) => {
+  /**
+   * 提示对话框
+   *
+   * @param options
+   */
+  static alert(options: AlertOptions) {
+    const {
+      text,
+      confirm,
+      confirmText = "确定",
+      customizeClass = "",
+    }: AlertOptions = options;
+
     const content = (
       <div className={`${style.container} ${customizeClass}`}>
         <div className={style.text}>{text}</div>
@@ -56,7 +83,7 @@ export default {
             className={style.alertBtn}
             onClick={() => {
               confirm();
-              destroy();
+              this.destroy();
             }}
           >
             {confirmText}
@@ -64,29 +91,43 @@ export default {
         </div>
       </div>
     );
-    destroy();
-    getModal(content);
-  },
-  alertCustomize: (
+    this.destroy();
+    this.getModal(content);
+  }
+
+  /**
+   * 可定制的提示对话框
+   *
+   * @param customize
+   * @param options
+   * @returns
+   */
+  static alertCustomize(
     customize: (destroy: () => void) => React.ReactNode,
-    options: PropsType = {}
-  ) => {
-    const content = customize && customize(destroy);
+    options: AlertCustomizeOptions = {}
+  ) {
+    const content = customize && customize(this.destroy);
     if (!content) return;
-    destroy();
-    getModal(content, options);
-  },
-  confirm: (
-    text: string,
-    confirm: () => void,
-    cancelText = "取消",
-    confirmText = "确定",
-    cancel = () => {
-      /* do nothing */
-    }
-  ) => {
+    this.destroy();
+    this.getModal(content, options);
+  }
+
+  /**
+   * 确认对话框
+   *
+   * @param options
+   */
+  static confirm(options: ConfirmOptions) {
+    const {
+      text,
+      customizeClass = "",
+      confirmText = "确定",
+      cancelText = "取消",
+      confirm,
+      cancel = emptyFunction,
+    } = options;
     const content = (
-      <div className={style.container}>
+      <div className={`${style.container} ${customizeClass}`}>
         <div className={style.text}>{text}</div>
         <div className={style.btnContainer}>
           <div
@@ -95,7 +136,7 @@ export default {
             className={style.cancelBtn}
             onClick={() => {
               cancel();
-              destroy();
+              this.destroy();
             }}
           >
             {cancelText}
@@ -106,7 +147,7 @@ export default {
             className={style.confirmBtn}
             onClick={() => {
               confirm();
-              destroy();
+              this.destroy();
             }}
           >
             {confirmText}
@@ -114,7 +155,7 @@ export default {
         </div>
       </div>
     );
-    destroy();
-    getModal(content);
-  },
-};
+    this.destroy();
+    this.getModal(content);
+  }
+}

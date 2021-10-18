@@ -64,29 +64,29 @@
   color: #000;
 }
 .plutojs_dialog_btnContainer {
-  border-top: 1px solid #EDEDED;
+  border-top: 1px solid #ededed;
   /*no*/
   display: flex;
   justify-content: space-between;
   line-height: 36px;
   font-size: 32px;
   text-align: center;
-  color: #0F1520;
+  color: #0f1520;
 }
 .plutojs_dialog_cancelBtn {
   width: 50%;
   padding: 30px 0;
-  border-right: 1px solid #EDEDED;
+  border-right: 1px solid #ededed;
   /*no*/
 }
 .plutojs_dialog_alertBtn {
   width: 100%;
   padding: 30px 0;
-  color: #32ADEA;
+  color: #32adea;
 }
 .plutojs_dialog_confirmBtn {
   width: 50%;
   padding: 30px 0;
-  color: #32ADEA;
+  color: #32adea;
 }
 
