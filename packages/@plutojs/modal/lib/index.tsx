@@ -150,10 +150,12 @@ class Modal extends Component<PropsType, StateType> {
       this.prePosition = document.body.style.position;
       this.setStyle(isOpened);
     }
-    this.setState({
-      height:
-        document.documentElement.clientHeight || document.body.clientHeight,
-    });
+    setTimeout(() => {
+      this.setState({
+        height:
+          document.documentElement.clientHeight || document.body.clientHeight,
+      });
+    }, 100);
 
     // 安卓机型，键盘弹出/收起时，重新计算高度
     const userAgent = window.navigator.userAgent.toLowerCase();
