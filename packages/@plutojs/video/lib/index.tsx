@@ -63,6 +63,8 @@ export default class Video extends Component<PropsType, StateType> {
     }
   }
 
+  private start = false; // 标识是否开始播放视频
+  private canEnded = false; // 标识是否可以响应结束播放视频
   private videoEl = null; // 视频对象
   private last = 0; // 上一次时间
 
@@ -78,6 +80,7 @@ export default class Video extends Component<PropsType, StateType> {
       },
       () => {
         if (this.videoEl) {
+          this.start = true;
           this.last = currentTime;
           this.videoEl.play(); // 自动播放
         }
@@ -108,6 +111,10 @@ export default class Video extends Component<PropsType, StateType> {
    * 响应结束播放视频
    */
   private onEnded = () => {
+    if (this.start && !this.canEnded) {
+      this.canEnded = true;
+      return;
+    }
     const { onClose } = this.props;
     this.setState({
       showVideo: false,
@@ -116,6 +123,8 @@ export default class Video extends Component<PropsType, StateType> {
     if (this.videoEl) {
       this.videoEl.pause();
       this.videoEl.currentTime = 0;
+      this.start = false;
+      this.canEnded = false;
     }
   };
 
