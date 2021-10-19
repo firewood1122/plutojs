@@ -35,8 +35,6 @@ export default class Video extends Component<PropsType, StateType> {
         disableFast: boolean;
     };
     componentDidUpdate(prevProps: PropsType): void;
-    private start;
-    private canEnded;
     private videoEl;
     private last;
     private play;
