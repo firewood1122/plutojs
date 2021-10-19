@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component } from "react";
 interface PropsType {
     coverUrl: string;
     videoUrl: string;
@@ -8,12 +8,12 @@ interface PropsType {
     controls?: boolean;
     playsInline?: boolean;
     closeVideo?: boolean;
-    onClose?: Function;
-    onCloseFullscreenVideo?: (time: number) => {};
+    onClose?: () => void;
+    onCloseFullscreenVideo?: (time: number) => void;
     controlsList?: string;
     disablePictureInPicture?: boolean;
     disableFast?: boolean;
-    disableFastCallback?: Function;
+    disableFastCallback?: () => void;
 }
 interface StateType {
     initVideo: boolean;
@@ -35,6 +35,8 @@ export default class Video extends Component<PropsType, StateType> {
         disableFast: boolean;
     };
     componentDidUpdate(prevProps: PropsType): void;
+    private start;
+    private canEnded;
     private videoEl;
     private last;
     private play;
