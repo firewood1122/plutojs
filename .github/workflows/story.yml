@@ -30,7 +30,7 @@ jobs:
       uses: crazy-max/ghaction-github-pages@v2.5.0
       with:
         # GitHub repository where assets will be deployed (default $GITHUB_REPOSITORY)
-        repo: firewood1122/pluto.smallpig.cn.git
+        repo: firewood1122/pluto.smallpig.cn
         # Git branch where assets will be deployed
         target_branch: master
         # Build directory to deploy
