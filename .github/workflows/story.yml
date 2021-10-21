@@ -1,0 +1,47 @@
+name: Plutojs story
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+    
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install -g yarn
+    - name: Build
+      run: |
+        yarn
+        yarn run build:story
+    - name: GitHub Pages
+      uses: crazy-max/ghaction-github-pages@v2.5.0
+      with:
+        # GitHub repository where assets will be deployed (default $GITHUB_REPOSITORY)
+        repo: git@github.com:firewood1122/pluto.smallpig.cn.git
+        # Git branch where assets will be deployed
+        target_branch: master
+        # Build directory to deploy
+        build_dir: .out
+        # The committer name and email address
+        committer: firewood_1122@163.com
+        # The author name and email address
+        author: firewood
+        # Write the given domain name to the CNAME file
+        fqdn: pluto.smallpig.cn
+        # If enabled, nothing will be pushed
+        dry_run: true
+        # Enable verbose output
+        verbose: true
