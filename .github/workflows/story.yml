@@ -36,9 +36,9 @@ jobs:
         # Build directory to deploy
         build_dir: .out
         # The committer name and email address
-        committer: firewood_1122@163.com
+        committer: firewood1122,firewood_1122@163.com
         # The author name and email address
-        author: firewood firewood_1122@163.com
+        author: firewood1122,firewood_1122@163.com
         # Write the given domain name to the CNAME file
         fqdn: pluto.smallpig.cn
         # If enabled, nothing will be pushed
