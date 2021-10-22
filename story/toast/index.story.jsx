@@ -20,34 +20,26 @@ export default {
 export const story1 = () => {
   const name = text("提示内容", "你点击了按钮");
   return (
-    <div className="toast-demo-btn-field">
+    <div className="toast-demo-field">
       <button
-        className="toast-demo-btn"
+        className="toast-demo-field-btn"
         onClick={() => {
           Toast.info(name);
         }}
       >
-        点击弹出提示
+        普通提示
+      </button>
+      <button
+        className="toast-demo-field-btn"
+        onClick={() => {
+          Toast.error(new Error("发生了错误"));
+        }}
+      >
+        错误提示
       </button>
     </div>
   );
 };
 story1.story = {
-  name: "INFO文字提示",
-};
-
-export const story2 = () => (
-  <div className="toast-demo-btn-field">
-    <button
-      className="toast-demo-btn"
-      onClick={() => {
-        Toast.error(new Error("发生了错误"));
-      }}
-    >
-      点击弹出提示
-    </button>
-  </div>
-);
-story2.story = {
-  name: "ERROR文字提示",
+  name: "文字提示",
 };

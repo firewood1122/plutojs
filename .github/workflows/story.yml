@@ -42,6 +42,6 @@ jobs:
         # Write the given domain name to the CNAME file
         fqdn: pluto.smallpig.cn
         # If enabled, nothing will be pushed
-        dry_run: true
+        dry_run: false 
         # Enable verbose output
         verbose: true
