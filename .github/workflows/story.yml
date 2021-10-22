@@ -2,9 +2,9 @@ name: Plutojs story
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
@@ -13,36 +13,26 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x]
-    
-    steps:
-    - uses: actions/checkout@v2
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install -g yarn
-    - name: Build
-      run: |
-        yarn
-        yarn run build:story
-    - name: GitHub Pages
-      uses: crazy-max/ghaction-github-pages@v2.5.0
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        # GitHub repository where assets will be deployed (default $GITHUB_REPOSITORY)
-        repo: firewood1122/pluto.smallpig.cn
-        # Git branch where assets will be deployed
-        target_branch: master
-        # Build directory to deploy
-        build_dir: .out
-        # The committer name and email address
-        committer: firewood1122,firewood_1122@163.com
-        # The author name and email address
-        author: firewood1122,firewood_1122@163.com
-        # Write the given domain name to the CNAME file
-        fqdn: pluto.smallpig.cn
-        # If enabled, nothing will be pushed
-        dry_run: false 
-        # Enable verbose output
-        verbose: true
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install -g yarn
+
+      - name: Build
+        run: |
+          yarn
+          yarn run build:story
+
+      - name: GitHub Pages action
+        uses: peaceiris/actions-gh-pages@v3.7.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: .out
+          user_name: firewood1122
+          user_email: firewood_1122@163.com
+          cname: pluto.smallpig.cn
