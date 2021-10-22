@@ -29,6 +29,7 @@ jobs:
     - name: GitHub Pages
       uses: crazy-max/ghaction-github-pages@v2.5.0
       with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
         # GitHub repository where assets will be deployed (default $GITHUB_REPOSITORY)
         repo: firewood1122/pluto.smallpig.cn
         # Git branch where assets will be deployed
