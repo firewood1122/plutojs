@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[49],{1457:function(module,exports){module.exports=function(hljs){var commentMode=hljs.COMMENT(/\(\*/,/\*\)/);return{illegal:/\S/,contains:[commentMode,{className:"attribute",begin:/^[ ]*[a-zA-Z][a-zA-Z-_]*([\s-_]+[a-zA-Z][a-zA-Z]*)*/},{begin:/=/,end:/[.;]/,contains:[commentMode,{className:"meta",begin:/\?.*\?/},{className:"string",variants:[hljs.APOS_STRING_MODE,hljs.QUOTE_STRING_MODE,{begin:"`",end:"`"}]}]}]}}}}]);
-//# sourceMappingURL=react-syntax-highlighter_languages_highlight_ebnf.972e71e6c348661754d1.bundle.js.map
