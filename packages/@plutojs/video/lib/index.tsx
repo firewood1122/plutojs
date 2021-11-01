@@ -70,7 +70,6 @@ export default class Video extends Component<PropsType, StateType> {
    * 占击播放视频
    */
   private play = () => {
-    const { currentTime }: PropsType = this.props;
     this.setState(
       {
         showVideo: true,
@@ -78,7 +77,9 @@ export default class Video extends Component<PropsType, StateType> {
       },
       () => {
         if (this.videoEl) {
+          const currentTime = this.videoEl.currentTime || 0;
           this.last = currentTime;
+          this.videoEl.currentTime = currentTime;
           this.videoEl.play(); // 自动播放
         }
       }
