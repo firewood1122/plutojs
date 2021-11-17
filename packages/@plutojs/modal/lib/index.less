@@ -37,9 +37,22 @@
     transform: scale(1);
   }
 }
+@keyframes slideOutContent {
+  from {
+    transform: opacity(0);
+  }
+  to {
+    transform: opacity(1);
+  }
+}
 .content {
   position: relative;
+}
+.popUp {
   animation: popUpContent 0.5s;
+}
+.slideOut {
+  animation: slideOutContent 0.5s;
 }
 .center {
   justify-content: center;

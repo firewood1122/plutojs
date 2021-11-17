@@ -77,6 +77,7 @@ interface PropsType {
   closeOnClickOverlay?: boolean;
   zIndex?: number;
   target?: React.RefObject<HTMLElement>;
+  transition?: string;
   onHide: () => void;
 }
 interface StateType {
@@ -249,9 +250,17 @@ class Modal extends Component<PropsType, StateType> {
       isLock,
       closeOnClickOverlay,
       zIndex,
+      transition = "popup",
       onHide,
     }: PropsType = this.props;
     const { height, visibility } = this.state;
+
+    const contentClassName = [style.content];
+    if (transition === "popup") {
+      contentClassName.push(style.popUp);
+    } else {
+      contentClassName.push(style.slideOut);
+    }
 
     return (
       <React.Fragment>
@@ -268,7 +277,7 @@ class Modal extends Component<PropsType, StateType> {
           >
             <div
               ref={this.contentEl}
-              className={style.content}
+              className={contentClassName.join(" ")}
               onClick={(e) => {
                 e.stopPropagation();
               }}

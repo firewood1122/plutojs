@@ -37,9 +37,22 @@
     transform: scale(1);
   }
 }
+@keyframes plutojs_modal_slideOutContent {
+  from {
+    transform: opacity(0);
+  }
+  to {
+    transform: opacity(1);
+  }
+}
 .plutojs_modal_content {
   position: relative;
+}
+.plutojs_modal_popUp {
   animation: plutojs_modal_popUpContent 0.5s;
+}
+.plutojs_modal_slideOut {
+  animation: plutojs_modal_slideOutContent 0.5s;
 }
 .plutojs_modal_center {
   justify-content: center;

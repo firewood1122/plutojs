@@ -1,3 +1,8 @@
+import React from "react";
+interface GroupItemType {
+    text: string;
+    value: any;
+}
 interface PickerItemType {
     text: string;
     value: any;
@@ -10,7 +15,7 @@ interface PickerProps {
     items: Array<PickerItemType>;
     selected?: Array<PickerItemType>;
     group?: number;
-    renderItem?: Function;
+    renderItem?: (item: GroupItemType, index: number) => React.ReactNode;
     text?: {
         confirm: string;
         title: string;

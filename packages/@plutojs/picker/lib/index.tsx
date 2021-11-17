@@ -14,17 +14,19 @@ interface GroupProps {
   renderItem?: (item: GroupItemType, index: number) => React.ReactNode;
 }
 interface GroupState {
+  show: boolean;
   translateY: number;
   selected: number;
 }
 class Group extends Component<GroupProps, GroupState> {
   state = {
+    show: false,
     translateY: 0,
     selected: 0,
   };
 
-  private scrollContainer: any = null; // 可滚动容器
-  private item: any = null; // 第一个数据项对象，用于取出高度
+  private scrollContainer: HTMLElement = null; // 可滚动容器
+  private item: HTMLElement = null; // 第一个数据项对象，用于取出高度
   private itemHeight = 0; // 数据项高度
   private startY = 0; // 移动开始时Y座标
   private lastMoveTime = 0; // 上次移动开始时间，用于节流
@@ -32,6 +34,9 @@ class Group extends Component<GroupProps, GroupState> {
   componentDidMount() {
     // 计算初始偏移值
     this.setTranslateY();
+    this.setState({
+      show: true,
+    });
   }
 
   componentDidUpdate(preProps: GroupProps) {
@@ -159,14 +164,18 @@ class Group extends Component<GroupProps, GroupState> {
 
   render() {
     const { data, renderItem } = this.props;
-    const { translateY } = this.state;
+    const { show, translateY } = this.state;
     const transfromStyle = {
       transform: `translate3d(0px, ${translateY}px, 0px)`,
     }; // 选择框偏移量
 
+    // 是否可以显示
+    const className = [style.groupOuterContainer];
+    if (!show) className.push(style.hidden);
+
     return (
       <div
-        className={style.groupOuterContainer}
+        className={className.join(" ")}
         onTouchStart={this.onTouchStart}
         onTouchMove={this.onTouchMove}
         onTouchEnd={this.onTouchEnd}
@@ -220,16 +229,17 @@ interface PickerState {
   showGroup: boolean;
   containerHeight: number;
   groupItems: Array<Array<PickerItemType>>;
+  selected: Array<PickerItemType>;
 }
 class Picker extends Component<PickerProps, PickerState> {
-  private scrollContainer: any = null; // 可滚动容器
-  private selected: Array<PickerItemType> = []; // 已选中数据
+  private scrollContainer: HTMLElement = null; // 可滚动容器
   private updated = false; // 标识是否需更新
 
   state = {
     showGroup: false,
     containerHeight: 0,
     groupItems: [],
+    selected: [], // 已选中数据
   };
 
   static defaultProps = {
@@ -251,12 +261,16 @@ class Picker extends Component<PickerProps, PickerState> {
     let groupItems = [];
     if (selected.length > 0) {
       // 默认选中
-      this.selected = selected;
+      this.setState({
+        selected,
+      });
       groupItems = this.initGroupItems(group, items, selected);
     } else {
       // 没有默认选中
       groupItems = this.initGroupItems(group, items);
-      this.selected = this.initSelected(groupItems);
+      this.setState({
+        selected: this.initSelected(groupItems),
+      });
     }
 
     this.setState({
@@ -276,8 +290,10 @@ class Picker extends Component<PickerProps, PickerState> {
       const { group, items, selected } = this.props;
       let { groupItems } = this.state;
 
-      this.selected =
-        selected.length > 0 ? selected : this.initSelected(groupItems);
+      this.setState({
+        selected:
+          selected.length > 0 ? selected : this.initSelected(groupItems),
+      });
       if (selected.length > 0)
         groupItems = this.initGroupItems(group, items, selected);
 
@@ -336,7 +352,8 @@ class Picker extends Component<PickerProps, PickerState> {
    * 响应选中单个选择器
    */
   private onChange = (item: PickerItemType, index: number) => {
-    if (index < this.selected.length - 1) {
+    const { selected } = this.state;
+    if (index < selected.length - 1) {
       // 处理列数据项
       const { group } = this.props;
       const { groupItems } = this.state;
@@ -348,16 +365,20 @@ class Picker extends Component<PickerProps, PickerState> {
       });
 
       // 处理选中数据
-      this.selected = this.selected
-        .slice(0, index)
-        .concat([item])
-        .concat(this.initSelected(newGroupItems).slice(index + 1));
+      this.setState({
+        selected: selected
+          .slice(0, index)
+          .concat([item])
+          .concat(this.initSelected(newGroupItems).slice(index + 1)),
+      });
     } else {
       // 处理选中数据
-      this.selected = this.selected
-        .slice(0, index)
-        .concat([item])
-        .concat(this.selected.slice(index + 1));
+      this.setState({
+        selected: selected
+          .slice(0, index)
+          .concat([item])
+          .concat(selected.slice(index + 1)),
+      });
     }
   };
 
@@ -378,10 +399,15 @@ class Picker extends Component<PickerProps, PickerState> {
       className = "",
       renderBottom,
     } = this.props;
-    const { showGroup, containerHeight, groupItems } = this.state;
+    const { showGroup, containerHeight, groupItems, selected } = this.state;
 
     return (
-      <Modal isOpened={true} position="bottom" onHide={this.cancel}>
+      <Modal
+        isOpened={true}
+        position="bottom"
+        onHide={this.cancel}
+        transition="slideOut"
+      >
         <div className={`${style.container} ${className}`}>
           <div className={`${style.action}`}>
             <div className={`${style.cancel}`} onClick={this.cancel}>
@@ -391,7 +417,7 @@ class Picker extends Component<PickerProps, PickerState> {
             <div
               className={`${style.confirm}`}
               onClick={() => {
-                onConfirm && onConfirm(this.selected);
+                onConfirm && onConfirm(selected);
               }}
             >
               {text.confirm}
@@ -412,9 +438,7 @@ class Picker extends Component<PickerProps, PickerState> {
                       key={`item-${index}`}
                       containerHeight={containerHeight}
                       data={items}
-                      selected={
-                        this.selected[index] ? this.selected[index].value : null
-                      }
+                      selected={selected[index] ? selected[index].value : null}
                       onChange={(item: PickerItemType) => {
                         this.onChange(item, index);
                       }}
@@ -427,7 +451,7 @@ class Picker extends Component<PickerProps, PickerState> {
           </div>
           {renderBottom &&
             renderBottom(() => {
-              onConfirm(this.selected);
+              onConfirm(selected);
             })}
         </div>
       </Modal>
