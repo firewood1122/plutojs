@@ -48,6 +48,13 @@ export default class Input extends Component<PropsType> {
     }, 500);
   };
 
+  /**
+   * 清空输入框
+   */
+  clear() {
+    this.inputEl.value = "";
+  }
+
   render() {
     const {
       type,

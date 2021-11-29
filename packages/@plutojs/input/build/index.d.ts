@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 interface PropsType {
     type: string;
     value: string;
@@ -9,9 +9,7 @@ interface PropsType {
     maxLength?: number;
     offsetTop?: number;
 }
-interface StateType {
-}
-export default class Input extends Component<PropsType, StateType> {
+export default class Input extends Component<PropsType> {
     static defaultProps: {
         type: string;
         className: string;
@@ -22,6 +20,7 @@ export default class Input extends Component<PropsType, StateType> {
     };
     private inputEl;
     private onFocus;
+    clear(): void;
     render(): JSX.Element;
 }
 export {};

@@ -37,9 +37,22 @@
     transform: scale(1);
   }
 }
+@keyframes plutojs_dialog_slideOutContent {
+  from {
+    transform: opacity(0);
+  }
+  to {
+    transform: opacity(1);
+  }
+}
 .plutojs_dialog_content {
   position: relative;
+}
+.plutojs_dialog_popUp {
   animation: plutojs_dialog_popUpContent 0.5s;
+}
+.plutojs_dialog_slideOut {
+  animation: plutojs_dialog_slideOutContent 0.5s;
 }
 .plutojs_dialog_center {
   justify-content: center;

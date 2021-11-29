@@ -23,12 +23,14 @@ export const story1 = () => {
     confirm: () => {
       alert("点击了确定");
     },
+    closeOnClickOverlay: false,
   };
   const confirmOptions = {
     text: "这是一个Confirm对话框，通常用于二次确认",
     confirm: () => {
       alert("点击了确定");
     },
+    closeOnClickOverlay: false,
   };
 
   return (

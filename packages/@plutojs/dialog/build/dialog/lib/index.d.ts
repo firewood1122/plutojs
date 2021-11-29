@@ -4,6 +4,7 @@ export interface AlertOptions {
     customizeClass?: string;
     confirmText?: string;
     confirm: () => void;
+    closeOnClickOverlay?: boolean;
 }
 export interface AlertCustomizeOptions {
     isMask?: boolean;
@@ -16,6 +17,7 @@ export interface ConfirmOptions {
     cancelText: string;
     confirm: () => void;
     cancel: () => void;
+    closeOnClickOverlay?: boolean;
 }
 export default class {
     static modal: any;

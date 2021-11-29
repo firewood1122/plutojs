@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { withQuery } from "@storybook/addon-queryparams";
 import Input from "@/input";
@@ -17,16 +17,30 @@ export default {
 };
 
 export const story1 = () => {
+  const input = useRef(null);
   const [text, setText] = useState("");
+
   return (
     <div className="input-demo-field">
       <div className="text">{text}</div>
       <div>
         <Input
+          ref={(item) => (input.current = item)}
           type="textarea"
           value={text}
-          onChange={(e) => setText(e.target.value)}
+          onChange={(e) => {
+            setText(e.target.value);
+          }}
         />
+      </div>
+      <div
+        className="clear"
+        onClick={() => {
+          input.current.clear();
+          setText("");
+        }}
+      >
+        点击清空
       </div>
     </div>
   );

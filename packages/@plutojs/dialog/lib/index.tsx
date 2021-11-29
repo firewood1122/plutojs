@@ -7,6 +7,7 @@ export interface AlertOptions {
   customizeClass?: string;
   confirmText?: string;
   confirm: () => void;
+  closeOnClickOverlay?: boolean;
 }
 export interface AlertCustomizeOptions {
   isMask?: boolean;
@@ -19,6 +20,7 @@ export interface ConfirmOptions {
   cancelText: string;
   confirm: () => void;
   cancel: () => void;
+  closeOnClickOverlay?: boolean;
 }
 const emptyFunction = () => {
   // do nothing
@@ -71,6 +73,7 @@ export default class {
       confirm,
       confirmText = "确定",
       customizeClass = "",
+      closeOnClickOverlay = true,
     }: AlertOptions = options;
 
     const content = (
@@ -92,7 +95,7 @@ export default class {
       </div>
     );
     this.destroy();
-    this.getModal(content);
+    this.getModal(content, { closeOnClickOverlay });
   }
 
   /**
@@ -125,6 +128,7 @@ export default class {
       cancelText = "取消",
       confirm,
       cancel = emptyFunction,
+      closeOnClickOverlay = true,
     } = options;
     const content = (
       <div className={`${style.container} ${customizeClass}`}>
@@ -156,6 +160,6 @@ export default class {
       </div>
     );
     this.destroy();
-    this.getModal(content);
+    this.getModal(content, { closeOnClickOverlay });
   }
 }
