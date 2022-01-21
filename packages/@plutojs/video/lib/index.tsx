@@ -77,7 +77,7 @@ export default class Video extends Component<PropsType, StateType> {
       },
       () => {
         if (this.videoEl) {
-          const currentTime = this.videoEl.currentTime || 0;
+          const currentTime = this.props.currentTime || 0;
           this.last = currentTime;
           this.videoEl.currentTime = currentTime;
           this.videoEl.play(); // 自动播放

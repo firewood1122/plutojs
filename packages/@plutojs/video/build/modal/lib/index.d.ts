@@ -8,6 +8,7 @@ interface PropsType {
     closeOnClickOverlay?: boolean;
     zIndex?: number;
     target?: React.RefObject<HTMLElement>;
+    transition?: string;
     onHide: () => void;
 }
 interface StateType {
