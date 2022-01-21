@@ -32,7 +32,7 @@
     "url": "https://github.com/firewood1122/plutojs/issues"
   },
   "dependencies": {
-    "postcss": "^7.0.27",
+    "postcss": "^8.2.13",
     "px2rem": "^0.5.0"
   },
   "gitHead": "10ef9724d1246556250747a073975a55825294c3"
