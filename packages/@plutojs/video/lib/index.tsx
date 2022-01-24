@@ -124,7 +124,8 @@ export default class Video extends Component<PropsType, StateType> {
    * 响应时间进度
    */
   private onTimeUpdate = () => {
-    const { disableFast, disableFastCallback } = this.props;
+    const { disableFast, disableFastCallback, onCloseFullscreenVideo } =
+      this.props;
     if (disableFast) {
       const current = this.videoEl.currentTime;
       if (current - this.last > 2) {
@@ -132,6 +133,8 @@ export default class Video extends Component<PropsType, StateType> {
         disableFastCallback && disableFastCallback();
       } else {
         this.last = current;
+        onCloseFullscreenVideo &&
+          onCloseFullscreenVideo(this.videoEl.currentTime);
       }
     }
   };
