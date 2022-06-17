@@ -267,7 +267,7 @@ class Modal extends Component<PropsType, StateType> {
         {isOpened && (
           <div
             ref={this.modalEl}
-            style={{ zIndex, height: `${height}px`, visibility }}
+            style={{ zIndex, height: "100vh", visibility }}
             className={`${isLock ? style.lockModal : style.modal} ${
               this.positionMap[position]
             } ${isMask ? style.mask : ""}`}
