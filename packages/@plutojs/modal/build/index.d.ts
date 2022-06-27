@@ -9,6 +9,7 @@ interface PropsType {
     zIndex?: number;
     target?: React.RefObject<HTMLElement>;
     transition?: string;
+    maskClassName?: string;
     onHide: () => void;
 }
 interface StateType {

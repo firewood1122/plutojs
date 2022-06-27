@@ -78,6 +78,7 @@ interface PropsType {
   zIndex?: number;
   target?: React.RefObject<HTMLElement>;
   transition?: string;
+  maskClassName?: string;
   onHide: () => void;
 }
 interface StateType {
@@ -251,6 +252,7 @@ class Modal extends Component<PropsType, StateType> {
       closeOnClickOverlay,
       zIndex,
       transition = "popup",
+      maskClassName = "",
       onHide,
     }: PropsType = this.props;
     const { height, visibility } = this.state;
@@ -270,7 +272,7 @@ class Modal extends Component<PropsType, StateType> {
             style={{ zIndex, height: "100vh", visibility }}
             className={`${isLock ? style.lockModal : style.modal} ${
               this.positionMap[position]
-            } ${isMask ? style.mask : ""}`}
+            } ${isMask ? (maskClassName ? maskClassName : style.mask) : ""}`}
             onClick={() => {
               if (closeOnClickOverlay && onHide) onHide();
             }}
