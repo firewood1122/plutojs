@@ -8,6 +8,7 @@ interface PropsType {
     onFocus?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     maxLength?: number;
     offsetTop?: number;
+    disabled?: boolean;
 }
 export default class Input extends Component<PropsType> {
     static defaultProps: {
@@ -17,6 +18,7 @@ export default class Input extends Component<PropsType> {
         onChange: () => void;
         onFocus: () => void;
         offsetTop: number;
+        disabled: boolean;
     };
     private inputEl;
     private onFocus;

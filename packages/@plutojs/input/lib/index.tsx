@@ -13,6 +13,7 @@ interface PropsType {
   ) => void;
   maxLength?: number;
   offsetTop?: number;
+  disabled?: boolean;
 }
 const noop = () => {
   // do nothing
@@ -25,6 +26,7 @@ export default class Input extends Component<PropsType> {
     onChange: noop,
     onFocus: noop,
     offsetTop: 100,
+    disabled: false,
   };
 
   private inputEl = null; // 输入框实例
@@ -63,6 +65,7 @@ export default class Input extends Component<PropsType> {
       placeholder,
       onChange,
       maxLength = null,
+      disabled,
     } = this.props;
 
     return type !== "textarea" ? (
@@ -75,6 +78,7 @@ export default class Input extends Component<PropsType> {
         onChange={onChange}
         onFocus={this.onFocus}
         maxLength={maxLength}
+        disabled={disabled}
       />
     ) : (
       <textarea
@@ -85,6 +89,7 @@ export default class Input extends Component<PropsType> {
         onChange={onChange}
         onFocus={this.onFocus}
         maxLength={maxLength}
+        disabled={disabled}
       ></textarea>
     );
   }
