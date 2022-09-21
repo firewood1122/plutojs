@@ -2716,14 +2716,6 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@plutojs/postcss-px2rem@^1.4.1":
-  version "1.6.1"
-  resolved "http://npm.xiaopeng.local:7001/@plutojs%2fpostcss-px2rem/-/postcss-px2rem-1.6.1.tgz#c2023f1f4c29a37a69bd96d9f4b0b18beee5cd88"
-  integrity sha1-wgI/H0wpo3ppvZbZ9LCxi+7lzYg=
-  dependencies:
-    postcss "^7.0.27"
-    px2rem "^0.5.0"
-
 "@reach/router@^1.2.1":
   version "1.3.4"
   resolved "https://registry.npmjs.org/@reach/router/-/router-1.3.4.tgz#d2574b19370a70c80480ed91f3da840136d10f8c"

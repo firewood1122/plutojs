@@ -44,7 +44,7 @@
     "webpack-dev-middleware": "^3.7.2"
   },
   "dependencies": {
-    "@plutojs/postcss-px2rem": "^1.4.1",
+    "@plutojs/postcss-px2rem": "^2.0.0",
     "react": "16.13.0",
     "react-dom": "16.13.0"
   },
