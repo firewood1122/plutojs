@@ -21,6 +21,7 @@ export default class Input extends Component<PropsType> {
         disabled: boolean;
     };
     private inputEl;
+    private getContainerEl;
     private onFocus;
     clear(): void;
     render(): JSX.Element;

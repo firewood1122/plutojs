@@ -31,6 +31,20 @@ export default class Input extends Component<PropsType> {
 
   private inputEl = null; // 输入框实例
 
+  // 向上寻找可滚动的父节点
+  private getContainerEl = (el: HTMLElement) => {
+    const parentEl = el.parentElement;
+    if (parentEl && parentEl.nodeName !== "BODY") {
+      if (parentEl.clientHeight < parentEl.scrollHeight) {
+        return parentEl;
+      } else {
+        return this.getContainerEl(parentEl);
+      }
+    } else {
+      return null;
+    }
+  };
+
   private onFocus = (
     e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -40,12 +54,20 @@ export default class Input extends Component<PropsType> {
     // 处理安卓机器，系统键盘遮挡输入区域的问题
     setTimeout(() => {
       if (this.inputEl) {
-        const scrollTop =
-          document.documentElement.scrollTop || document.body.scrollTop;
-        const newScrollTop =
-          scrollTop + this.inputEl.getBoundingClientRect().top - offsetTop;
-        document.body.scrollTop = newScrollTop;
-        document.documentElement.scrollTop = newScrollTop;
+        const containerEl: HTMLElement = this.getContainerEl(this.inputEl);
+        if (containerEl) {
+          const scrollTop = containerEl.scrollTop;
+          const newScrollTop =
+            scrollTop + this.inputEl.getBoundingClientRect().top - offsetTop;
+          containerEl.scrollTop = newScrollTop;
+        } else {
+          const scrollTop =
+            document.documentElement.scrollTop || document.body.scrollTop;
+          const newScrollTop =
+            scrollTop + this.inputEl.getBoundingClientRect().top - offsetTop;
+          document.body.scrollTop = newScrollTop;
+          document.documentElement.scrollTop = newScrollTop;
+        }
       }
     }, 500);
   };
