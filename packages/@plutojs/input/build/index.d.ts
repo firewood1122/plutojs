@@ -6,6 +6,7 @@ interface PropsType {
     placeholder?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     onFocus?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+    onBlur?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     maxLength?: number;
     offsetTop?: number;
     disabled?: boolean;
@@ -17,12 +18,14 @@ export default class Input extends Component<PropsType> {
         placeholder: string;
         onChange: () => void;
         onFocus: () => void;
+        onBlur: () => void;
         offsetTop: number;
         disabled: boolean;
     };
     private inputEl;
     private getContainerEl;
     private onFocus;
+    private onBlur;
     clear(): void;
     render(): JSX.Element;
 }

@@ -31,6 +31,10 @@ export const story1 = () => {
           onChange={(e) => {
             setText(e.target.value);
           }}
+          onBlur={() => {
+            input.current.clear();
+            setText("");
+          }}
         />
       </div>
       <div

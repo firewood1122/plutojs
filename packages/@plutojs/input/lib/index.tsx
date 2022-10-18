@@ -11,6 +11,9 @@ interface PropsType {
   onFocus?: (
     e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
+  onBlur?: (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   maxLength?: number;
   offsetTop?: number;
   disabled?: boolean;
@@ -25,6 +28,7 @@ export default class Input extends Component<PropsType> {
     placeholder: "",
     onChange: noop,
     onFocus: noop,
+    onBlur: noop,
     offsetTop: 100,
     disabled: false,
   };
@@ -72,6 +76,13 @@ export default class Input extends Component<PropsType> {
     }, 500);
   };
 
+  private onBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { onBlur } = this.props;
+    if (onBlur) onBlur(e);
+  };
+
   /**
    * 清空输入框
    */
@@ -99,6 +110,7 @@ export default class Input extends Component<PropsType> {
         placeholder={placeholder}
         onChange={onChange}
         onFocus={this.onFocus}
+        onBlur={this.onBlur}
         maxLength={maxLength}
         disabled={disabled}
       />
@@ -110,6 +122,7 @@ export default class Input extends Component<PropsType> {
         placeholder={placeholder}
         onChange={onChange}
         onFocus={this.onFocus}
+        onBlur={this.onBlur}
         maxLength={maxLength}
         disabled={disabled}
       ></textarea>
