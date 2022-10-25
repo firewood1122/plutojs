@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import React, { Component, createRef } from "react";
+import React, { Component, createRef, ReactPortal } from "react";
 import style from "./index.less";
 
 /**
@@ -95,6 +95,10 @@ class Modal extends Component<PropsType, StateType> {
       visibility: "visible",
     };
 
+    // 初始化模态框容器
+    this.containerEl = document.createElement("div");
+    document.body.appendChild(this.containerEl);
+
     // 加入模态框管理器
     this.modalId = `${Date.now()}_${Math.random()}`;
     modalManager.addModal(this);
@@ -115,6 +119,7 @@ class Modal extends Component<PropsType, StateType> {
   };
 
   public modalId = "";
+  private containerEl: HTMLDivElement = null;
   private modalEl: any = null;
   private contentEl: any = null;
   private prePosition = ""; // 页面原定位方式
@@ -205,6 +210,8 @@ class Modal extends Component<PropsType, StateType> {
   componentWillUnmount() {
     const { isLock } = this.props;
     modalManager.removeModal(this);
+    // 移除模态框容器
+    if (this.containerEl) document.body.removeChild(this.containerEl);
     if (isLock) {
       this.setStyle(false);
     }
@@ -242,7 +249,7 @@ class Modal extends Component<PropsType, StateType> {
     });
   };
 
-  render() {
+  render(): ReactPortal {
     const {
       children,
       isOpened,
@@ -264,7 +271,7 @@ class Modal extends Component<PropsType, StateType> {
       contentClassName.push(style.slideOut);
     }
 
-    return (
+    return ReactDOM.createPortal(
       <React.Fragment>
         {isOpened && (
           <div
@@ -288,7 +295,8 @@ class Modal extends Component<PropsType, StateType> {
             </div>
           </div>
         )}
-      </React.Fragment>
+      </React.Fragment>,
+      this.containerEl
     );
   }
 }

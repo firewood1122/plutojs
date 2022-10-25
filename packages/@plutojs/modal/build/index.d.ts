@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, ReactPortal } from "react";
 interface PropsType {
     children: React.ReactNode;
     isOpened: boolean;
@@ -27,6 +27,7 @@ declare class Modal extends Component<PropsType, StateType> {
         closeOnClickOverlay: boolean;
     };
     modalId: string;
+    private containerEl;
     private modalEl;
     private contentEl;
     private prePosition;
@@ -40,6 +41,6 @@ declare class Modal extends Component<PropsType, StateType> {
         destroy(): void;
     };
     setVisibility: (visibility: "visible" | "hidden") => void;
-    render(): JSX.Element;
+    render(): ReactPortal;
 }
 export default Modal;
