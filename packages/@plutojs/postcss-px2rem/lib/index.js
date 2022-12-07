@@ -18,6 +18,7 @@ module.exports = postcss.plugin(
       // 默认不转换，指定文件转换
       if (options.manual) {
         if (
+          css.first &&
           css.first.type === "comment" &&
           css.first.text === "px2rem-enabled"
         ) {
