@@ -6,6 +6,7 @@ interface PropsType {
   className?: string;
   disabled?: boolean;
   onClick: (event: React.MouseEvent) => void;
+  children: React.ReactNode;
 }
 export default class Button extends Component<PropsType> {
   static defaultProps = {
