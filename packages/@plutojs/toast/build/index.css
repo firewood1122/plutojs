@@ -17,8 +17,42 @@
   flex-direction: column;
   align-items: center;
 }
+@keyframes plutojs_toast_popUpBg {
+  from {
+    background: transparent;
+  }
+  to {
+    background: rgba(0, 0, 0, 0.75);
+  }
+}
 .plutojs_toast_mask {
+  animation: plutojs_toast_popUpBg 0.5s;
   background: rgba(0, 0, 0, 0.75);
+}
+@keyframes plutojs_toast_popUpContent {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes plutojs_toast_slideOutContent {
+  from {
+    transform: opacity(0);
+  }
+  to {
+    transform: opacity(1);
+  }
+}
+.plutojs_toast_content {
+  position: relative;
+}
+.plutojs_toast_popUp {
+  animation: plutojs_toast_popUpContent 0.5s;
+}
+.plutojs_toast_slideOut {
+  animation: plutojs_toast_slideOutContent 0.5s;
 }
 .plutojs_toast_center {
   justify-content: center;
@@ -28,9 +62,6 @@
 }
 .plutojs_toast_bottom {
   justify-content: flex-end;
-}
-.plutojs_toast_content {
-  position: relative;
 }
 
 .plutojs_toast_info {
