@@ -146,7 +146,7 @@ class Modal extends Component<PropsType, StateType> {
         document.body.style.top = "0px";
         document.documentElement.scrollTop = this.scrollTop;
         document.body.scrollTop = this.scrollTop;
-        document.body.style.overflow = "initial";
+        document.body.style.overflow = "auto";
       }
     }
   };
