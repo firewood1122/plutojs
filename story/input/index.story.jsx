@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { withQuery } from "@storybook/addon-queryparams";
 import Input from "@/input";
@@ -36,6 +36,14 @@ export const story1 = () => {
             setText("");
           }}
         />
+      </div>
+      <div
+        className="clear"
+        onClick={() => {
+          input.current.focus();
+        }}
+      >
+        点击聚焦
       </div>
       <div
         className="clear"

@@ -90,6 +90,13 @@ export default class Input extends Component<PropsType> {
     this.inputEl.value = "";
   }
 
+  /**
+   * 聚焦`输入框
+   */
+  focus() {
+    this.inputEl.focus();
+  }
+
   render() {
     const {
       type,

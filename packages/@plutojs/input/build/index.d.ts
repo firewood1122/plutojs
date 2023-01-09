@@ -27,6 +27,7 @@ export default class Input extends Component<PropsType> {
     private onFocus;
     private onBlur;
     clear(): void;
+    focus(): void;
     render(): JSX.Element;
 }
 export {};
