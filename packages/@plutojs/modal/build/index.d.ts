@@ -30,7 +30,6 @@ declare class Modal extends Component<PropsType, StateType> {
     private containerEl;
     private modalEl;
     private contentEl;
-    private prePosition;
     private scrollTop;
     private containerHeight;
     private setStyle;

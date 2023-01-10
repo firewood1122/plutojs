@@ -122,7 +122,6 @@ class Modal extends Component<PropsType, StateType> {
   private containerEl: HTMLDivElement = null;
   private modalEl: any = null;
   private contentEl: any = null;
-  private prePosition = ""; // 页面原定位方式
   private scrollTop = 0; // 页面原滚动高度
   private containerHeight = 0; // 浮层容器高度
 
@@ -137,16 +136,14 @@ class Modal extends Component<PropsType, StateType> {
       document.body.style.position = "fixed";
       document.body.style.width = "100%";
       document.body.style.top = `-${this.scrollTop}px`;
-      document.body.style.overflow = "hidden";
       if (this.modalEl) this.modalEl.current.style.top = `${this.scrollTop}px`;
     } else {
       // 重新设置body定位
       if (modalManager.getShowingCount() === 0) {
-        document.body.style.position = this.prePosition || "static";
+        document.body.style.position = "static";
         document.body.style.top = "0px";
         document.documentElement.scrollTop = this.scrollTop;
         document.body.scrollTop = this.scrollTop;
-        document.body.style.overflow = "auto";
       }
     }
   };
@@ -154,7 +151,6 @@ class Modal extends Component<PropsType, StateType> {
   componentDidMount() {
     const { isOpened, isLock, target } = this.props;
     if (isLock) {
-      this.prePosition = document.body.style.position;
       this.setStyle(isOpened);
     }
     setTimeout(() => {
