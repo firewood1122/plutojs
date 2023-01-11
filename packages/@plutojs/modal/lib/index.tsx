@@ -66,7 +66,15 @@ function ModalManager() {
     return showingModalItems.length;
   };
 }
-const modalManager = new ModalManager();
+
+// 维护当前页面控制器唯一
+let modalManager = null;
+if (!window[location.host]) {
+  modalManager = new ModalManager();
+  window[location.host] = modalManager;
+} else {
+  modalManager = window[location.host];
+}
 
 interface PropsType {
   children: React.ReactNode;
@@ -150,6 +158,7 @@ class Modal extends Component<PropsType, StateType> {
   componentDidMount() {
     const { isOpened, isLock, target } = this.props;
     if (isLock && isOpened) {
+      modalManager.showModal(this);
       this.setStyle(isOpened);
     }
     setTimeout(() => {
