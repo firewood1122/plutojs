@@ -130,7 +130,6 @@ class Modal extends Component<PropsType, StateType> {
    */
   private setStyle = (isOpened: boolean) => {
     if (isOpened) {
-      if (document.body.style.position === "fixed") return;
       this.scrollTop =
         document.documentElement.scrollTop || document.body.scrollTop;
       document.body.style.position = "fixed";
@@ -150,7 +149,7 @@ class Modal extends Component<PropsType, StateType> {
 
   componentDidMount() {
     const { isOpened, isLock, target } = this.props;
-    if (isLock) {
+    if (isLock && isOpened) {
       this.setStyle(isOpened);
     }
     setTimeout(() => {
